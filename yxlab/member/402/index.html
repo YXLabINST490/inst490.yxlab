@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/member/402/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 05:41:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+    
+    
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/member.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+  
+
+  
+
+    <title>
+        Manaswi Saha
+    </title>
+
+    <script type="text/javascript">
+
+    
+
+    
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+    
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom navbar-white navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+                                
+                                <img src="../../static/website/img/logos/makelab_logo_white_no_text_100x67.png" height="20" />
+
+                                <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">Make</span>ability</span> Lab</div>
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+                                
+                                    <li class=""><a href="../../index.html">Home</a></li>
+                                    <li class=""><a href="../../people/index.html">People</a></li>
+                                    <li class=""><a href="../../projects/index.html">Projects</a></li>
+                                    <li class=""><a href="../../news/index.html">News</a></li>
+                                    <li class=""><a href="../../publications/index.html">Publications</a></li>
+                                    <li class=""><a href="../../talks/index.html">Talks</a></li>
+                                    <li class=""><a href="../../videos/index.html">Videos</a></li>
+                                    <li class=""><a href="../../faq/index.html">FAQ</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+    
+
+    
+
+
+    <div style="min-height: 40px">&nbsp;
+        
+        
+    </div>
+
+
+    
+    <div id="content" class="container content-container" data-spy="scroll">
+        <div id="header" class="container">
+            <div class="row" id="about-header">
+                <div class="col-sm-6 col-md-3 hidden-xs">
+                    <div class="easter-egg-col">
+                        <img src="../../media/person/me_walkhacknight.jpg.245x245_q85_box-797%2c0%2c4340%2c3542_crop_detail_upscale.jpg"
+                             class="img-responsive"/>
+                        <div class="overlay-easter-egg">
+                            <img src="../../media/person/me_NY_H7RPkEQ.JPG.245x245_q85_box-0%2c160%2c1745%2c1914_crop_detail_upscale.jpg"
+                                 class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <h3 class="member-title">Manaswi Saha</h3>
+                    
+                        
+                            <p class="person-title-text">
+                                PhD Student, CS
+                                <br/>
+                                University of Washington
+                            </p>
+                        
+                    
+                    <div class="icon-housing">
+                        
+                            <a href="mailto:manaswi@cs.washington.edu">
+                                <img src="../../static/website/img/email.png" class="header-icon">
+                            </a>
+                        
+                        
+                            <a href="http://homes.cs.washington.edu/~manaswi" target="_blank">
+                                <img src="../../static/website/img/link.png" class="header-icon">
+                            </a>
+                        
+                        
+                            <a href="https://github.com/manaswis" target="_blank">
+                                <img src="../../static/website/img/github.png" class="header-icon">
+                            </a>
+                        
+                        
+                            <a href="https://twitter.com/manaswisaha" target="_blank">
+                                <img src="../../static/website/img/twitter.png" class="header-icon">
+                            </a>
+                        
+                    </div>
+                    <p class="person-bio-text">
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="main-content" class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-2 col-md-push-10 newstwitter-bar">
+                    
+                        <!-- Create a row for the well which will contain news from our feeds -->
+                        <div class="row">
+                            <h3 class="news-type-label">Recent News</h3>
+                            <div class="well news-well">
+                                
+                                    <!-- Create a row for each news item which has been passed in -->
+                                    <div class="row news_header">
+                                        <!-- TODO link to the full news item -->
+                                        <a href="#">
+                                            <!-- Use the items image if it exists, otherwise use the default icon -->
+                                            
+                                                <img src="../../media/news/CrosscutArticled6a3f554e3d749af9bb81f525c23308a.png.250x250_q85_box-50%2c0%2c1556%2c1509_crop_detail.png"
+                                                     class="news_image" height="50" width="50"
+                                                     alt="Screenshot of the Crosscut article showing the title along with a header image of two people walking on a sidewalk that&#39;s disheveled">
+                                            
+                                        </a>
+                                        <div class="news_info">
+                                            <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+                                            <div class="news_title line-clamp">
+                                                <!-- TODO link to the full news item -->
+                                                <a href="../../news/86/index.html">
+                                                    <p>Project Sidewalk in the Local News!</p>
+                                                </a>
+                                            </div>
+                                            <p class="news_date">Apr 30, 2019 | <a
+                                                    href="../manaswisaha/index.html">Manaswi</a>
+                                            </p><!--</p><p class="news_date">Manaswi Saha</p>-->
+                                        </div>
+                                    </div>
+                                    <div class="row news_body">
+                                        <!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+                                        <div class="news_content content-clamp">
+                                            
+                                                <p>With the recent Seattle and Newberg launch of <a href="http://projectsidewalk.io/" target="_blank">Project Sidewalk</a>, we have been getting a lot of media attention. Here are a few articles so far (<i>many more to come!</i>): <br/>
+
+
+<br/><a href="https://pamplinmedia.com/nbg/142-news/426819-333273-newberg-streets-second-in-nation-to-be-studied-with-new-accessibility-metric" target="_blank">Newberg streets second in nation to be studied with new accessibility metric</a> (The Newberg Graphic, April 2019) <br/>
+
+<a href="https://crosscut.com/2019/04/seattles-got-terrible-sidewalks-you-can-help-fix-them" target="_blank">Seattle's got terrible sidewalks. You can help fix them.</a> (Crosscut, April 2019)</p>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Create a row for each news item which has been passed in -->
+                                    <div class="row news_header">
+                                        <!-- TODO link to the full news item -->
+                                        <a href="#">
+                                            <!-- Use the items image if it exists, otherwise use the default icon -->
+                                            
+                                                <img src="../../media/news/me_walkhacknightc705e763f93242d7a4baf7ad1bd9e084.jpg.250x250_q85_box-886%2c0%2c4428%2c3542_crop_detail.jpg"
+                                                     class="news_image" height="50" width="50"
+                                                     alt="Manaswi Saha presenting at the event">
+                                            
+                                        </a>
+                                        <div class="news_info">
+                                            <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+                                            <div class="news_title line-clamp">
+                                                <!-- TODO link to the full news item -->
+                                                <a href="../../news/33/index.html">
+                                                    <p>Project Sidewalk presents at WalkHackNight II</p>
+                                                </a>
+                                            </div>
+                                            <p class="news_date">Feb 08, 2017 | <a
+                                                    href="../manaswisaha/index.html">Manaswi</a>
+                                            </p><!--</p><p class="news_date">Manaswi Saha</p>-->
+                                        </div>
+                                    </div>
+                                    <div class="row news_body">
+                                        <!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+                                        <div class="news_content content-clamp">
+                                            
+                                                <p><a href="https://twitter.com/techiesdc" target="_blank">Transportation Techies DC</a> had hosted their second <a href="https://www.meetup.com/Transportation-Techies/events/236668724/" target="_blank"">WalkHackNight</a> in Crystal City. <a href="http://sidewalk.umiacs.umd.edu/">Project Sidewalk</a> team was honored to be invited to give a talk at this event. It is the second time for Project Sidewalk to be presenting at this event.</p>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Create a row for each news item which has been passed in -->
+                                    <div class="row news_header">
+                                        <!-- TODO link to the full news item -->
+                                        <a href="#">
+                                            <!-- Use the items image if it exists, otherwise use the default icon -->
+                                            
+                                                <img src="../../media/news/proj_sidewalk_video_coverage_wusa9348845082c73454a85775c97bacb832b.png.250x250_q85_box-0%2c0%2c1351%2c1347_crop_detail.png"
+                                                     class="news_image" height="50" width="50"
+                                                     alt="">
+                                            
+                                        </a>
+                                        <div class="news_info">
+                                            <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+                                            <div class="news_title line-clamp">
+                                                <!-- TODO link to the full news item -->
+                                                <a href="../../news/24/index.html">
+                                                    <p>Project Sidewalk featured in the local news!</p>
+                                                </a>
+                                            </div>
+                                            <p class="news_date">Nov 17, 2016 | <a
+                                                    href="../manaswisaha/index.html">Manaswi</a>
+                                            </p><!--</p><p class="news_date">Manaswi Saha</p>-->
+                                        </div>
+                                    </div>
+                                    <div class="row news_body">
+                                        <!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+                                        <div class="news_content content-clamp">
+                                            
+                                                <p>Project Sidewalk was covered by a DC TV station, <a href = "http://wusa9.com/"> WUSA9</a>. Check out the <a href = "http://www.wusa9.com/entertainment/television/programs/great-day-washington/project-sidewalk/353394772"> video coverage</a> and the <a href = "http://www.wusa9.com/news/local/new-tool-makes-dc-sidewalks-more-accessible-for-everyone/352576119"> news report</a> now! This is exciting!</p>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Create a row for each news item which has been passed in -->
+                                    <div class="row news_header">
+                                        <!-- TODO link to the full news item -->
+                                        <a href="#">
+                                            <!-- Use the items image if it exists, otherwise use the default icon -->
+                                            
+                                                <img src="../../media/news/groupd508e9882df84c079bdfb2a0326e20ee.jpeg.250x250_q85_box-261%2c0%2c1461%2c1200_crop_detail.jpg"
+                                                     class="news_image" height="50" width="50"
+                                                     alt="">
+                                            
+                                        </a>
+                                        <div class="news_info">
+                                            <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+                                            <div class="news_title line-clamp">
+                                                <!-- TODO link to the full news item -->
+                                                <a href="../../news/19/index.html">
+                                                    <p>Accessibility Research Team at the Diversity in Computing Summit</p>
+                                                </a>
+                                            </div>
+                                            <p class="news_date">Nov 08, 2016 | <a
+                                                    href="../manaswisaha/index.html">Manaswi</a>
+                                            </p><!--</p><p class="news_date">Manaswi Saha</p>-->
+                                        </div>
+                                    </div>
+                                    <div class="row news_body">
+                                        <!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+                                        <div class="news_content content-clamp">
+                                            
+                                                <p>We were honored to participate in the inaugural <a href = "https://mcwic.cs.umd.edu/events/diversity"> Diversity in Computing Summit</a>. Makeability Lab and <a href = "http://inclusivedesign.umd.edu/">Inclusive Design Lab</a> members presented a joint session on their accessibility research. The session, entitled "Interactive Computational Tools for Accessibility," covered work on Project Sidewalk (by <i>Manaswi Saha</i>), Temporal Tracking of Accessibility Features in Cities (by <i>Ladan Najafizadeh</i>) , Health and Fitness for the Mobility Impaired (by <i>Meethu Malu</i>), Accessible On-body Interaction for the Visually Impaired (by <i>Uran Oh</i>) and HandSight (by <i>Lee Stearns</i>). Talk slides are available <a href="https://makeabilitylab.umiacs.umd.edu/media/talks/InteractiveComputionalToolsForAccessibility_DiversityInComputingSummit2016_reducedsize.pdf">here</a>.</p>
+                                            
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Create a row for each news item which has been passed in -->
+                                    <div class="row news_header">
+                                        <!-- TODO link to the full news item -->
+                                        <a href="#">
+                                            <!-- Use the items image if it exists, otherwise use the default icon -->
+                                            
+                                                <img src="../../media/news/Adobe-Touch-Apps-Family-Logoda9a5cf74fc74d74b0842a467b10eacc.png.250x250_q85_box-12%2c0%2c988%2c975_crop_detail.jpg"
+                                                     class="news_image" height="50" width="50"
+                                                     alt="">
+                                            
+                                        </a>
+                                        <div class="news_info">
+                                            <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+                                            <div class="news_title line-clamp">
+                                                <!-- TODO link to the full news item -->
+                                                <a href="../../news/2/index.html">
+                                                    <p>Summer Internship at Adobe Research!</p>
+                                                </a>
+                                            </div>
+                                            <p class="news_date">Apr 07, 2016 | <a
+                                                    href="../manaswisaha/index.html">Manaswi</a>
+                                            </p><!--</p><p class="news_date">Manaswi Saha</p>-->
+                                        </div>
+                                    </div>
+                                    <div class="row news_body">
+                                        <!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+                                        <div class="news_content content-clamp">
+                                            
+                                                <p>I am excited to announce that I will be spending my summer at <a href = 'https://research.adobe.com/'> Adobe Research</a> in San Jose, CA. I will be working in the area of Internet of Things (IoT) in the BigData Experience Lab. Broadly, the project will look into mobility, how it relates to IoT and how can IoT be used to create seamless consumer experiences. Looking forward to an exciting summer playing with IoT gadgets in sunny California! Fun!</p>
+                                            
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="col-xs-12 col-md-10 col-md-pull-2 landing-content">
+                    <div id="makelab-recent-projects" class="makelab-content-container">
+                        
+                            <div class="row">
+                                <h3 class="news-type-label"><b>Projects</b></h3>
+                                
+                                    
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../../project/thermography/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../../media/projects/images/IMG_2715_H2tvfvw.JPG.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="../../project/thermography/index.html">
+        <p class="artifact-title">Pervasive Thermography</p>
+    </a>
+</div>
+                                
+                                    
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../../project/sidewalk/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../../media/projects/images/obstacle_b_streetid_857.png.300x180_q85_crop-center.png">
+        </div>
+    </a>
+    <a href="../../project/sidewalk/index.html">
+        <p class="artifact-title">Project Sidewalk</p>
+    </a>
+</div>
+                                
+                                    
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../../project/accessscore/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../../media/projects/images/AccessScoreProjectIcon.png.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="../../project/accessscore/index.html">
+        <p class="artifact-title">AccessScore</p>
+    </a>
+</div>
+                                
+                                    
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../../project/accessiblemaps/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../../media/projects/images/AssistiveLocationBasedTechnologies.png.300x180_q85_crop-center.png">
+        </div>
+    </a>
+    <a href="../../project/accessiblemaps/index.html">
+        <p class="artifact-title">Accessibility-Infused Maps</p>
+    </a>
+</div>
+                                
+                            </div>
+                        
+                    </div>
+
+                    <div id="makelab-recent-publications" class="makelab-content-container">
+                        
+                            <div class="row">
+                                <h3 class="news-type-label"><b>Publications</b></h3>
+                                <div class="col-xs-12 col-md-10">
+                                    
+                                        
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Saha_ProjectSidewalkAWebBasedCrowdsourcingToolForCollectingSidewalkAccessibilityDataAtScale_2019.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Saha_ProjectSidewalkAWebBasedCrowdsourcingToolForCollectingSidewalkAccessibilityDataAtScale_2019.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Project Sidewalk: A Web-based Crowdsourcing Tool for Collecting Sidewalk Accessibility Data at Scale</p>
+            <p class="publication-authors">
+                
+                    <a href="../manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../mikeysaugstad/index.html">Mikey Saugstad</a>,
+                
+                    <a href="../tejamaddali/index.html">Teja Maddali</a>,
+                
+                    <a href="../aileenzeng/index.html">Aileen Zeng</a>,
+                
+                    <a href="../ryanholland/index.html">Ryan Holland</a>,
+                
+                    <a href="../stevenbower/index.html">Steven Bower</a>,
+                
+                    <a href="../adityadash/index.html">Aditya Dash</a>,
+                
+                    <a href="../sagechen/index.html">Sage Chen</a>,
+                
+                    <a href="../anthonyli/index.html">Anthony Li</a>,
+                
+                    <a href="../kotarohara/index.html">Kotaro Hara</a>,
+                
+                    <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2019
+                    
+                    
+                        <span class="publication-to-appear-text">To Appear</span>
+                    
+                </span>
+                
+                    <span class="publication-acceptance-rate">|
+                        <span class="publication-acceptance-rate-text">
+                            
+                            
+                            Acceptance Rate: 23.8%
+                            (705 / 2960)
+                        </span>
+                    </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        mobility impairments,
+                    
+                
+                    
+                        gis,
+                    
+                
+                    
+                        wheelchair,
+                    
+                
+                    
+                        crowdsourcing,
+                    
+                
+                    
+                        urban accessibility
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Saha_ProjectSidewalkAWebBasedCrowdsourcingToolForCollectingSidewalkAccessibilityDataAtScale_2019.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+                                    
+                                        
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Li_InteractivelyModelingAndVisualizingNeighborhoodAccessibilityAtScaleAnInitialStudyOfWashingtonDc_2018.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Li_InteractivelyModelingAndVisualizingNeighborhoodAccessibilityAtScaleAnInitialStudyOfWashingtonDc_2018.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Interactively Modeling and Visualizing Neighborhood Accessibility at Scale: An Initial Study of Washington DC</p>
+            <p class="publication-authors">
+                
+                    <a href="../anthonyli/index.html">Anthony Li</a>,
+                
+                    <a href="../manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../anupamgupta/index.html">Anupam Gupta</a>,
+                
+                    <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract Proceedings of ASSETS 2018
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        urban informatics,
+                    
+                
+                    
+                        information visualization,
+                    
+                
+                    
+                        urban data mining,
+                    
+                
+                    
+                        urban accessibility,
+                    
+                
+                    
+                        geo-visualization,
+                    
+                
+                    
+                        walkability index
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Li_InteractivelyModelingAndVisualizingNeighborhoodAccessibilityAtScaleAnInitialStudyOfWashingtonDc_2018.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                    
+                        | <a href="../../project/accessscore/index.html">AccessScore</a>
+                    
+                        | <a href="../../project/accessiblemaps/index.html">Accessibility-Infused Maps</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+                                    
+                                        
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/p305-saha.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/p305-saha.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">A Pilot Deployment of an Online Tool for Large-Scale Virtual Auditing of Urban Accessibility</p>
+            <p class="publication-authors">
+                
+                    <a href="../manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../kotarohara/index.html">Kotaro Hara</a>,
+                
+                    <a href="../soheilbehnezhad/index.html">Soheil Behnezhad</a>,
+                
+                    <a href="../anthonyli/index.html">Anthony Li</a>,
+                
+                    <a href="../mikeysaugstad/index.html">Mikey Saugstad</a>,
+                
+                    <a href="../tejamaddali/index.html">Teja Maddali</a>,
+                
+                    <a href="../sagechen/index.html">Sage Chen</a>,
+                
+                    <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract Proceedings of ASSETS 2017
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        crowdsourcing,
+                    
+                
+                    
+                        gis,
+                    
+                
+                    
+                        mobility impairments,
+                    
+                
+                    
+                        urban accessibility
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/p305-saha.pdf">PDF</a>
+                    <a href="http://doi.acm.org/10.1145/3132525.3134775">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+                                    
+                                        
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Exploring Novice Approaches to Smartphone-based Thermographic Energy Auditing: A Field Study</p>
+            <p class="publication-authors">
+                
+                    <a href="../matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../ericabrown/index.html">Erica Brown</a>,
+                
+                    <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2017
+                    
+                    
+                </span>
+                
+                    <span class="publication-acceptance-rate">|
+                        <span class="publication-acceptance-rate-text">
+                            
+                            
+                            Acceptance Rate: 25.0%
+                            (606 / 2424)
+                        </span>
+                    </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        formative inquiry,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        urban informatics,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        environmental hci,
+                    
+                
+                    
+                        sustainability
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.pdf">PDF</a>
+                    <a href="https://doi.org/10.1145/3025453.3025471">| doi</a>
+                    <a href="../../media/talks/CHI2017_Thermography_v0.2-TrimmedSandboxSlides-Slideshare.pdf">| Talk</a>
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/thermography/index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+                                    
+                                        
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/The_Future_Role_of_Thermography_in_Human-Building_Interaction_h2nvDsl.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/The_Future_Role_of_Thermography_in_Human-Building_Interaction_h2nvDsl.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">The Future Role of Thermography in Human-Building Interaction</p>
+            <p class="publication-authors">
+                
+                    <a href="../matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../matthewdahlhausen/index.html">Matthew Dahlhausen</a>,
+                
+                    <a href="../ericabrown/index.html">Erica Brown</a>,
+                
+                    <a href="../manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        CHI 2016 Workshop: Future of Human-Building Interaction
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        human-building interaction,
+                    
+                
+                    
+                        thermal cameras
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/The_Future_Role_of_Thermography_in_Human-Building_Interaction_h2nvDsl.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/thermography/index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+                                    
+                                </div>
+                            </div>
+                        
+                    </div>
+
+                    <div id="makelab-recent-talks" class="makelab-content-container">
+                        
+                            <div class="row">
+                                <h3 class="news-type-label"><b>Talks</b></h3>
+                                <div class="row">
+                                    
+                                        
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/ProjectSidewalk_ManaswiSaha_HCILSym2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/ProjectSidewalk_ManaswiSaha_HCILSym2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/ProjectSidewalk_ManaswiSaha_HCILSym2017.pdf" target="_blank"><span class="artifact-title line-clamp">Project Sidewalk: Assessing Urban Accessibility using Crowdsourcing and Google Street View</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                May 25, 2017 | HCIL Symposium 2017
+            </p>
+            <p class="artifact-venue line-clamp-one-line">College Park, Maryland</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../manaswisaha/index.html" style="color:#464D59">Manaswi Saha</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/ProjectSidewalk_ManaswiSaha_HCILSym2017.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+                                    
+                                        
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/SidewalkWalkHackNight_ManaswiSaha_PDF.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/SidewalkWalkHackNight_ManaswiSaha_PDF.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/SidewalkWalkHackNight_ManaswiSaha_PDF.pdf" target="_blank"><span class="artifact-title line-clamp">Project Sidewalk: Characterizing Physical World Accessibility At Scale</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Feb. 8, 2017 | WalkHackNight II
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Arlington, Virginia</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../manaswisaha/index.html" style="color:#464D59">Manaswi Saha</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/SidewalkWalkHackNight_ManaswiSaha_PDF.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+                                    
+                                        
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/InteractiveComputionalToolsForAccessibility_DiversityInComputingSummit2016_reducedsize.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/InteractiveComputionalToolsForAccessibility_DiversityInComputingSummit2016_reducedsize.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/InteractiveComputionalToolsForAccessibility_DiversityInComputingSummit2016_reducedsize.pdf" target="_blank"><span class="artifact-title line-clamp">Interactive Computational Tools for Accessibility</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Nov. 7, 2016 | Diversity in Computing Summit 2016
+            </p>
+            <p class="artifact-venue line-clamp-one-line">College Park, Maryland</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../meethumalu/index.html" style="color:#464D59">Meethu Malu</a>, 
+                
+                    <a href="../ladannajafizadeh/index.html" style="color:#464D59">Ladan Najafizadeh</a>, 
+                
+                    <a href="../uranoh/index.html" style="color:#464D59">Uran Oh</a>, 
+                
+                    <a href="../manaswisaha/index.html" style="color:#464D59">Manaswi Saha</a>, 
+                
+                    <a href="../leestearns/index.html" style="color:#464D59">Lee Stearns</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/InteractiveComputionalToolsForAccessibility_DiversityInComputingSummit2016_reducedsize.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../../project/handsight/index.html">HandSight</a>
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+                                    
+                                        
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Technica2016_fixed_reducedsize.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Technica2016_fixed_reducedsize.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Technica2016_fixed_reducedsize.pdf" target="_blank"><span class="artifact-title line-clamp">Tech+Design: Interaction Design for a Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Nov. 3, 2016 | Technica: Tech+X Talk Series
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../soheilbehnezhad/index.html" style="color:#464D59">Soheil Behnezhad</a>, 
+                
+                    <a href="../lianghe/index.html" style="color:#464D59">Liang He</a>, 
+                
+                    <a href="../majeedkazemitabaar/index.html" style="color:#464D59">Majeed Kazemitabaar</a>, 
+                
+                    <a href="../manaswisaha/index.html" style="color:#464D59">Manaswi Saha</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Technica2016_fixed_reducedsize.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+                                    
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+        <div class="makelab-footer">
+            <div class="row makelab-footer-row">
+               
+                <div class="col-xs-2 makelab-footer-col">
+                    <a href="../../index.html">
+                        <img src="../../static/website/img/logos/makelab_logo_white_with_text_400x342.png"
+                             class="img-responsive makelab-footer-logo"/>
+                    </a>
+                  </div>
+                    
+				<div class="col-xs-2 makelab-footer-col">
+                    <p style="margin-top:0px">
+                       We design, build, and evaluate interactive tools and techniques to address pressing societal
+                        challenges in accessibility, sustainability, education, and beyond.
+                    </p>
+                      
+					<div class="makelab-footer-connect-links">
+						<ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+						</ul>
+					</div>      
+				</div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-recent-news">
+                    <h1>Recent News</h1>
+                    
+                    
+
+                    
+                        <div class="row">
+                            <a href="../../news/86/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 30, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Project Sidewalk in the Local News!</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/85/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 18, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">UW News Covers Project Sidewalk</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/84/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 17, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Aileen Zeng Presents at Women&#39;s Research Day</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                </div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-links">
+                    <h1>Links</h1>
+                    <ul>
+                        
+
+                            <li style="white-space:nowrap;" class=""><a href="../../index.html"> &nbsp;> &nbsp; Home</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../people/index.html">&nbsp;> &nbsp; People</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../news/index.html">&nbsp;> &nbsp; News</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../publications/index.html">&nbsp;> &nbsp; Publications</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../talks/index.html">&nbsp;> &nbsp; Talks</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../videos/index.html">&nbsp;> &nbsp; Videos</a></li>
+                        
+                    </ul>
+                    <div class="makelab-footer-connect-links-mobile">
+
+                        <!-- TODO: Vertically center text with icon. Currently text does not appear perfectly vertically centered with icon -->
+                        <!--<h1>Connect</h1>-->
+
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Consider adding a sponsorship row? -->
+            <!-- TODO: The centering looks weird on this. Also responsive design wraps columns, which I don't like. Ideally, I think, on small devices, should just switch to single row;
+                 TODO: Fix UMD CS logo so that the text is bigger -->
+            <div class="makelab-footer-affiliations">
+                <div class="row makelab-footer-affiliations-row">
+                <div class="makelab-footer-affiliation-col">
+                    <a href="http://dub.uw.edu/">
+                        <img src="../../static/website/img/logos/uw_dub_bottom_white_185x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-cse-footer-icon">
+                    <a href="https://www.cs.washington.edu/">
+                        <img src="../../static/website/img/logos/uw_allen_school_logo_white_941x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" style="margin-top: 2px;">
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-footer-icon">
+                    <a href="https://www.washington.edu/">
+
+
+                        <img src="../../static/website/img/logos/uw_white_horizontal_1196x94.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-cse-footer-icon">
+                    <a href="https://www.cs.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_cs_logo_white_850x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" />
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-footer-icon">
+                    <a href="https://www.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_logo_white_586x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/member/402/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 05:41:17 GMT -->
+</html>

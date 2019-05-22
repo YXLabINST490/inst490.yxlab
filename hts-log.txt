@@ -1,0 +1,40 @@
+HTTrack3.49-2+htsswf+htsjava launched on Tue, 30 Apr 2019 14:44:51 at https://makeabilitylab.cs.washington.edu/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://makeabilitylab.cs.washington.edu/ -O1 "C:\My Web Sites\test" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+01:39:49	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/fonts/glyphicons-halflings-regular.eot (from https://makeabilitylab.cs.washington.edu/static/website/css/bootstrap.min.css)
+01:39:49	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/fonts/glyphicons-halflings-regular.eot? (from https://makeabilitylab.cs.washington.edu/static/website/css/bootstrap.min.css)
+01:39:49	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/fonts/glyphicons-halflings-regular.woff2 (from https://makeabilitylab.cs.washington.edu/static/website/css/bootstrap.min.css)
+01:39:49	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/fonts/glyphicons-halflings-regular.woff (from https://makeabilitylab.cs.washington.edu/static/website/css/bootstrap.min.css)
+01:39:49	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/fonts/glyphicons-halflings-regular.ttf (from https://makeabilitylab.cs.washington.edu/static/website/css/bootstrap.min.css)
+01:39:49	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/fonts/glyphicons-halflings-regular.svg (from https://makeabilitylab.cs.washington.edu/static/website/css/bootstrap.min.css)
+01:39:59	Warning: 	Retry after error 500 (Internal Server Error) at link https://makeabilitylab.cs.washington.edu/project/hydrosense/ (from https://makeabilitylab.cs.washington.edu/people/)
+01:40:00	Warning: 	Retry after error 500 (Internal Server Error) at link https://makeabilitylab.cs.washington.edu/project/touchscreenaccessibility/ (from https://makeabilitylab.cs.washington.edu/people/)
+01:41:36	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/publications/link (from https://makeabilitylab.cs.washington.edu/publications/)
+01:41:40	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/faq/i'm-an-undergrad-at-uw,-how-do-i-apply-to-the-makeability-lab? (from https://makeabilitylab.cs.washington.edu/faq/)
+01:41:44	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/media/publications/SidewalkTemporalTracking_ASSETS2018Poster_CR_v1.pdf (from https://makeabilitylab.cs.washington.edu/project/glassear/)
+01:41:44	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/project/soundawareness/ (from https://makeabilitylab.cs.washington.edu/project/glassear/)
+01:42:20	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/media/talks/UbiGreen_Investigating_a_Mobile_Tool_for_Tracking_and_Supporting_Green_Transportation_Habits.pptx (from https://makeabilitylab.cs.washington.edu/member/jonfroehlich/)
+01:42:21	Warning: 	Retry after error 500 (Internal Server Error) at link https://makeabilitylab.cs.washington.edu/project/hydrosense/ (from https://makeabilitylab.cs.washington.edu/people/)
+01:42:21	Warning: 	Retry after error 500 (Internal Server Error) at link https://makeabilitylab.cs.washington.edu/project/touchscreenaccessibility/ (from https://makeabilitylab.cs.washington.edu/people/)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-bg_highlight-soft_75_cccccc_1x100.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-bg_glass_75_e6e6e6_1x400.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-bg_glass_75_dadada_1x400.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-bg_glass_65_ffffff_1x400.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-bg_glass_55_fbf9ee_1x400.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-bg_glass_95_fef1ec_1x400.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-icons_222222_256x240.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-icons_888888_256x240.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-icons_454545_256x240.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-icons_2e83ff_256x240.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:21	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/static/website/css/images/ui-icons_cd0a0a_256x240.png (from https://makeabilitylab.cs.washington.edu/static/website/css/jquery-ui.min.css)
+01:42:22	Error: 	"Not Found" (404) at link https://makeabilitylab.cs.washington.edu/media/publications/Flowers_or_a_robot_army_encouraging_awareness_and_activity_with_personal_mobile_displays_JhIlDfo.pdf (from https://makeabilitylab.cs.washington.edu/news/?page=2)
+01:42:27	Error: 	"Internal Server Error" (500) after 2 retries at link https://makeabilitylab.cs.washington.edu/project/hydrosense/ (from https://makeabilitylab.cs.washington.edu/people/)
+01:42:27	Error: 	"Internal Server Error" (500) after 2 retries at link https://makeabilitylab.cs.washington.edu/project/touchscreenaccessibility/ (from https://makeabilitylab.cs.washington.edu/people/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 10 hours 57 minutes 36 seconds : 1820 links scanned, 1790 files written (33672325865 bytes overall) [33673012860 bytes received at 853431 bytes/sec], 64334 bytes transferred using HTTP compression in 2 files, ratio 24%, 5.5 requests per connection
+(25 errors, 4 warnings, 0 messages)

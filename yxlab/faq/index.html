@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/faq/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:01:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../static/website/css/autocomplete.css"/>
+
+
+    <link rel="stylesheet" href="../static/website/css/faq.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../static/website/js/jquery.easing.min.js"></script>
+	<script src="../static/website/js/grayscale.js"></script>
+	<script src="../static/website/js/backtop.js"></script>
+
+
+    <script src="../static/website/js/faq.js"></script>
+
+
+    <title>
+        YX Lab - FAQ
+    </title>
+
+    <script type="text/javascript">
+
+
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="../static/website/img/logos/yx_logo_white.png" height="60" />
+
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                                    <li class=""><a href="../index.html" style="font-size: 30px; 	padding-top:30px;">Home</a></li>
+                                    <li class=""><a href="../index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../people/index.html" style="font-size: 30px; 	padding-top:30px;">People</a></li>
+                                    <li class=""><a href="../people/index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../projects/index.html" style="font-size: 30px; 	padding-top:30px;">Projects</a></li>
+                                    <li class=""><a href="../projects/index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class="active"><a href="index.html" style="font-size: 30px; 	padding-top:30px;">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="mainCarousel" class="carousel slide carousel-fade shortCarousel" data-ride="carousel" data-interval="10000"
+     data-pause="false">
+    <div class="page-title shadow-left">
+        <div class="container carousel-container">
+
+
+
+            <div class="overlay-title">
+
+                    FAQ
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+              <div class="fill" style="background-image:url(../static/website/img/yx_faq_banner_1.jpg)"
+                   aria-label="YX - People">
+              </div>
+
+            </div>
+
+    </div>
+
+</div>
+
+
+
+    <div class="container faq">
+        <div class="row">
+
+            <!-- Some advice pages...
+                    Klemmer: https://d.ucsd.edu/srk/faq/
+                    Hong: http://www.cs.cmu.edu/~jasonh/advice.html
+                    Ernst: http://homes.cs.washington.edu/~mernst/advice/
+                    Philip Guo: http://www.pgbovine.net/writings.htm
+                    How hci papers are structured: http://cacm.acm.org/blogs/blog-cacm/163199-two-examples-of-hci-research/fulltext
+                    Tessla Lau: http://tlau.org/advice/
+                    Adam Marcus: http://marcua.net/writing/gradschool-guide/#creating-things
+                    -->
+            <!-- possible sections to add in the future:
+                  - applying to graduate school
+                  - how to write a good research paper
+                  - how to give a good talk
+                  - making a good poster
+                  - how to get an NSF fellowship (or other grad fellowship)
+                  - Doing Research With Me (including how to become a funded student)
+                  - Advice for advisors seems cool: http://www.cs.indiana.edu/how.2b/how.2b.advice.html
+                  - Nice career advice from Quora: http://www.quora.com/Career-Advice/What-are-a-few-unique-pieces-of-career-advice-that-nobody-ever-mentions#ans1903037-->
+            <div class="col-md-9 main-content">
+                <div class="topic-items topic-items-active" id="phd-research">
+                    <h1>What are the goals of the YX Lab?</h1>
+
+                    <div class="faq-item" id="as-an-hci-phd-student,-what-areas-should-i-focus-on-learning?">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3>
+                                  The YX Lab has 5 goals:
+                                </h3>
+                                <h4 class="question">
+                                <ol>
+                                  <br />
+                                <li>To create learning experiences for youth that bridge/connect across conventionally distinct disciplines.
+                                  (i.e. data literacy + sports/biometrics; science + architecture; math + art)
+                                </li>
+                                <br />
+                                <li>To find, support, empower, and connect champions (i.e. librarians, parents, industry professionals,
+                                   teachers, STEM experts in a community, public intellectuals) with and in the community.
+                                 </li>
+                                 <br />
+                                 <li>To create learning experiences that bridge/connect across learning contexts (i.e. home, school,
+                                   libraries, after-school, virtual) resulting in a stronger dialogue/connection between informal and
+                                   formal STEM learning.
+                                 </li>
+                                 <br />
+                                 <li>To create novel, playful learning experiences that empower learners and mediate tensions between
+                                   unstructured and structured STEM learning experiences
+                                   <ol><p class="question"><li>Playfulness is also about allowing youth to take risks and not be afraid of failure, etc.
+                                     (“playing” with data; “playing” with known facts to invent new things; etc)
+                                   </li></p></ol>
+                                 </li>
+                                 <br />
+                                 <li>To promote and study the development of youth orientation toward STEM learning and technology
+                                   <ol><p class="question"><li>Steering youth to see themselves or identify as scientists or computational do-ers,
+                                     so that they feel like they belong to the communities of scientists, civic-minded citizens, etc.
+                                   </li></p></ol>
+                                 </li>
+                                </ol>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                  </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer class="l-footer" role="contentinfo">
+  <div class="l-region l-region--footer">
+<div id="block-block-5" class="block block--block block--block-5">
+    <div class="block__content">
+<div id="footerWrap">
+<div id="socialButtons"><a alt="iSchools Consortium Link" href="https://ischool.umd.edu/"><img alt="UMD iSchool" src="../static/website/img/logos/umd_logo_white_586x100.png"/></div>
+
+<ul id="footerNav">
+<li><a alt="Original YX Site" href="http://yx.umd.edu/">Original YX Site</a>
+</li>
+
+</ul>
+
+<div id="footerAddress">© 2019 YX Lab, University of Maryland College Park
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/faq/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:01:01 GMT -->
+</html>

@@ -1,0 +1,3783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/projects/bodyvis/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 05:42:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+    
+    
+    <link rel="stylesheet" href="../../static/website/css/project.css">
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/index.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+  
+    <!-- <script src="/static/website/js/peopleHeightFix.js"></script> -->
+    <script src="../../static/website/js/utils.js"></script>
+    <script src="../../static/website/js/indproject.js"></script>
+
+
+    <title>
+        BodyVis
+    </title>
+
+    <script type="text/javascript">
+
+    
+
+    
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+    
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+                                
+                                <img src="../../static/website/img/logos/makelab_logo_white_no_text_100x67.png" height="20" />
+
+                                <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">Make</span>ability</span> Lab</div>
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+                                
+                                    <li class=""><a href="../../index.html">Home</a></li>
+                                    <li class=""><a href="../../people/index.html">People</a></li>
+                                    <li class=""><a href="../index.html">Projects</a></li>
+                                    <li class=""><a href="../../news/index.html">News</a></li>
+                                    <li class=""><a href="../../publications/index.html">Publications</a></li>
+                                    <li class=""><a href="../../talks/index.html">Talks</a></li>
+                                    <li class=""><a href="../../videos/index.html">Videos</a></li>
+                                    <li class=""><a href="../../faq/index.html">FAQ</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+    
+
+    
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000"
+             data-pause="true">
+            <!-- <div class="overlay carousel-caption"></div> -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                
+                    <div class="item active">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/IMG_84781d01441f373e45ed85defbeb6c1e86b3.jpg.2048x1366_q85_box-0%2c0%2c2048%2c1366_crop_detail.jpg)"
+                             aria-label="BodyVis e-textile anatomy is detachable. When reattached properly, the anatomy starts working automatically."
+                             title="BodyVis e-textile anatomy is detachable. When reattached properly, the anatomy starts working automatically.">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    
+                                        <div class="carousel-caption-title">
+                                            BodyVis
+                                        </div>
+                                        <div class="carousel-caption-text">
+                                            BodyVis e-textile anatomy is detachable. When reattached properly, the anatomy starts working automatically.
+                                        </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="item ">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/Hackerspace_09292014_0321ba6e84ae6d4644a7acab91b917c763d0.JPG.6144x2847_q85_box-0%2c0%2c6144%2c2847_crop_detail.jpg)"
+                             aria-label=""
+                             title="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    
+                                        <div class="carousel-caption-title">
+                                            Body Vis
+                                        </div>
+                                        <div class="carousel-caption-text">
+                                            
+                                        </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+            </div>
+            <ol class="carousel-indicators" >
+                
+                    <li data-target="#mainCarousel" data-slide-to="0"
+                        class="active"></li>
+                
+                    <li data-target="#mainCarousel" data-slide-to="1"
+                        ></li>
+                
+            </ol>
+        </div>
+    
+
+    
+<div id="content" class="container content-container" data-spy="scroll">
+    <div class="row row-adjust-margins" id="sidebar-level">
+	<div class="col-md-2 col-md-push-10">
+        <div class="row quick-info">
+            <h3 class="news-type-label">Quick Info</h3>
+            <p class="quick-info">
+                
+                    <b>Project Date</b>
+                    Oct. 1, 2012 - Present
+                    <br>
+                
+                
+                    
+                        <b>PIs: </b>
+                        <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a> (PI)<br/>
+                    
+                
+                
+                    <a href="../../member/tamaraclegg/index.html">Tamara L. Clegg</a> (Co-PI)<br/>
+                
+                
+                
+                    <b>Keywords: </b>
+                    
+                        
+                            physiological sensing,
+                        
+                    
+                        
+                            wearables,
+                        
+                    
+                        
+                            bodyvis,
+                        
+                    
+                        
+                            sharedphys,
+                        
+                    
+                        
+                            large-screen displays,
+                        
+                    
+                        
+                            mixed-reality,
+                        
+                    
+                        
+                            scientific inquiry,
+                        
+                    
+                        
+                            collaborative learning,
+                        
+                    
+                        
+                            stem,
+                        
+                    
+                        
+                            interactive body learning,
+                        
+                    
+                        
+                            tangible interactive computing,
+                        
+                    
+                        
+                            e-textiles,
+                        
+                    
+                        
+                            sensing and feedback,
+                        
+                    
+                        
+                            live physiology,
+                        
+                    
+                        
+                            educational technology,
+                        
+                    
+                        
+                            teaching,
+                        
+                    
+                        
+                            anatomy,
+                        
+                    
+                        
+                            children,
+                        
+                    
+                        
+                            body learning
+                        
+                    
+                
+            </p>
+	    </div>
+	    
+	    <!-- Create a row for the well which will contain news from our feeds -->
+	    <div class="row recent-news">
+		<h3 class="news-type-label">Recent News</h3>
+		<div class="well news-well">
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/BodyVisLeyla2f2f6413e27741499c03700f291f07b3.png.250x250_q85_box-118%2c0%2c618%2c500_crop_detail.jpg" class="news_image" height="50" width="50" alt="Co-inventor of BodyVis Leyla Norooz sitting next to her invention">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/56/index.html">
+				    <p>BodyVis in Baltimore Sun</p>
+				</a>
+			    </div>
+			    <p class="news_date">Jul 18, 2018 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>The Baltimore Sun recently covered our <a href="index.html">BodyVis project</a> with quotes from Professor Clegg and graduate student Virginia Byrne. Read the article <a href="http://marketplace.baltimoresun.com/baltimore-md-features/special-section/Education/07-08-2018/Page-2">here</a>!</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/sparkfuneducation032a79eb987e4e3b9a327c477e91262d.png.250x250_q85_box-0%2c0%2c243%2c243_crop_detail.png" class="news_image" height="50" width="50" alt="Sparkfun Education Logo">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/60/index.html">
+				    <p>Sparkfun Education Covers BodyVis</p>
+				</a>
+			    </div>
+			    <p class="news_date">Oct 19, 2017 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p><a href="https://sparkfuneducation.com/">Sparkfun Education</a> recently blogged about our BodyVis project in a post entitled "<a href="http://blog.sparkfuneducation.com/five-e-textiles-research-projects-making-a-difference-in-education">Five E-Textile Research Projects Making a Difference in Education.</a>"</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/presentationec8bfee2a3b04e88b22640ceaf1fd97f.JPG.250x250_q85_box-1607%2c0%2c5063%2c3456_crop_detail.jpg" class="news_image" height="50" width="50" alt="">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/12/index.html">
+				    <p>Join us at the Silver Spring Maker Faire</p>
+				</a>
+			    </div>
+			    <p class="news_date">Sep 25, 2016 | <a href="../../member/285/index.html">Matthew</a></p><!--</p><p class="news_date">Matthew L Mauriello</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>The Makeability Lab and the HCIL are participating in the Silver Spring Maker Faire which is going on today from 12pm - 5pm. Our own <a href="https://makeabilitylab.umiacs.umd.edu/member/376/">Majeed Kazemitabaar</a> will also be giving a special presentation on MakerWear as the "Maker in our Midst" at 2:15pm on the Main Stage. Full details are available here:
+<br/><br/>
+<a href="http://www.makerfairesilverspring.com/">http://www.makerfairesilverspring.com/</a></p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/nn24b6717f5673b4bdeaffa22a96f1c9914.png.250x250_q85_box-0%2c0%2c1200%2c1200_crop_detail.png" class="news_image" height="50" width="50" alt="">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/1/index.html">
+				    <p>BodyVis in 2016 NSF STEM for ALL Video Showcase</p>
+				</a>
+			    </div>
+			    <p class="news_date">May 24, 2016 | <a href="../../member/379/index.html">Seokbin</a></p><!--</p><p class="news_date">Seokbin Kang</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>We are excited to announce that our research video <a href="http://stemforall2016.videohall.com/presentations/768">BodyVis: Advancing New Science Learning and Inquiry Experiences</a> received special recognition as Facilitator’s Choice in 2016 NSF Video Showcase : Advancing Stem for All. The event was held online May 17-23, 2016 to showcase cutting-edge NSF work related to improving teaching and learning. Over 23,500 visitors from 144 countries participated in this event to discuss their work, offer ideas to others, and disseminate innovative ideas</p>
+			    
+			</div>
+		    </div>
+		    
+		</div>
+	    </div>
+	    
+	</div>
+	<div class="col-md-10 col-md-pull-2 project-intro-content">
+        <div class="row about-row">
+            <h3 class="news-type-label">About</h3>
+            <p class="project-about">
+            <div style="float: right">
+                <div class="header-visual">
+                    
+                        
+                            
+                                <iframe class="video-about" src="https://youtube.com/embed/KwfPOgqiZLs" frameborder="0" allowfullscreen></iframe>
+                            
+
+                            <p style="font-weight: bold; margin:0px;">BodyVis Wearable Shirt</p>
+                            
+                               <p class="header-visual-caption"> This is Prototype 3 of the Body Vis Shirt</p>
+                            
+                        
+                    
+
+                </div>
+            </div>
+            
+                We present a new wearable computing and electronic textiles (e-textiles) technology for
+learning about anatomy and physiology, and for supporting children’s scientific inquiry skills. More
+specifically, we propose to design, build, and evaluate a set of wearable e-textile shirt prototypes—called
+BodyVis—that combine embedded sensing and interactive visualization to reveal otherwise “invisible”
+parts and functions of the human body. As the wearer engages in an activity, physiological
+phenomena are manifested on the wearable visualization in real-time. 
+In addition, we present a new mixed-reality tool called SharedPhys, which tightly integrates real-time physiological sensing, whole-body interaction, and scientific inquiry to support new forms of embodied interaction and collaborative learning.
+            
+            </p>
+        </div>
+	    <div class="row">
+		
+		<h3 class="news-type-label">Publications</h3>
+		
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Clegg_PhysiologicalInvestigationsWithLivePhysiologicalSensingAndVisualizationTools_2018.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Clegg_PhysiologicalInvestigationsWithLivePhysiologicalSensingAndVisualizationTools_2018.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Physiological Investigations with Live Physiological Sensing and Visualization Tools</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/tamaraclegg/index.html">Tamara L. Clegg</a>,
+                
+                    <a href="../../member/virginiabyrne/index.html">Virginia Byrne</a>,
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/seokbinkang/index.html">Seokbin Kang</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract Symposium Proceedings of ICLS2018
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        sharedphys,
+                    
+                
+                    
+                        bodyvis,
+                    
+                
+                    
+                        physiological sensing,
+                    
+                
+                    
+                        large-screen displays,
+                    
+                
+                    
+                        mixed-reality,
+                    
+                
+                    
+                        scientific inquiry,
+                    
+                
+                    
+                        collaborative learning,
+                    
+                
+                    
+                        stem,
+                    
+                
+                    
+                        wearables
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Clegg_PhysiologicalInvestigationsWithLivePhysiologicalSensingAndVisualizationTools_2018.pdf">PDF</a>
+                    <a href="https://icls2018.com/">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                        | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Scaffolding Authentic Wearable-­Based Scientific Inquiry for Early Elementary Learners</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/virginiabyrne/index.html">Virginia Byrne</a>,
+                
+                    <a href="../../member/seokbinkang/index.html">Seokbin Kang</a>,
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/rafaelvelez/index.html">Rafael Antonio Velez</a>,
+                
+                    <a href="../../member/monicakatzen/index.html">Monica Katzen</a>,
+                
+                    <a href="../../member/afeaddeh/index.html">Afe Addeh</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>,
+                
+                    <a href="../../member/tamaraclegg/index.html">Tamara L. Clegg</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of ICLS2018
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        sharedphys,
+                    
+                
+                    
+                        bodyvis,
+                    
+                
+                    
+                        physiological sensing,
+                    
+                
+                    
+                        large-screen displays,
+                    
+                
+                    
+                        mixed-reality,
+                    
+                
+                    
+                        scientific inquiry,
+                    
+                
+                    
+                        collaborative learning,
+                    
+                
+                    
+                        stem,
+                    
+                
+                    
+                        wearables
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.pdf">PDF</a>
+                    
+                    <a href="../../media/talks/ICLS_2018_June2018_ARIAL.pdf">| Talk</a>
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                        | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/p2029-clegg.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/p2029-clegg.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Live Physiological Sensing and Visualization Ecosystems: An Activity Theory Analysis</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/tamaraclegg/index.html">Tamara L. Clegg</a>,
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/seokbinkang/index.html">Seokbin Kang</a>,
+                
+                    <a href="../../member/virginiabyrne/index.html">Virginia Byrne</a>,
+                
+                    <a href="../../member/monicakatzen/index.html">Monica Katzen</a>,
+                
+                    <a href="../../member/angelisaplane/index.html">Angelisa Plane</a>,
+                
+                    <a href="../../member/vanessaoguamanam/index.html">Vanessa Oguamanam</a>,
+                
+                    <a href="../../member/thomasouting/index.html">Thomas Outing</a>,
+                
+                    <a href="../../member/elizabethbonsignore/index.html">Elizabeth Bonsignore</a>,
+                
+                    <a href="../../member/jasonyip/index.html">Jason Yip</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI2017
+                    
+                    
+                </span>
+                
+                    <span class="publication-acceptance-rate">|
+                        <span class="publication-acceptance-rate-text">
+                            
+                            
+                            Acceptance Rate: 25.0%
+                            (606 / 2424)
+                        </span>
+                    </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        scientific inquiry,
+                    
+                
+                    
+                        sensor-based learning,
+                    
+                
+                    
+                        wearables
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/p2029-clegg.pdf">PDF</a>
+                    <a href="http://doi.acm.org/10.1145/3025453.3025987">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Norooz_ThatSYourHeartLivePhysiologicalSensingVisualizationToolsForLifeRelevantCollaborativeStemLearning_2016.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Norooz_ThatSYourHeartLivePhysiologicalSensingVisualizationToolsForLifeRelevantCollaborativeStemLearning_2016.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">“That&#39;s Your Heart!”: Live Physiological Sensing &amp; Visualization Tools for Life-Relevant &amp; Collaborative STEM Learning</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/tamaraclegg/index.html">Tamara L. Clegg</a>,
+                
+                    <a href="../../member/seokbinkang/index.html">Seokbin Kang</a>,
+                
+                    <a href="../../member/angelisaplane/index.html">Angelisa Plane</a>,
+                
+                    <a href="../../member/vanessaoguamanam/index.html">Vanessa Oguamanam</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of ICLS 2016
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        sharedphys,
+                    
+                
+                    
+                        bodyvis,
+                    
+                
+                    
+                        physiological sensing,
+                    
+                
+                    
+                        large-screen displays,
+                    
+                
+                    
+                        mixed-reality,
+                    
+                
+                    
+                        scientific inquiry,
+                    
+                
+                    
+                        collaborative learning,
+                    
+                
+                    
+                        stem,
+                    
+                
+                    
+                        wearables
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Norooz_ThatSYourHeartLivePhysiologicalSensingVisualizationToolsForLifeRelevantCollaborativeStemLearning_2016.pdf">PDF</a>
+                    <a href="https://www.isls.org/icls/2016/docs/ICLS2016_Volume_2.pdf">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                        | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Kang_SharedphysLivePhysiologicalSensingWholeBodyInteractionAndLargeScreenVisualizationsToSupportSharedInquiryExperiences_2016.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Kang_SharedphysLivePhysiologicalSensingWholeBodyInteractionAndLargeScreenVisualizationsToSupportSharedInquiryExperiences_2016.jpg.300x0_q85_detail.327.delay"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">SharedPhys: Live Physiological Sensing, Whole-Body Interaction, and Large-Screen Visualizations to Support Shared Inquiry Experiences</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/seokbinkang/index.html">Seokbin Kang</a>,
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/vanessaoguamanam/index.html">Vanessa Oguamanam</a>,
+                
+                    <a href="../../member/angelisaplane/index.html">Angelisa Plane</a>,
+                
+                    <a href="../../member/tamaraclegg/index.html">Tamara L. Clegg</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of IDC 2016
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        sharedphys,
+                    
+                
+                    
+                        bodyvis,
+                    
+                
+                    
+                        physiological sensing,
+                    
+                
+                    
+                        large-screen displays,
+                    
+                
+                    
+                        mixed-reality,
+                    
+                
+                    
+                        scientific inquiry,
+                    
+                
+                    
+                        collaborative learning,
+                    
+                
+                    
+                        stem,
+                    
+                
+                    
+                        wearables
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Kang_SharedphysLivePhysiologicalSensingWholeBodyInteractionAndLargeScreenVisualizationsToSupportSharedInquiryExperiences_2016.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                        | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/BodyVis_A_New_Approach_to_Body_Learning_Through_Wearable_Sensing_and_Visualization_kCJorAs.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/BodyVis_A_New_Approach_to_Body_Learning_Through_Wearable_Sensing_and_Visualization_kCJorAs.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">BodyVis: A New Approach to Body Learning Through Wearable Sensing and Visualization</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/anitajorgensen/index.html">Anita Jorgensen</a>,
+                
+                    <a href="../../member/brennamcnally/index.html">Brenna McNally</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2015
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        wearables,
+                    
+                
+                    
+                        interactive body learning,
+                    
+                
+                    
+                        physiological sensing,
+                    
+                
+                    
+                        tangible interactive computing
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/BodyVis_A_New_Approach_to_Body_Learning_Through_Wearable_Sensing_and_Visualization_kCJorAs.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Norooz_BodyvisBodyLearningThroughWearableSensingAndVisualization_2014.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Norooz_BodyvisBodyLearningThroughWearableSensingAndVisualization_2014.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">BodyVis: Body Learning Through Wearable Sensing and Visualization</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        UMD iSchool MS Thesis
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        bodyvis,
+                    
+                
+                    
+                        physiological sensing,
+                    
+                
+                    
+                        stem,
+                    
+                
+                    
+                        wearables,
+                    
+                
+                    
+                        educational technology
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Norooz_BodyvisBodyLearningThroughWearableSensingAndVisualization_2014.pdf">PDF</a>
+                    <a href="https://drum.lib.umd.edu/handle/1903/15968">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Exploring_Early_Designs_for_Teaching_Anatomy_and_Physiology_to_Children_Using_Wearable_E-Textiles_xeQY7Nu.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Exploring_Early_Designs_for_Teaching_Anatomy_and_Physiology_to_Children_Using_Wearable_E-Textiles_xeQY7Nu.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Exploring Early Designs for Teaching Anatomy and Physiology to Children Using Wearable E-Textiles</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        IDC &#39;13 Extended Abstracts
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        e-textiles,
+                    
+                
+                    
+                        wearables,
+                    
+                
+                    
+                        sensing and feedback,
+                    
+                
+                    
+                        live physiology,
+                    
+                
+                    
+                        educational technology,
+                    
+                
+                    
+                        teaching,
+                    
+                
+                    
+                        anatomy,
+                    
+                
+                    
+                        children,
+                    
+                
+                    
+                        body learning
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Exploring_Early_Designs_for_Teaching_Anatomy_and_Physiology_to_Children_Using_Wearable_E-Textiles_xeQY7Nu.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+	    </div>
+	</div>
+    </div>
+    <div class="row no-margin" id="below-sidebar">
+        <div class="row row-adjust-margins">
+            
+            <h3 class="news-type-lable">Recent Videos</h3>
+            
+            
+                
+
+
+
+
+
+
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 video-column">
+    
+    
+    <div class="video" style="height: 300px; margin-bottom: 20px;">
+        
+        <iframe class="youtube-player" src="https://youtube.com/embed/rQqNKpik1JM?showinfo=0&amp;iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+
+        <p class="artifact-title line-clamp" style="margin-top: 0px;">BodyVis CHI 2015 Conference Presentation Leyla Norooz</p>
+        
+        <p class="artifact-links">
+            <a href="https://youtu.be/rQqNKpik1JM">YouTube</a>
+            
+            
+            
+                | <a href="../../project/BodyVis/index.html">BodyVis</a>
+            
+        </p>
+    </div>
+</div>
+            
+                
+
+
+
+
+
+
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 video-column">
+    
+    
+    <div class="video" style="height: 300px; margin-bottom: 20px;">
+        
+        <iframe class="youtube-player" src="https://youtube.com/embed/3zh_yaslOnY?showinfo=0&amp;iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+
+        <p class="artifact-title line-clamp" style="margin-top: 0px;">BodyVis: A New Approach to Body Learning Through Wearable Sensing and Visualization</p>
+        
+        <p class="artifact-links">
+            <a href="https://youtu.be/3zh_yaslOnY">YouTube</a>
+            
+            
+                | <a href="../../media/publications/BodyVis_A_New_Approach_to_Body_Learning_Through_Wearable_Sensing_and_Visualization_kCJorAs.pdf">Paper</a>
+            
+            
+                | <a href="../../project/BodyVis/index.html">BodyVis</a>
+            
+        </p>
+    </div>
+</div>
+            
+        </div>
+        <div class="row row-adjust-margins">
+            
+                <h3 class="news-type-label">Talks</h3>
+            
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.pdf" target="_blank"><span class="artifact-title line-clamp">A Rapid Tour of My Explorations in E-Textiles</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 9, 2018 | HCDE539: Physical Computing and Prototyping Guest Lecture
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_HCDEPhysCompGuestLecture_v2.2_OptimizedMedia.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/socialfabricfitness/index.html">Social Fabric Fitness</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+                    | <a href="../../project/ilikethisshirt/index.html">I Like This Shirt</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-AAPT-7-30-18.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-Hybrid_Spaces_and_Third_Places-AAPT-7-30-18.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-AAPT-7-30-18.pdf" target="_blank"><span class="artifact-title line-clamp">Hybrid Spaces and Third Places for Scientizing with Mobile, Wearable, and Community Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                July 30, 2018 | American Association of Physics Teachers Conference
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Washington DC</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-AAPT-7-30-18.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-AAPT-7-30-18.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/ICLS_2018_June2018_ARIAL.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/ICLS_2018_June2018_ARIAL.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/ICLS_2018_June2018_ARIAL.pdf" target="_blank"><span class="artifact-title line-clamp">Scaffolding Wearable-Based Scientific Inquiry for Inquiry for Early Learners</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                June 23, 2018 | ICLS 2018
+            </p>
+            <p class="artifact-venue line-clamp-one-line">London, UK</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/virginiabyrne/index.html" style="color:#464D59">Virginia Byrne</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/ICLS_2018_June2018_ARIAL.pdf">PDF</a>
+                | <a href="../../media/talks/ICLS_2018_June2018_ARIAL.pptx">PPTX</a>
+                
+                
+                    | <a href="../../media/publications/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.pdf">Paper</a>
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-BodyVis-Bio_Symposium-6-23-18.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-BodyVis-Bio_Symposium-6-23-18.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-BodyVis-Bio_Symposium-6-23-18.pdf" target="_blank"><span class="artifact-title line-clamp">BodyVis: Live Physiological Sensing &amp; Visualization Tools</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                June 23, 2018 | ICLS 2018
+            </p>
+            <p class="artifact-venue line-clamp-one-line">London, UK</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-BodyVis-Bio_Symposium-6-23-18.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-BodyVis-Bio_Symposium-6-23-18.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/AERA_2018_April132018.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/AERA_2018_April132018.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/AERA_2018_April132018.pdf" target="_blank"><span class="artifact-title line-clamp">Scaffolding Wearable-Based Scientific Inquiry for Early Learners</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 13, 2018 | AERA 2018
+            </p>
+            <p class="artifact-venue line-clamp-one-line">New York City, New York</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/virginiabyrne/index.html" style="color:#464D59">Virginia Byrne</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/AERA_2018_April132018.pdf">PDF</a>
+                | <a href="../../media/talks/AERA_2018_April132018.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UCBoulder-PDF.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-Hybrid_Spaces_and_Third_Places-UCBoulder-PDF.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UCBoulder-PDF.pdf" target="_blank"><span class="artifact-title line-clamp">Hybrid Spaces and Third Places for Scientizing with Mobile, Wearable, and Community Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                March 20, 2018 | ATLAS Institute Seminar Series
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Colorado, Boulder</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UCBoulder-PDF.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UCBoulder-FINAL.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UW-FINAL.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-Hybrid_Spaces_and_Third_Places-UW-FINAL.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UW-FINAL.pdf" target="_blank"><span class="artifact-title line-clamp">Hybrid Spaces &amp; Third Places: For Scientizing with Mobile, Wearabile, &amp; Community Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Feb. 13, 2018 | DUB Talk
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UW-FINAL.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-Hybrid_Spaces_and_Third_Places-UW-FINAL.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.pdf" target="_blank"><span class="artifact-title line-clamp">A Rapid Tour of My Explorations in E-Textiles</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Nov. 7, 2017 | HCDE539: Physical Computing and Prototyping Guest Lecture
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_HCDEPhysCompGuestLecture_v2.1_OptimizedMedia.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/socialfabricfitness/index.html">Social Fabric Fitness</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 13, 2017 | DUB Retreat
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_DubRetreatTalk_v1.3-Compressed.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+                    | <a href="../../project/ondule/index.html">Ondulé</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/BodyVis-DML_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/BodyVis-DML_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/BodyVis-DML_2017.pdf" target="_blank"><span class="artifact-title line-clamp">BodyVis: E-textiles for Body Learning and Scientific Inquiry</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 5, 2017 | Digital Media and Learning Conference 2017
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Irvine, CA</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/BodyVis-DML_2017.pdf">PDF</a>
+                | <a href="../../media/talks/BodyVis-DML_2017.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                June 7, 2017 | UMD CS Staff Talk
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_OverviewTalk_v1-20Mins.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/handsight/index.html">HandSight</a>
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/LPSV_Ecosystems-CHI2017_Talk_-_FINAL.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/LPSV_Ecosystems-CHI2017_Talk_-_FINAL.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/LPSV_Ecosystems-CHI2017_Talk_-_FINAL.pdf" target="_blank"><span class="artifact-title line-clamp">Live Physiological Sensing and Visualization Ecosystems: An Activity Theory Analysis</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                May 6, 2017 | CHI 2017
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Denver, Colorado</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/LPSV_Ecosystems-CHI2017_Talk_-_FINAL.pdf">PDF</a>
+                | <a href="../../media/talks/LPSV_Ecosystems-CHI2017_Talk_-_FINAL.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/UMBC_Fika_BBL_v8.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/UMBC_Fika_BBL_v8.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/UMBC_Fika_BBL_v8.pdf" target="_blank"><span class="artifact-title line-clamp">Designing Wearable Technologies,  and the Experiences Around Them,  for Children&#39;s Body Learning</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 24, 2017 | Human-Centered Computing Fika
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, Baltimore County</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/leylanorooz/index.html" style="color:#464D59">Leyla Norooz</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/UMBC_Fika_BBL_v8.pdf">PDF</a>
+                | <a href="../../media/talks/UMBC_Fika_BBL_v8.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 13, 2017 | HCDE Invited Talk
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_OverviewTalk_v3.5-PostTalkEdits_e0ck5Zc.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/handsight/index.html">HandSight</a>
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2016.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2016.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2016.pdf" target="_blank"><span class="artifact-title line-clamp">Making With a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 11, 2017 | UW CSE Colloquium
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2016.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_OverviewTalk_v3.5-PostTalkEdits.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/handsight/index.html">HandSight</a>
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_OverviewTalk_v2.5_PostLTSEdits.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 6, 2017 | Lecture Series at the Laboratory for Telecommunication Sciences
+            </p>
+            <p class="artifact-venue line-clamp-one-line">LTS Auditorium, College Park, MD</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/handsight/index.html">HandSight</a>
+                
+                    | <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../../project/thermography/index.html">Pervasive Thermography</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingSTEM_v2.9_PostTalkEdits.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pdf" target="_blank"><span class="artifact-title line-clamp">Transforming STEM Learning Through Wearables</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 4, 2017 | STEAM Salon Lecture Series
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../../project/makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-Science_Everywhere-10-23-16.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-Science_Everywhere-10-23-16.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-Science_Everywhere-10-23-16.pdf" target="_blank"><span class="artifact-title line-clamp">Scientizing Daily Life with New Social, Mobile, &amp; Wearable Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 23, 2016 | National Center for Women in Information Technology (NCWIT)
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of North Carolina, Charlotte</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-Science_Everywhere-10-23-16.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-Science_Everywhere-10-23-16.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-Northwestern_Talk-10-9-16.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-Northwestern_Talk-10-9-16.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-Northwestern_Talk-10-9-16.pdf" target="_blank"><span class="artifact-title line-clamp">Scientizing Daily Life with New Social, Mobile, &amp; Wearable Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 9, 2016 | Learning Sciences Colloquium
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Northwestern University</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-Northwestern_Talk-10-9-16.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-Northwestern_Talk-10-9-16.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-CMF-Saint_James_Talk_7-26-16.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-CMF-Saint_James_Talk_7-26-16.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-CMF-Saint_James_Talk_7-26-16.pdf" target="_blank"><span class="artifact-title line-clamp">Scientizing Daily Life with New Social, Mobile, &amp; Wearable Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                July 16, 2016 | Saint James
+            </p>
+            <p class="artifact-venue line-clamp-one-line">North Carolina</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-CMF-Saint_James_Talk_7-26-16.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-CMF-Saint_James_Talk_7-26-16.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/SharedVis_IDC_v5_Final.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/SharedVis_IDC_v5_Final.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/SharedVis_IDC_v5_Final.pdf" target="_blank"><span class="artifact-title line-clamp">SharedPhys: Live Physiological Sensing, Whole-Body Interaction, and Large-Screen Visualizations to Support Shared Inquiry Experiences</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                June 22, 2016 | IDC2016
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Manchester, UK</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/seokbinkang/index.html" style="color:#464D59">Seokbin Kang</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/SharedVis_IDC_v5_Final.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/2016_ICLS_v7_AddingAnimations.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/2016_ICLS_v7_AddingAnimations.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/2016_ICLS_v7_AddingAnimations.pdf" target="_blank"><span class="artifact-title line-clamp">“That&#39;s Your Heart!”: Live Physiological Sensing &amp; Visualization Tools for Life-Relevant &amp; Collaborative STEM Learning</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                June 20, 2016 | ICLS 2016
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Singapore</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/leylanorooz/index.html" style="color:#464D59">Leyla Norooz</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/2016_ICLS_v7_AddingAnimations.pdf">PDF</a>
+                | <a href="../../media/talks/2016_ICLS_v7_AddingAnimations.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Clegg-Indiana-University-Talk-12-11-15.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Clegg-Indiana-University-Talk-12-11-15.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Clegg-Indiana-University-Talk-12-11-15.pdf" target="_blank"><span class="artifact-title line-clamp">Scientizing Daily Life with New Social, Mobile, &amp; Wearable Technologies</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Dec. 11, 2015 | Center for Research on Learning and Technology Speaker Series
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Indiana University, Bloomington</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/tamaraclegg/index.html" style="color:#464D59">Tamara L. Clegg</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Clegg-Indiana-University-Talk-12-11-15.pdf">PDF</a>
+                | <a href="../../media/talks/Clegg-Indiana-University-Talk-12-11-15.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+
+            </div>
+        </div>
+        <div class="row row-adjust-margins">
+            
+            <h3 class="news-type-label">Photo Gallery</h3>
+            
+            
+            <div class="col-md-4 project-gallery-col">
+            <img src="../../media/projects/images/IMG_5291.JPG.368x245_q85_box-0%2c1%2c2048%2c1365_crop_detail.jpg" alt="" class="project-gallery">
+            <div class="overlay-image">
+                <div class="image-gallery-caption">Bodyvis at a Makerfare</div>
+            </div>
+            </div>
+            
+            <div class="col-md-4 project-gallery-col">
+            <img src="../../media/projects/images/IMG_5194.JPG.368x245_q85_box-0%2c2%2c5184%2c3454_crop_detail.jpg" alt="" class="project-gallery">
+            <div class="overlay-image">
+                <div class="image-gallery-caption">Introducing Kids to BodyVis</div>
+            </div>
+            </div>
+            
+            <div class="col-md-4 project-gallery-col">
+            <img src="../../media/projects/images/IMG_8546.JPG.368x245_q85_box-0%2c0%2c2048%2c1364_crop_detail.jpg" alt="" class="project-gallery">
+            <div class="overlay-image">
+                <div class="image-gallery-caption">Kids Wearing BodyVis</div>
+            </div>
+            </div>
+            
+        </div>
+
+        
+        
+        
+            
+                <div class="row row-eq-height row-adjust-margins people-row">
+                    
+                    
+                        <h3 class="news-type-label">Current Project Members</h3>
+                    
+                    <div class="grid_current_members">
+                        
+
+
+
+
+
+
+
+
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/jonfroehlich/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_9700_cropped2.jpg.245x245_q85_box-0%2c307%2c2439%2c2758_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Han2014New.jpg.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/jonfroehlich/index.html">
+            <h5 class="easter-egg-name">Jon E. Froehlich</h5>
+        </a>
+        <p class="no-margin">Oct 2012 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">Associate Professor</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Washington</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    <a href="../index.html">All Projects</a>
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Professor()
+        
+    </div>
+</div>
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/tamaraclegg/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/CkS-OjeVAAAOUGj.jpg.245x245_q85_box-0%2c34%2c922%2c956_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Gold_Leader_9495_cpPOcY1.png.245x245_q85_box-0%2c0%2c473%2c473_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/tamaraclegg/index.html">
+            <h5 class="easter-egg-name">Tamara L. Clegg</h5>
+        </a>
+        <p class="no-margin">Jan 2014 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">Assistant Professor</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                iSchool and Education
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Professor()
+        
+    </div>
+</div>
+        
+    
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/elizabethbonsignore/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/BethB.png.245x245_q85_box-0%2c16%2c263%2c279_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/images/StarWarsFiguresFullSquare/Rebels/Luke_Skywalker_Hoth.png.245x245_q85_box-0%2c0%2c219%2c219_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/elizabethbonsignore/index.html">
+            <h5 class="easter-egg-name">Elizabeth Bonsignore</h5>
+        </a>
+        <p class="no-margin">Jul 2016 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">Research Scientist</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                College of Information Studies
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Research Scientist()
+        
+    </div>
+</div>
+        
+    
+
+    
+
+    
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/leylanorooz/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_5007.JPG.245x245_q85_box-396%2c0%2c1761%2c1366_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Han2014New_YMLbn5W.jpg.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/leylanorooz/index.html">
+            <h5 class="easter-egg-name">Leyla Norooz</h5>
+        </a>
+        <p class="no-margin">Oct 2012 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                iSchool
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="../../project/thermography/index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/seokbinkang/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/kang2_a1menef.png.245x245_q85_box-139%2c0%2c399%2c260_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/75017_yoda_t6QSLre_WSgqZgO.png.245x245_q85_box-37%2c28%2c323%2c314_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/seokbinkang/index.html">
+            <h5 class="easter-egg-name">Seokbin Kang</h5>
+        </a>
+        <p class="no-margin">Aug 2014 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="../../project/ilikethisshirt/index.html">I Like This Shirt</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/virginiabyrne/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/h6w0myBO_400x400.jpg.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Jek_Porkins_9493_8HT9ncc.png.245x245_q85_box-0%2c0%2c467%2c467_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/virginiabyrne/index.html">
+            <h5 class="easter-egg-name">Virginia Byrne</h5>
+        </a>
+        <p class="no-margin">Jun 2016 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                College of Education
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+        
+    
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/ghazalehkeshavarz/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/WhatsApp_Image_2018-10-31_at_9.01.55_PM.jpeg.245x245_q85_box-0%2c73%2c607%2c680_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Gisel.png.245x245_q85_box-0%2c0%2c434%2c434_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/ghazalehkeshavarz/index.html">
+            <h5 class="easter-egg-name">Ghazaleh Keshavarz</h5>
+        </a>
+        <p class="no-margin">Sep 2018 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">MS Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Information School
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            MS Student()
+        
+    </div>
+</div>
+        
+    
+
+    
+
+    
+
+                    </div>
+                </div>
+            
+
+            
+                <div class="row row-eq-height row-adjust-margins people-row">
+                    <h3 class="news-type-label">Past Project Members</h3>
+                    <div class="grid_past_members">
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/afeaddeh/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/AfeAddeh.jpg.245x245_q85_box-68%2c128%2c824%2c884_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/images/StarWarsFiguresFullSquare/Rebels/LukeEndor2013_LdhWVrL.jpg.245x245_q85_box-0%2c0%2c800%2c800_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/afeaddeh/index.html">
+            <h5 class="easter-egg-name">Afe Addeh</h5>
+        </a>
+        <p class="no-margin">Sep 2017 - Apr 2018</p>
+
+        <p class="line-clamp-one-line no-margin">High School Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">Eleanor Roosevelt High School</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            High School Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/rafaelvelez/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/Rafael.jpg.245x245_q85_box-0%2c0%2c550%2c550_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/75011_alt5_jzRwvQR.jpg.245x245_q85_box-0%2c0%2c690%2c690_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/rafaelvelez/index.html">
+            <h5 class="easter-egg-name">Rafael Antonio Velez</h5>
+        </a>
+        <p class="no-margin">Sep 2016 - Jul 2017</p>
+
+        <p class="line-clamp-one-line no-margin">MS Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                College of Education
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            MS Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/monicakatzen/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/MonicaHeadshot.jpg.245x245_q85_box-0%2c50%2c452%2c501_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Leia4_xg63EES.jpg.245x245_q85_box-0%2c0%2c761%2c761_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/monicakatzen/index.html">
+            <h5 class="easter-egg-name">Monica Katzen</h5>
+        </a>
+        <p class="no-margin">May 2016 - May 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Math
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/jasonyip/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/JasonYip.png.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/images/StarWarsFiguresFullSquare/Rebels/75059_1to1_002.jpg.245x245_q85_box-0%2c0%2c690%2c690_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/jasonyip/index.html">
+            <h5 class="easter-egg-name">Jason Yip</h5>
+        </a>
+        <p class="no-margin">May 2016 - Sep 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Assistant Professor</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Information School
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Washington</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Professor()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/thomasouting/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/Tommy.png.245x245_q85_box-41%2c19%2c608%2c586_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Gold_Leader_9495_UOL6plS.png.245x245_q85_box-0%2c0%2c473%2c473_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/thomasouting/index.html">
+            <h5 class="easter-egg-name">Thomas Outing</h5>
+        </a>
+        <p class="no-margin">May 2016 - Aug 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/sagechen/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_7788_Large.JPG.245x245_q85_box-638%2c154%2c960%2c475_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/75011_alt5_26tiv3G.jpg.245x245_q85_box-0%2c0%2c690%2c690_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/sagechen/index.html">
+            <h5 class="easter-egg-name">Sage Chen</h5>
+        </a>
+        <p class="no-margin">Jun 2016 - Aug 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Electrical Engineering &amp; Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Michigan</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="../../project/sidewalk/index.html">Project Sidewalk</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/vanessaoguamanam/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/vanessa.png.245x245_q85_box-0%2c15%2c386%2c400_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/OBI-WAN_KENOBI_3_BWlO7Ga.jpg.245x245_q85_box-0%2c0%2c600%2c600_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/vanessaoguamanam/index.html">
+            <h5 class="easter-egg-name">Vanessa Oguamanam</h5>
+        </a>
+        <p class="no-margin">Jan 2015 - May 2016</p>
+
+        <p class="line-clamp-one-line no-margin">MS Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                iSchool
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            MS Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/angelisaplane/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/AngelPlane_Fvmj6Ay.png.245x245_q85_box-0%2c0%2c1162%2c1162_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/540px-Logray_xrEXHAy.jpg.245x245_q85_box-0%2c0%2c599%2c599_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/angelisaplane/index.html">
+            <h5 class="easter-egg-name">Angelisa Plane</h5>
+        </a>
+        <p class="no-margin">Dec 2014 - May 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/matthewmauriello/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/13707740_10102239882115242_3166341636580018419_n.jpg.245x245_q85_box-42%2c14%2c480%2c452_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Boba2015965b6c33ed204135af0243eb9a4f46ed.jpg.245x245_q85_box-0%2c0%2c396%2c396_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/matthewmauriello/index.html">
+            <h5 class="easter-egg-name">Matthew L Mauriello</h5>
+        </a>
+        <p class="no-margin">Mar 2014 - Apr 2015</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="../../project/thermography/index.html">Pervasive Thermography</a> | 
+                    
+                        <a href="../../project/socialfabricfitness/index.html">Social Fabric Fitness</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/amygreen/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/AmyGreen.jpg.245x245_q85_box-0%2c0%2c245%2c245_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Lego_Finn_Hn1WWl8.png.245x245_q85_box-0%2c0%2c891%2c891_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/amygreen/index.html">
+            <h5 class="easter-egg-name">Amy Green</h5>
+        </a>
+        <p class="no-margin">Oct 2014 - Apr 2015</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                College of Education
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/brennamcnally/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/brenna_full_small_square.jpg.245x245_q85_box-0%2c0%2c898%2c898_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Yellow_Leia_Hoth_M9IfyCy.jpg.245x245_q85_box-0%2c0%2c2027%2c2027_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/brennamcnally/index.html">
+            <h5 class="easter-egg-name">Brenna McNally</h5>
+        </a>
+        <p class="no-margin">Mar 2014 - Oct 2014</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                iSchool
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="../../project/thermography/index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/anitajorgensen/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_6275.JPG.245x245_q85_box-696%2c446%2c1882%2c1632_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/OBI-WAN_KENOBI_3_FL8RXn2.jpg.245x245_q85_box-0%2c0%2c600%2c600_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/anitajorgensen/index.html">
+            <h5 class="easter-egg-name">Anita Jorgensen</h5>
+        </a>
+        <p class="no-margin">Apr 2013 - Dec 2013</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../../project/BodyVis/index.html">BodyVis</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                    </div>
+                </div>
+            
+        
+    </div>
+</div>
+
+
+    
+
+        <div class="makelab-footer">
+            <div class="row makelab-footer-row">
+               
+                <div class="col-xs-2 makelab-footer-col">
+                    <a href="../../index.html">
+                        <img src="../../static/website/img/logos/makelab_logo_white_with_text_400x342.png"
+                             class="img-responsive makelab-footer-logo"/>
+                    </a>
+                  </div>
+                    
+				<div class="col-xs-2 makelab-footer-col">
+                    <p style="margin-top:0px">
+                       We design, build, and evaluate interactive tools and techniques to address pressing societal
+                        challenges in accessibility, sustainability, education, and beyond.
+                    </p>
+                      
+					<div class="makelab-footer-connect-links">
+						<ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+						</ul>
+					</div>      
+				</div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-recent-news">
+                    <h1>Recent News</h1>
+                    
+                    
+
+                    
+                        <div class="row">
+                            <a href="../../news/86/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 30, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Project Sidewalk in the Local News!</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/85/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 18, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">UW News Covers Project Sidewalk</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/84/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 17, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Aileen Zeng Presents at Women&#39;s Research Day</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                </div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-links">
+                    <h1>Links</h1>
+                    <ul>
+                        
+
+                            <li style="white-space:nowrap;" class=""><a href="../../index.html"> &nbsp;> &nbsp; Home</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../people/index.html">&nbsp;> &nbsp; People</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../news/index.html">&nbsp;> &nbsp; News</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../publications/index.html">&nbsp;> &nbsp; Publications</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../talks/index.html">&nbsp;> &nbsp; Talks</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../videos/index.html">&nbsp;> &nbsp; Videos</a></li>
+                        
+                    </ul>
+                    <div class="makelab-footer-connect-links-mobile">
+
+                        <!-- TODO: Vertically center text with icon. Currently text does not appear perfectly vertically centered with icon -->
+                        <!--<h1>Connect</h1>-->
+
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Consider adding a sponsorship row? -->
+            <!-- TODO: The centering looks weird on this. Also responsive design wraps columns, which I don't like. Ideally, I think, on small devices, should just switch to single row;
+                 TODO: Fix UMD CS logo so that the text is bigger -->
+            <div class="makelab-footer-affiliations">
+                <div class="row makelab-footer-affiliations-row">
+                <div class="makelab-footer-affiliation-col">
+                    <a href="http://dub.uw.edu/">
+                        <img src="../../static/website/img/logos/uw_dub_bottom_white_185x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-cse-footer-icon">
+                    <a href="https://www.cs.washington.edu/">
+                        <img src="../../static/website/img/logos/uw_allen_school_logo_white_941x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" style="margin-top: 2px;">
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-footer-icon">
+                    <a href="https://www.washington.edu/">
+
+
+                        <img src="../../static/website/img/logos/uw_white_horizontal_1196x94.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-cse-footer-icon">
+                    <a href="https://www.cs.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_cs_logo_white_850x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" />
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-footer-icon">
+                    <a href="https://www.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_logo_white_586x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/projects/bodyvis/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 05:42:21 GMT -->
+</html>

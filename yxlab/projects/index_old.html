@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/projects/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:52:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../static/website/css/autocomplete.css"/>
+
+
+    <link rel="stylesheet" href="../static/website/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../static/website/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../static/website/js/jquery.easing.min.js"></script>
+	<script src="../static/website/js/grayscale.js"></script>
+	<script src="../static/website/js/backtop.js"></script>
+
+
+    <script src="../static/website/js/jquery-ui.min.js"></script>
+
+
+    <title>
+        Makeability Lab Projects
+    </title>
+
+    <script type="text/javascript">
+
+
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="../static/website/img/logos/makelab_logo_white_no_text_100x67.png" height="20" />
+
+                                <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">Make</span>ability</span> Lab</div>
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                                    <li class=""><a href="../index.html">Home</a></li>
+                                    <li class=""><a href="../index.html"></a></li>
+                                    <li class=""><a href="../people/index.html">People</a></li>
+                                    <li class=""><a href="../people/index.html"></a></li>
+                                    <li class="active"><a href="index.html">Projects</a></li>
+                                    <li class="active"><a href="index.html"></a></li>
+                                    <li class=""><a href="../faq/index.html">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="mainCarousel" class="carousel slide carousel-fade shortCarousel" data-ride="carousel" data-interval="10000"
+     data-pause="false">
+    <div class="page-title shadow-left">
+        <div class="container carousel-container">
+
+
+
+            <div class="overlay-title">
+
+                    Projects
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+
+                    <a href="../project/BodyVis/index.html">
+
+                <div class="fill" style="background-image:url(../media/banner/IMG_84781d01441f373e45ed85defbeb6c1e86b3.jpg.2048x1366_q85_box-0%2c0%2c2048%2c1366_crop_detail.jpg)"
+                     aria-label="BodyVis e-textile anatomy is detachable. When reattached properly, the anatomy starts working automatically."
+                     title="BodyVis e-textile anatomy is detachable. When reattached properly, the anatomy starts working automatically.">
+                </div>
+                </a>
+            </div>
+
+            <div class="item ">
+
+                    <a href="../project/socialfabricfitness/index.html">
+
+                <div class="fill" style="background-image:url(../media/banner/IMG_2081fc1d825fbeac4f4e9d84a8eaf795af50.JPG.4898x2939_q85_box-0%2c0%2c4898%2c2939_crop_detail.jpg)"
+                     aria-label="Running with Social Fabric Fitness"
+                     title="Running with Social Fabric Fitness">
+                </div>
+                </a>
+            </div>
+
+            <div class="item ">
+
+                    <a href="../project/glassear/index.html">
+
+                <div class="fill" style="background-image:url(../media/banner/vlcsnap-2015-04-10-09h54m01s5516358d61a5a24a5c916e229d7300ca4c.png.1280x396_q85_box-0%2c0%2c1280%2c396_crop_detail.jpg)"
+                     aria-label="A user looking through the google glass, which shows an arrow pointed towards the current speaker"
+                     title="A user looking through the google glass, which shows an arrow pointed towards the current speaker">
+                </div>
+                </a>
+            </div>
+
+            <div class="item ">
+
+                    <a href="../project/glassear/index.html">
+
+                <div class="fill" style="background-image:url(../media/banner/vlcsnap-2015-04-10-09h53m54s212b130a89566674a4894fc8c4002eab2cf.png.1280x490_q85_box-0%2c51%2c1280%2c541_crop_detail.jpg)"
+                     aria-label="A user looking through the Google glass, which shows an arrow pointed towards the current speaker."
+                     title="A user looking through the Google glass, which shows an arrow pointed towards the current speaker.">
+                </div>
+                </a>
+            </div>
+
+            <div class="item ">
+
+                    <a href="../project/socialfabricfitness/index.html">
+
+                <div class="fill" style="background-image:url(../media/banner/IMG_4007b32f074f79f744598b2d5d04058e9a7e.JPG.4898x2792_q85_box-0%2c0%2c4898%2c2792_crop_detail.jpg)"
+                     aria-label="Two racers with SFF running jerseys"
+                     title="Two racers with SFF running jerseys">
+                </div>
+                </a>
+            </div>
+
+    </div>
+    <ol class="carousel-indicators"  >
+
+            <li data-target="#mainCarousel" data-slide-to="0"
+                class="active"></li>
+
+            <li data-target="#mainCarousel" data-slide-to="1"
+                ></li>
+
+            <li data-target="#mainCarousel" data-slide-to="2"
+                ></li>
+
+            <li data-target="#mainCarousel" data-slide-to="3"
+                ></li>
+
+            <li data-target="#mainCarousel" data-slide-to="4"
+                ></li>
+
+    </ol>
+</div>
+
+
+
+    <div id="makelab-projects" class="container-fluid makelab-content-container">
+        <div class="section" style="margin-top: 50px;">
+          <h1 class= "currentteam" name="currentteam" style="margin-top:0">Current Team</h1>
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../project/BodyVis/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../media/projects/images/BodyVisProjectThumbnail.png.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="../project/BodyVis/index.html">
+        <p class="artifact-title">BodyVis</p>
+    </a>
+</div>
+
+
+        </div>
+    </div>
+
+
+
+
+        <div class="makelab-footer">
+            <div class="row makelab-footer-row">
+
+                <div class="col-xs-2 makelab-footer-col">
+                    <a href="../index.html">
+                        <img src="../static/website/img/logos/makelab_logo_white_with_text_400x342.png"
+                             class="img-responsive makelab-footer-logo"/>
+                    </a>
+                  </div>
+
+				<div class="col-xs-2 makelab-footer-col">
+                    <p style="margin-top:0px">
+                       We design, build, and evaluate interactive tools and techniques to address pressing societal
+                        challenges in accessibility, sustainability, education, and beyond.
+                    </p>
+
+					<div class="makelab-footer-connect-links">
+						<ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+						</ul>
+					</div>
+				</div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-recent-news">
+                    <h1>Recent News</h1>
+
+
+
+
+                        <div class="row">
+                            <a href="../news/86/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+
+                                    <p>April 30, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Project Sidewalk in the Local News!</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="row">
+                            <a href="../news/85/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+
+                                    <p>April 18, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">UW News Covers Project Sidewalk</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="row">
+                            <a href="../news/84/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+
+                                    <p>April 17, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Aileen Zeng Presents at Women&#39;s Research Day</p>
+                                </div>
+                            </a>
+                        </div>
+
+                </div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-links">
+                    <h1>Links</h1>
+                    <ul>
+
+
+                            <li style="white-space:nowrap;" class=""><a href="../index.html"> &nbsp;> &nbsp; Home</a></li>
+
+                            <li style="white-space:nowrap;" class=""><a href="../people/index.html">&nbsp;> &nbsp; People</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../news/index.html">&nbsp;> &nbsp; News</a></li>
+
+                            <li style="white-space:nowrap;" class=""><a href="../publications/index.html">&nbsp;> &nbsp; Publications</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../talks/index.html">&nbsp;> &nbsp; Talks</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../videos/index.html">&nbsp;> &nbsp; Videos</a></li>
+
+                    </ul>
+                    <div class="makelab-footer-connect-links-mobile">
+
+                        <!-- TODO: Vertically center text with icon. Currently text does not appear perfectly vertically centered with icon -->
+                        <!--<h1>Connect</h1>-->
+
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Consider adding a sponsorship row? -->
+            <!-- TODO: The centering looks weird on this. Also responsive design wraps columns, which I don't like. Ideally, I think, on small devices, should just switch to single row;
+                 TODO: Fix UMD CS logo so that the text is bigger -->
+            <div class="makelab-footer-affiliations">
+                <div class="row makelab-footer-affiliations-row">
+                <div class="makelab-footer-affiliation-col">
+                    <a href="http://dub.uw.edu/">
+                        <img src="../static/website/img/logos/uw_dub_bottom_white_185x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-cse-footer-icon">
+                    <a href="https://www.cs.washington.edu/">
+                        <img src="../static/website/img/logos/uw_allen_school_logo_white_941x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" style="margin-top: 2px;">
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-footer-icon">
+                    <a href="https://www.washington.edu/">
+
+
+                        <img src="../static/website/img/logos/uw_white_horizontal_1196x94.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-cse-footer-icon">
+                    <a href="https://www.cs.umd.edu/">
+                        <img src="../static/website/img/logos/umd_cs_logo_white_850x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" />
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-footer-icon">
+                    <a href="https://www.umd.edu/">
+                        <img src="../static/website/img/logos/umd_logo_white_586x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <footer class="l-footer" role="contentinfo">
+            <div class="l-region l-region--footer">
+          <div id="block-block-5" class="block block--block block--block-5">
+              <div class="block__content">
+          <div id="footerWrap">
+        <div id="socialButtons"><a alt="iSchools Consortium Link" href="http://ischools.org/"><img alt="iSchools Ilogo" src="sites/all/themes/ischool/images/ischoolsilogo_icon.png" /> <span class="sr-only">iSchools Consortium</span></a> <a alt="iSchool Twitter Link" class="fa fa-twitter" href="https://twitter.com/iSchoolUMD" title="Twitter"> <span class="sr-only">Twitter</span></a> <a alt="iSchool Facebook Link" class="fa fa-facebook" href="http://www.facebook.com/iSchoolUMD" title="Facebook"><span class="sr-only">Facebook</span></a> <a alt="iSchool Youtube Link" class="fa fa-youtube" href="http://www.youtube.com/user/ischoolumd" title="Youtube"><span class="sr-only">Youtube</span></a> <a alt="iSchool Instagram Link" class="fa fa-instagram" href="https://www.instagram.com/ischoolumd/" title="Instagram"> <span class="sr-only">Instagram</span></a>
+        </div>
+
+        <ul id="footerNav">
+          <li><a alt="Contact the iSchool" href="contact-follow-us.html">Contact Us</a>
+          </li>
+          <li><a alt="iSchool Jobs" href="work-college-information-studies.html">Careers</a>
+          </li>
+          <li><a alt="Faculty and Staff Resources" href="faculty-staff-resources.html">Faculty &amp; Staff Resources</a>
+          </li>
+          <li><a href="https://www.umd.edu/web-accessibility">Accessibility</a>
+          </li>
+          <li><a href="https://login.umd.edu/cas/login?service=https%3A%2F%2Fischool.umd.edu%2Flogin">Login</a>
+          </li>
+        </ul>
+
+        <div id="footerAddress">© 2019 University of Maryland College Park
+        </div>
+        </div>
+        <script type="text/javascript">
+        <!--//--><![CDATA[// ><!--
+
+        // Set to false if opt-in required
+        var trackByDefault = true;
+
+        function acEnableTracking() {
+        var expiration = new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30);
+        document.cookie = "ac_enable_tracking=1; expires= " + expiration + "; path=/";
+        acTrackVisit();
+        }
+
+        function acTrackVisit() {
+        var trackcmp_email = '';
+        var trackcmp = document.createElement("script");
+        trackcmp.async = true;
+        trackcmp.type = 'text/javascript';
+        trackcmp.src = '//trackcmp.net/visit?actid=799081251&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+        var trackcmp_s = document.getElementsByTagName("script");
+        if (trackcmp_s.length) {
+          trackcmp_s[0].parentNode.appendChild(trackcmp);
+        } else {
+          var trackcmp_h = document.getElementsByTagName("head");
+          trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
+        }
+        }
+
+        if (trackByDefault || /(^|; )ac_enable_tracking=([^;]+)/.test(document.cookie)) {
+        acEnableTracking();
+        }
+
+        //--><!]]>
+        </script>  </div>
+        </div>
+        <nav id="block-menu-block-3" role="navigation" class="block block--menu-block hidden block--menu-block-3">
+              <h2 class="block__title">Mobileview Sub-Menus</h2>
+
+        <div class="menu-block-wrapper menu-block-3 menu-name-menu-top-nav parent-mlid-0 menu-level-1">
+        <ul class="menu"><li class="first collapsed menu-mlid-389"><a href="about-ischool.html" title="The College of Information Studies is a graduate school located at the University of Maryland, College Park in Maryland, United States.">About</a></li>
+        <li class="collapsed menu-mlid-392"><a href="research.html">Research</a></li>
+        <li class="collapsed menu-mlid-390"><a href="programs.html">Academics</a></li>
+        <li class="collapsed menu-mlid-1183"><a href="welcome.html">Prospective Students</a></li>
+        <li class="collapsed menu-mlid-386"><a href="students.html">Current Students</a></li>
+        <li class="collapsed menu-mlid-388"><a href="alumni.html">Alumni</a></li>
+        <li class="leaf menu-mlid-1909"><a href="news.html" title="">News</a></li>
+        <li class="leaf menu-mlid-1910"><a href="calendar.html" title="">Events</a></li>
+        <li class="last collapsed menu-mlid-806"><a href="support.html">Giving</a></li>
+        </ul></div>
+        </nav>
+        </div>
+        </footer>
+
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/projects/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:52:35 GMT -->
+</html>

@@ -1,0 +1,2931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/thermography/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:04:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+    
+    
+    <link rel="stylesheet" href="../../static/website/css/project.css">
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/index.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+  
+    <!-- <script src="/static/website/js/peopleHeightFix.js"></script> -->
+    <script src="../../static/website/js/utils.js"></script>
+    <script src="../../static/website/js/indproject.js"></script>
+
+
+    <title>
+        Pervasive Thermography
+    </title>
+
+    <script type="text/javascript">
+
+    
+
+    
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+    
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+                                
+                                <img src="../../static/website/img/logos/makelab_logo_white_no_text_100x67.png" height="20" />
+
+                                <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">Make</span>ability</span> Lab</div>
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+                                
+                                    <li class=""><a href="../../index.html">Home</a></li>
+                                    <li class=""><a href="../../people/index.html">People</a></li>
+                                    <li class=""><a href="../../projects/index.html">Projects</a></li>
+                                    <li class=""><a href="../../news/index.html">News</a></li>
+                                    <li class=""><a href="../../publications/index.html">Publications</a></li>
+                                    <li class=""><a href="../../talks/index.html">Talks</a></li>
+                                    <li class=""><a href="../../videos/index.html">Videos</a></li>
+                                    <li class=""><a href="../../faq/index.html">FAQ</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+    
+
+    
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000"
+             data-pause="true">
+            <!-- <div class="overlay carousel-caption"></div> -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                
+                    <div class="item active">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/IMG_9923af2709ca8d964acfab0faeaa56e71463.JPG.5184x3456_q85_box-0%2c0%2c5184%2c3456_crop_detail.jpg)"
+                             aria-label=""
+                             title="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    
+                                        <div class="carousel-caption-title">
+                                            Scalable Thermography
+                                        </div>
+                                        <div class="carousel-caption-text">
+                                            
+                                        </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="item ">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/image_679883fdaf67d4f3e9c6cf05a0f1d7cba.jpeg.2592x1936_q85_box-0%2c0%2c2592%2c1936_crop_detail.jpg)"
+                             aria-label=""
+                             title="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    
+                                        <div class="carousel-caption-title">
+                                            Scalable Thermography
+                                        </div>
+                                        <div class="carousel-caption-text">
+                                            
+                                        </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+            </div>
+            <ol class="carousel-indicators" >
+                
+                    <li data-target="#mainCarousel" data-slide-to="0"
+                        class="active"></li>
+                
+                    <li data-target="#mainCarousel" data-slide-to="1"
+                        ></li>
+                
+            </ol>
+        </div>
+    
+
+    
+<div id="content" class="container content-container" data-spy="scroll">
+    <div class="row row-adjust-margins" id="sidebar-level">
+	<div class="col-md-2 col-md-push-10">
+        <div class="row quick-info">
+            <h3 class="news-type-label">Quick Info</h3>
+            <p class="quick-info">
+                
+                    <b>Project Date</b>
+                    Jan. 19, 2014 - Present
+                    <br>
+                
+                
+                    
+                        <b>PIs: </b>
+                        <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a> (PI)<br/>
+                    
+                
+                
+                
+                    <b>Sponsors: </b>
+                    
+                        
+                          <img src="#" class="sponsor-icon">
+                          <span class="sponsor-name">University of Maryland Office of Sustainability</span>
+                        
+                    
+                    <br>
+                
+                
+                    <b>Keywords: </b>
+                    
+                        
+                            energy audits,
+                        
+                    
+                        
+                            thermography,
+                        
+                    
+                        
+                            robotics,
+                        
+                    
+                        
+                            formative inquiry,
+                        
+                    
+                        
+                            design probes,
+                        
+                    
+                        
+                            sustainable hci,
+                        
+                    
+                        
+                            human-robotic interaction,
+                        
+                    
+                        
+                            human-building interaction,
+                        
+                    
+                        
+                            thermal cameras,
+                        
+                    
+                        
+                            3d thermography,
+                        
+                    
+                        
+                            aerial robotics,
+                        
+                    
+                        
+                            automated energy auditing,
+                        
+                    
+                        
+                            building assessment,
+                        
+                    
+                        
+                            environmental sustainability
+                        
+                    
+                
+            </p>
+	    </div>
+	    
+	    <!-- Create a row for the well which will contain news from our feeds -->
+	    <div class="row recent-news">
+		<h3 class="news-type-label">Recent News</h3>
+		<div class="well news-well">
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/CHI2019Logo2634bed093d4f4d5bae07409399bef167.png.250x250_q85_box-523%2c129%2c1493%2c1097_crop_detail.png" class="news_image" height="50" width="50" alt="The CHI&#39;19 conference logo">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/75/index.html">
+				    <p>Five Papers Conditionally Accepted to CHI&#39;19!</p>
+				</a>
+			    </div>
+			    <p class="news_date">Dec 10, 2018 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>The Makeability Lab had five papers conditionally accepted to <a href="http://chi2019.acm.org/">CHI'19</a>. We'll see you in Glasgow!
+
+<p></p>Stay tuned for more information. Hoping to post pre-prints in January!</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/CongratsDrsLeeAndMatt130c0af872c7462fa192b65a7812431c.jpg.250x250_q85_box-0%2c269%2c3024%2c3293_crop_detail.jpg" class="news_image" height="50" width="50" alt="Picture of newly minted Drs. Matt Mauriello and Lee Stearns with their advisor Jon Froehlich">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/55/index.html">
+				    <p>Congratulations to Drs. Mauriello and Stearns</p>
+				</a>
+			    </div>
+			    <p class="news_date">Aug 01, 2018 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Please join me in congratulating Drs. Matt Mauriello and Lee Stearns who successfully passed their PhD defenses today. One of the true joys of being a professor is seeing students develop into independent scholars like Matt and Lee. Matt is now off to a post-doc at Stanford and Lee will join APL at Johns Hopkins.
+<p></p>
+Thanks to the fantastic committee members as well who spanned from multiple disciplines, universities, and parts of the US! :)
+<p></p>
+Matt's dissertation is entitled "	
+Designing and Evaluating Next-generation Thermographic Systems to Support Residential Energy Audits" and available for <a href="../../media/publications/Mauriello_DesigningAndEvaluatingNextGenerationThermographicSystemsToSupportResidentialEnergyAudits_2018.pdf">download here</a> and Lee's dissertation is entitled "Handsight: A Touch-based Wearable System to Increase Information Accessibility for People With Visual Impairments" and available <a href="../../media/publications/Stearns_HandsightATouchBasedWearableSystemToIncreaseInformationAccessibilityForPeopleWithVisualImpairments_2018.pdf">here</a>.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/hcil_3420e13e38771047d09ddd12dabd7652cf.jpg.250x250_q85_box-400%2c0%2c1200%2c800_crop_detail.jpg" class="news_image" height="50" width="50" alt="Presenting Temporal Thermography Work at HCIL Symposium">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/48/index.html">
+				    <p>Congratulations Matt Mauriello on Ubicomp Submissions</p>
+				</a>
+			    </div>
+			    <p class="news_date">Jul 03, 2017 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Excited to announce that Matt Mauriello and his team had their temporal thermography poster accepted to this year's <a href="http://ubicomp.org/ubicomp2017/">ACM Conference on Pervasive and Ubiquitous Computing (Ubicomp 2017)</a>. In addition to the poster, Matt also had his work accepted into the  Doctoral Colloquium. Congratulations and keep up the good work!</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/mattm6f1972da457a47fd95cc98b5ba08e2c9.jpg.250x250_q85_box-79%2c0%2c376%2c297_crop_detail.jpg" class="news_image" height="50" width="50" alt="">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/41/index.html">
+				    <p>Matt Mauriello Selected as All-S.T.A.R. Fellow!</p>
+				</a>
+			    </div>
+			    <p class="news_date">Apr 25, 2017 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Congratulations to Matt Mauriello who was just selected as an All-S.T.A.R Fellow for his work on scalable thermography--one of sixteen across the entire Graduate School at UMD. The Graduate All-S.T.A.R. Fellowship honors graduate students who are both outstanding scholars and outstanding graduate assistants. Read more about the award <a href="https://gradschool.umd.edu/funding/student-fellowships-awards/all-star-fellowship">here</a>.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/MattMaurielloPassesPjhdProposal5726fbfa82e547e2991437998b64f38a.jpg-large.250x250_q85_box-246%2c0%2c1782%2c1536_crop_detail.jpg" class="news_image" height="50" width="50" alt="Matt and his Phd committee">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/28/index.html">
+				    <p>Congratulations to Matt Mauriello for Passing his PhD Proposal</p>
+				</a>
+			    </div>
+			    <p class="news_date">Dec 16, 2016 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Congratulations to Matt Mauriello for passing his PhD proposal on mixed-initiative methods to scale thermographic energy auditing in space and time. Matt has much to celebrate this semester with getting into the Clark Faculty Fellow program, receiving two CHI paper acceptances, and now becoming a PhD candidate. Congrats Matt! And thanks to Andrea Wiggins and David Jacobs for serving on his committee.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/sensor_v1f977a9142ace4abaa6e89836880e195c.png.250x250_q85_box-0%2c28%2c350%2c378_crop_detail.png" class="news_image" height="50" width="50" alt="Sensor Prototype:">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/8/index.html">
+				    <p>Join the Scalable Thermography Team</p>
+				</a>
+			    </div>
+			    <p class="news_date">Sep 02, 2016 | <a href="../../member/285/index.html">Matthew</a></p><!--</p><p class="news_date">Matthew L Mauriello</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Our research group (the <a href="https://makeabilitylab.umiacs.umd.edu/">Makeability Lab</a> in the <a href="http://www.hcil.umd.edu/">HCIL</a>) is investigating new, scalable methods and tools for thermographic data collection and analysis. We are looking for talented, creative, and self-motivated undergraduate research assistants with strong technical backgrounds and an interest in environmental sustainability to work on a new, easily deployable thermographic sensor.<br />
+<br />
+We are specifically looking for student volunteers interested in developing valuable hardware and software skills over the course of the academic year while supporting an ongoing research project. Interested students should have one or more of the following skills and a keen interest in expanding their abilities in some of the other areas:<br />
+
+<ul>
+<li>Experience working with single-board computers and accessories</li>
+<li>Experience designing front-end and back-end web components</li>
+<li>Experience prototyping applications with Android devices</li>
+<li>Eagerness to learn and make with rapid prototyping technologies</li>
+</ul>
+You will be working in the <a href="http://www.slideshare.net/jonfroehlich/a-brief-overview-of-the-hcil-hackerspace-at-umd">HCIL Hackerspace</a>, will attend weekly research meetings, and will join a team of other talented undergraduate and graduate students. Our short term goal is a publication at CHI2017 and a potential submission to UIST2017.<br />
+<br />
+For best consideration, please read this <a href="http://www.cs.umd.edu/~jonf/advising.html#ugradresearch">page about undergraduate research</a> and then send your CV and unofficial transcripts to <a href="mailto:mattm401@umd.edu">mattm401@umd.edu</a> and CC <a href="mailto:jonf@cs.umd.edu">jonf@cs.umd.edu</a> by September 21st. We will contact a subset of qualified candidates to setup interviews and request other materials. Full details are available on our <a href="http://www.cs.umd.edu/~mattm/projects/thermal/">announcement webpage</a>.
+<br /><br />
+Please feel free to forward this announcement.</p>
+			    
+			</div>
+		    </div>
+		    
+		</div>
+	    </div>
+	    
+	</div>
+	<div class="col-md-10 col-md-pull-2 project-intro-content">
+        <div class="row about-row">
+            <h3 class="news-type-label">About</h3>
+            <p class="project-about">
+            <div style="float: right">
+                <div class="header-visual">
+                    
+                        
+                            
+                                <img class="video-about" src="../../media/projects/images/Figure_1_web.png">
+                            
+
+                            <p style="font-weight: bold; margin:0px;">Smartphone-based Thermography</p>
+                            
+                               <p class="header-visual-caption"> Building new methods and tools to support data collection and analysis</p>
+                            
+                        
+                    
+
+                </div>
+            </div>
+            
+                <div style="text-align: justify">Improving energy efficiency in the built environment is an important global concern. In the United States, for example, buildings account for 41% of primary energy consumption–more than any other sector–and contribute an increasing portion of carbon dioxide emissions (33% in 1980 vs. 40% in 2009). To reduce consumption and emission levels, the U.S. Department of Energy (DOE) recommends energy audits to help identify sources of inefficiencies and reduce consumption (e.g., home energy audits typically identify improvements that lead to 5-30% reductions in utility use). Moreover, energy audits are increasingly becoming part of building efficiency certification programs. In response, interest in energy auditing has increased.<br/>
+<br/>
+Our work focuses on thermography, a data collection and visual analytics technique utilizing thermal cameras, which energy auditors use to identify, diagnose, and document efficiency issues (e.g., missing insulation, air leakage) in buildings. The use of thermography during an energy audit helps the auditor find and communicate problems to building owners and including thermal imagery in inspection reports has been shown to  lead to two primary outcomes: (i) an increased likelihood that the building owners will make retrofit decisions and (ii) an increased likelihood that building occupants will engage in conservation behaviors. With respect to increasing the overall energy efficiency of the built environment, both outcomes are desirable.<br/>
+<br/>
+Our work investigates scaling thermographic inspections along two dimensions: first, scaling in terms of who can perform thermographic audits by building and evaluating computer assisted
+thermographic tools to help with both capture and analysis; second, scaling in terms of time by
+building and evaluating new indoor, automated temporal data collection and analysis tools. Related to this, we explore three key areas: (i) current thermographic energy auditing practices, (ii) the application of machine learning, image processing, and information visualization techniques to classify and gather insights from real world thermographic data, and (iii)  developing new methods and tools to support human-oriented thermographic data collection and analysis activities.<span>
+            
+            </p>
+        </div>
+	    <div class="row">
+		
+		<h3 class="news-type-label">Publications</h3>
+		
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_ThermporalAnEasyToDeployTemporalThermographicSensorSystemToSupportResidentialEnergyAudits_2019.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_ThermporalAnEasyToDeployTemporalThermographicSensorSystemToSupportResidentialEnergyAudits_2019.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Thermporal: An Easy-to-Deploy Temporal Thermographic Sensor System to Support Residential Energy Audits</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/brennamcnally/index.html">Brenna McNally</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2019
+                    
+                    
+                        <span class="publication-to-appear-text">To Appear</span>
+                    
+                </span>
+                
+                    <span class="publication-acceptance-rate">|
+                        <span class="publication-acceptance-rate-text">
+                            
+                            
+                            Acceptance Rate: 23.8%
+                            (705 / 2960)
+                        </span>
+                    </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        sensing,
+                    
+                
+                    
+                        thermal cameras,
+                    
+                
+                    
+                        field deployments
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_ThermporalAnEasyToDeployTemporalThermographicSensorSystemToSupportResidentialEnergyAudits_2019.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_ALargeScaleAnalysisOfYoutubeVideosDepictingEverydayThermalCameraUse_2018.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_ALargeScaleAnalysisOfYoutubeVideosDepictingEverydayThermalCameraUse_2018.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">A Large-Scale Analysis of YouTube Videos Depicting Everyday Thermal Camera Use</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/brennamcnally/index.html">Brenna McNally</a>,
+                
+                    <a href="../../member/codybuntain/index.html">Cody Buntain</a>,
+                
+                    <a href="../../member/sapnabagalkotkar/index.html">Sapna Bagalkotkar</a>,
+                
+                    <a href="../../member/samuelkushnir/index.html">Samuel Kushnir</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of MobileHCI2018
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        thermal cameras,
+                    
+                
+                    
+                        youtube,
+                    
+                
+                    
+                        user-generated content
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_ALargeScaleAnalysisOfYoutubeVideosDepictingEverydayThermalCameraUse_2018.pdf">PDF</a>
+                    <a href="https://doi.org/10.1145/3229434.3229443">| doi</a>
+                    <a href="../../media/talks/Mauriello_A_Large-Scale_Analysis_of_YouTube_Videos_Depicting_Everyday_Thermal_Camera_Use_2018.pdf">| Talk</a>
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_DesigningAndEvaluatingNextGenerationThermographicSystemsToSupportResidentialEnergyAudits_2018.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_DesigningAndEvaluatingNextGenerationThermographicSystemsToSupportResidentialEnergyAudits_2018.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Designing and Evaluating Next-Generation Thermographic Systems to Support Residential Energy Audits</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        UMD CS PhD Dissertation
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        thermal cameras
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_DesigningAndEvaluatingNextGenerationThermographicSystemsToSupportResidentialEnergyAudits_2018.pdf">PDF</a>
+                    
+                    <a href="../../media/talks/Mauriello_Dissertation_v0.1.pdf">| Talk</a>
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_ScalableMethodsAndToolsToSupportThermographicDataCollectionAndAnalysisForEnergyAudits_2017.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_ScalableMethodsAndToolsToSupportThermographicDataCollectionAndAnalysisForEnergyAudits_2017.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Scalable methods and tools to support thermographic data collection and analysis for energy audits</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract Proceedings of UbiComp 2018
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        thermal cameras
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_ScalableMethodsAndToolsToSupportThermographicDataCollectionAndAnalysisForEnergyAudits_2017.pdf">PDF</a>
+                    <a href="https://doi.org/10.1145/3123024.3123193">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/p360-mauriello.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/p360-mauriello.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Scalable Methods and Tools to Support Thermographic Data Collection and Analysis for Energy Audits</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract ACM Ubicomp 2017 Doctoral Colloquium
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        sustainability,
+                    
+                
+                    
+                        thermal cameras,
+                    
+                
+                    
+                        mobile,
+                    
+                
+                    
+                        sensors,
+                    
+                
+                    
+                        design, environment, sustainability
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/p360-mauriello.pdf">PDF</a>
+                    <a href="http://dl.acm.org/citation.cfm?id=3123193">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_A_Temporal_Thermography_System_for_Supporting_Longitudinal_Building_Energy_Audits_2017.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_A_Temporal_Thermography_System_for_Supporting_Longitudinal_Building_Energy_Audits_2017.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">A Temporal Thermography System for Supporting Longitudinal Building Energy Audits</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/jamiegilkeson/index.html">Jamie H Gilkeson</a>,
+                
+                    <a href="../../member/noachazan/index.html">Noa Chazan</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract Proceedings of Ubicomp 2017
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        environmental hci,
+                    
+                
+                    
+                        sustainability,
+                    
+                
+                    
+                        information visualization,
+                    
+                
+                    
+                        thermal cameras,
+                    
+                
+                    
+                        environmental sensing,
+                    
+                
+                    
+                        sensors,
+                    
+                
+                    
+                        design, environment, sustainability
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_A_Temporal_Thermography_System_for_Supporting_Longitudinal_Building_Energy_Audits_2017.pdf">PDF</a>
+                    <a href="http://doi.acm.org/10.1145/3123024.3123082">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Exploring Novice Approaches to Smartphone-based Thermographic Energy Auditing: A Field Study</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../../member/ericabrown/index.html">Erica Brown</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2017
+                    
+                    
+                </span>
+                
+                    <span class="publication-acceptance-rate">|
+                        <span class="publication-acceptance-rate-text">
+                            
+                            
+                            Acceptance Rate: 25.0%
+                            (606 / 2424)
+                        </span>
+                    </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        formative inquiry,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        urban informatics,
+                    
+                
+                    
+                        environmental sustainability,
+                    
+                
+                    
+                        environmental hci,
+                    
+                
+                    
+                        sustainability
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.pdf">PDF</a>
+                    <a href="https://doi.org/10.1145/3025453.3025471">| doi</a>
+                    <a href="../../media/talks/CHI2017_Thermography_v0.2-TrimmedSandboxSlides-Slideshare.pdf">| Talk</a>
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/The_Future_Role_of_Thermography_in_Human-Building_Interaction_h2nvDsl.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/The_Future_Role_of_Thermography_in_Human-Building_Interaction_h2nvDsl.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">The Future Role of Thermography in Human-Building Interaction</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/matthewdahlhausen/index.html">Matthew Dahlhausen</a>,
+                
+                    <a href="../../member/ericabrown/index.html">Erica Brown</a>,
+                
+                    <a href="../../member/manaswisaha/index.html">Manaswi Saha</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        CHI 2016 Workshop: Future of Human-Building Interaction
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        thermography,
+                    
+                
+                    
+                        human-building interaction,
+                    
+                
+                    
+                        thermal cameras
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/The_Future_Role_of_Thermography_in_Human-Building_Interaction_h2nvDsl.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Understanding_the_Role_of_Thermography_in_Energy_Auditing_Current_Practices_and_the_Potential_for_Automated_Solutions_YntnX9Y.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Understanding_the_Role_of_Thermography_in_Energy_Auditing_Current_Practices_and_the_Potential_for_Automated_Solutions_YntnX9Y.jpg.300x0_q85_detail.2ec.delay"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Understanding the Role of Thermography in Energy Auditing: Current Practices and the Potential for Automated Solutions</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2015
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        energy audits,
+                    
+                
+                    
+                        thermography,
+                    
+                
+                    
+                        robotics,
+                    
+                
+                    
+                        formative inquiry,
+                    
+                
+                    
+                        design probes,
+                    
+                
+                    
+                        sustainable hci,
+                    
+                
+                    
+                        human-robotic interaction
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Understanding_the_Role_of_Thermography_in_Energy_Auditing_Current_Practices_and_the_Potential_for_Automated_Solutions_YntnX9Y.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Towards_Automated_Thermal_Profiling_of_Buildings_at_Scale_Using_Unmanned_Aerial_Vehicles_and_3D-Reconstruction_RFEQ4ru.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Towards_Automated_Thermal_Profiling_of_Buildings_at_Scale_Using_Unmanned_Aerial_Vehicles_and_3D-Reconstruction_RFEQ4ru.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Towards Automated Thermal Profiling of Buildings at Scale Using Unmanned Aerial Vehicles and 3D-Reconstruction</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/matthewmauriello/index.html">Matthew L Mauriello</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Poster Proceedings of UbiComp 2014
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        3d thermography,
+                    
+                
+                    
+                        aerial robotics,
+                    
+                
+                    
+                        automated energy auditing,
+                    
+                
+                    
+                        building assessment,
+                    
+                
+                    
+                        environmental sustainability
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Towards_Automated_Thermal_Profiling_of_Buildings_at_Scale_Using_Unmanned_Aerial_Vehicles_and_3D-Reconstruction_RFEQ4ru.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">Pervasive Thermography</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+	    </div>
+	</div>
+    </div>
+    <div class="row no-margin" id="below-sidebar">
+        <div class="row row-adjust-margins">
+            
+            <h3 class="news-type-lable">Recent Videos</h3>
+            
+            
+                
+
+
+
+
+
+
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 video-column">
+    
+    
+    <div class="video" style="height: 300px; margin-bottom: 20px;">
+        
+        <iframe class="youtube-player" src="https://youtube.com/embed/XzCuvr8QB4U?showinfo=0&amp;iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+
+        <p class="artifact-title line-clamp" style="margin-top: 0px;">Understanding the Role of Thermography in Energy Auditing: Current Practices and the Potential for Automated Solutions</p>
+        
+        <p class="artifact-links">
+            <a href="https://youtu.be/XzCuvr8QB4U">YouTube</a>
+            
+            
+                | <a href="../../media/publications/Understanding_the_Role_of_Thermography_in_Energy_Auditing_Current_Practices_and_the_Potential_for_Automated_Solutions_YntnX9Y.pdf">Paper</a>
+            
+            
+                | <a href="index.html">Pervasive Thermography</a>
+            
+        </p>
+    </div>
+</div>
+            
+                
+
+
+
+
+
+
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 video-column">
+    
+    
+    <div class="video" style="height: 300px; margin-bottom: 20px;">
+        
+        <iframe class="youtube-player" src="https://youtube.com/embed/KZqKiOgRHZY?showinfo=0&amp;iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+
+        <p class="artifact-title line-clamp" style="margin-top: 0px;">Understanding the Role of Thermography in Energy Auditing: Current Practices and the Potential for Automated Solutions</p>
+        
+        <p class="artifact-links">
+            <a href="https://youtu.be/KZqKiOgRHZY">YouTube</a>
+            
+            
+            
+                | <a href="index.html">Pervasive Thermography</a>
+            
+        </p>
+    </div>
+</div>
+            
+        </div>
+        <div class="row row-adjust-margins">
+            
+                <h3 class="news-type-label">Talks</h3>
+            
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Mauriello_A_Large-Scale_Analysis_of_YouTube_Videos_Depicting_Everyday_Thermal_Camera_Use_2018.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Mauriello_A_Large-Scale_Analysis_of_YouTube_Videos_Depicting_Everyday_Thermal_Camera_Use_2018.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Mauriello_A_Large-Scale_Analysis_of_YouTube_Videos_Depicting_Everyday_Thermal_Camera_Use_2018.pdf" target="_blank"><span class="artifact-title line-clamp">A Large-Scale Analysis of YouTube Videos Depicting Everyday Thermal Camera Use</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Sept. 5, 2018 | MobileHCI 2018
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Barcelona, Spain</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/matthewmauriello/index.html" style="color:#464D59">Matthew L Mauriello</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Mauriello_A_Large-Scale_Analysis_of_YouTube_Videos_Depicting_Everyday_Thermal_Camera_Use_2018.pdf">PDF</a>
+                | <a href="../../media/talks/Mauriello_MobileHCI_v0.2.pptx">PPTX</a>
+                | <a href="https://www.slideshare.net/mattm401/a-largescale-analysis-of-youtube-videos-depicting-everyday-thermal-camera-use-116774735">SlideShare</a>
+                
+                    | <a href="../../media/publications/Mauriello_ALargeScaleAnalysisOfYoutubeVideosDepictingEverydayThermalCameraUse_2018.pdf">Paper</a>
+                
+                
+                    | <a href="index.html">Pervasive Thermography</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Mauriello_Dissertation_v0.1.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Mauriello_Dissertation_v0.1.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Mauriello_Dissertation_v0.1.pdf" target="_blank"><span class="artifact-title line-clamp">Designing and Evaluating Next-Generation Thermographic Systems to Support Residential Energy Audits</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Aug. 1, 2018 | PhD Defense, Computer Science
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/matthewmauriello/index.html" style="color:#464D59">Matthew L Mauriello</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Mauriello_Dissertation_v0.1.pdf">PDF</a>
+                | <a href="../../media/talks/Mauriello_Dissertation_v0.1.pptx">PPTX</a>
+                
+                
+                    | <a href="../../media/publications/Mauriello_DesigningAndEvaluatingNextGenerationThermographicSystemsToSupportResidentialEnergyAudits_2018.pdf">Paper</a>
+                
+                
+                    | <a href="index.html">Pervasive Thermography</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/CHI2017_Thermography_v0.2-TrimmedSandboxSlides-Slideshare.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/CHI2017_Thermography_v0.2-TrimmedSandboxSlides-Slideshare.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/CHI2017_Thermography_v0.2-TrimmedSandboxSlides-Slideshare.pdf" target="_blank"><span class="artifact-title line-clamp">Exploring Novice Approaches to Smartphone-based Thermographic Energy Auditing: A Field Study</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                May 9, 2017 | CHI2017
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Denver, Colorado, USA</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/matthewmauriello/index.html" style="color:#464D59">Matthew L Mauriello</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/CHI2017_Thermography_v0.2-TrimmedSandboxSlides-Slideshare.pdf">PDF</a>
+                
+                
+                
+                    | <a href="../../media/publications/Mauriello_ExploringNoviceApproachesToSmartphoneBasedThermographicEnergyAuditingAFieldStudy_2017.pdf">Paper</a>
+                
+                
+                    | <a href="index.html">Pervasive Thermography</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_OverviewTalk_v2.5_PostLTSEdits.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 6, 2017 | Lecture Series at the Laboratory for Telecommunication Sciences
+            </p>
+            <p class="artifact-venue line-clamp-one-line">LTS Auditorium, College Park, MD</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../handsight/index.html">HandSight</a>
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="index.html">Pervasive Thermography</a>
+                
+                    | <a href="../makerwear/index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/chi2015thermographyv7b-slideshare-150504122635-conversion-gate02.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/chi2015thermographyv7b-slideshare-150504122635-conversion-gate02.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/chi2015thermographyv7b-slideshare-150504122635-conversion-gate02.pdf" target="_blank"><span class="artifact-title line-clamp">Understanding the Role of Thermography in Energy Auditing: Current Practices and the Potential for Automated Solutions</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 22, 2015 | CHI2015
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Seoul, Republic of Korea</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/matthewmauriello/index.html" style="color:#464D59">Matthew L Mauriello</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/chi2015thermographyv7b-slideshare-150504122635-conversion-gate02.pdf">PDF</a>
+                
+                | <a href="http://www.slideshare.net/mattm401/chi2015-thermography-v7bslideshare-47737208">SlideShare</a>
+                
+                
+                    | <a href="index.html">Pervasive Thermography</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+
+            </div>
+        </div>
+        <div class="row row-adjust-margins">
+            
+            <h3 class="news-type-label">Photo Gallery</h3>
+            
+            
+            <div class="col-md-4 project-gallery-col">
+            <img src="../../media/projects/images/IR_2298.jpg.368x245_q85_box-0%2c42%2c281%2c228_crop_detail.jpg" alt="" class="project-gallery">
+            <div class="overlay-image">
+                <div class="image-gallery-caption">Anomaly Detection</div>
+            </div>
+            </div>
+            
+            <div class="col-md-4 project-gallery-col">
+            <img src="../../media/projects/images/IMG_2706.JPG.368x245_q85_box-0%2c88%2c360%2c328_crop_detail.jpg" alt="" class="project-gallery">
+            <div class="overlay-image">
+                <div class="image-gallery-caption">Support Tools</div>
+            </div>
+            </div>
+            
+            <div class="col-md-4 project-gallery-col">
+            <img src="../../media/projects/images/Interview_3.png.368x245_q85_box-0%2c275%2c1058%2c980_crop_detail.png" alt="" class="project-gallery">
+            <div class="overlay-image">
+                <div class="image-gallery-caption">Energy Analysis</div>
+            </div>
+            </div>
+            
+        </div>
+
+        
+        
+        
+            
+                <div class="row row-eq-height row-adjust-margins people-row">
+                    
+                    
+                        <h3 class="news-type-label">Current Project Members</h3>
+                    
+                    <div class="grid_current_members">
+                        
+
+
+
+
+
+
+
+
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/jonfroehlich/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_9700_cropped2.jpg.245x245_q85_box-0%2c307%2c2439%2c2758_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Han2014New.jpg.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/jonfroehlich/index.html">
+            <h5 class="easter-egg-name">Jon E. Froehlich</h5>
+        </a>
+        <p class="no-margin">Jan 2014 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">Associate Professor</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Washington</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    <a href="../../projects/index.html">All Projects</a>
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Professor()
+        
+    </div>
+</div>
+        
+    
+
+    
+
+    
+
+    
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/matthewmauriello/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/13707740_10102239882115242_3166341636580018419_n.jpg.245x245_q85_box-42%2c14%2c480%2c452_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Boba2015965b6c33ed204135af0243eb9a4f46ed.jpg.245x245_q85_box-0%2c0%2c396%2c396_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/matthewmauriello/index.html">
+            <h5 class="easter-egg-name">Matthew L Mauriello</h5>
+        </a>
+        <p class="no-margin">Jan 2014 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="index.html">Pervasive Thermography</a> | 
+                    
+                        <a href="../socialfabricfitness/index.html">Social Fabric Fitness</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+        
+    
+
+    
+
+    
+
+    
+
+                    </div>
+                </div>
+            
+
+            
+                <div class="row row-eq-height row-adjust-margins people-row">
+                    <h3 class="news-type-label">Past Project Members</h3>
+                    <div class="grid_past_members">
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/noachazan/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_1345_Large.JPG.245x245_q85_box-178%2c119%2c1107%2c1048_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Lego_Finn_omjoCGa.png.245x245_q85_box-0%2c0%2c891%2c891_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/noachazan/index.html">
+            <h5 class="easter-egg-name">Noa Chazan</h5>
+        </a>
+        <p class="no-margin">Sep 2016 - Dec 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../sidewalk/index.html">Project Sidewalk</a> | 
+                    
+                        <a href="index.html">Pervasive Thermography</a> | 
+                    
+                        <a href="../socialfabricfitness/index.html">Social Fabric Fitness</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/simranchawla/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/SimranChawla.jpg.245x245_q85_box-0%2c0%2c245%2c245_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Lego_Resistance_X-Wing_Pilot_ryfjxBn.png.245x245_q85_box-0%2c0%2c908%2c908_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/simranchawla/index.html">
+            <h5 class="easter-egg-name">Simran Chawla</h5>
+        </a>
+        <p class="no-margin">Jul 2017 - Dec 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Engineering
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/brennamcnally/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/brenna_full_small_square.jpg.245x245_q85_box-0%2c0%2c898%2c898_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Yellow_Leia_Hoth_M9IfyCy.jpg.245x245_q85_box-0%2c0%2c2027%2c2027_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/brennamcnally/index.html">
+            <h5 class="easter-egg-name">Brenna McNally</h5>
+        </a>
+        <p class="no-margin">Jun 2017 - Sep 2017</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                iSchool
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/codybuntain/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/CodyBuntain.png.245x245_q85_box-0%2c0%2c245%2c245_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Luke_Skywalker_Hoth_KLCVNF9_n2a0L0V.jpg.245x245_q85_box-0%2c0%2c245%2c245_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/codybuntain/index.html">
+            <h5 class="easter-egg-name">Cody Buntain</h5>
+        </a>
+        <p class="no-margin">Jun 2017 - Sep 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Post-doc</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Post-doc()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/sapnabagalkotkar/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/Sapna.jpg.245x245_q85_box-288%2c98%2c1342%2c1152_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Lego_Resistance_X-Wing_Pilot_bGBXOzI.png.245x245_q85_box-0%2c0%2c908%2c908_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/sapnabagalkotkar/index.html">
+            <h5 class="easter-egg-name">Sapna Bagalkotkar</h5>
+        </a>
+        <p class="no-margin">Jun 2017 - Aug 2017</p>
+
+        <p class="line-clamp-one-line no-margin">High School Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">Poolesville High School</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            High School Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/samuelkushnir/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_4073.PNG.245x245_q85_box-0%2c280%2c750%2c1032_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/9496_Lando_3ehQpeI.png.245x245_q85_box-0%2c0%2c240%2c240_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/samuelkushnir/index.html">
+            <h5 class="easter-egg-name">Samuel Kushnir</h5>
+        </a>
+        <p class="no-margin">Jul 2017 - Aug 2017</p>
+
+        <p class="line-clamp-one-line no-margin">High School Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">Berman Hebrew Academy</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            High School Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/matthewbrady/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/profile_img_plain.jpg.245x245_q85_box-0%2c810%2c2417%2c3240_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Leia4_EM5XIIk.jpg.245x245_q85_box-0%2c0%2c761%2c761_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/matthewbrady/index.html">
+            <h5 class="easter-egg-name">Matthew Brady</h5>
+        </a>
+        <p class="no-margin">Jan 2017 - May 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/anthonycastrio/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/anthony_headshot.png.245x245_q85_box-778%2c0%2c4234%2c3456_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Luke2014Visor_MVFrM43.jpg.245x245_q85_box-0%2c0%2c800%2c800_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/anthonycastrio/index.html">
+            <h5 class="easter-egg-name">Anthony Castrio</h5>
+        </a>
+        <p class="no-margin">Jan 2017 - May 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/manaswisaha/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/me_walkhacknight.jpg.245x245_q85_box-797%2c0%2c4340%2c3542_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/me_NY_H7RPkEQ.JPG.245x245_q85_box-0%2c160%2c1745%2c1914_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/manaswisaha/index.html">
+            <h5 class="easter-egg-name">Manaswi Saha</h5>
+        </a>
+        <p class="no-margin">Aug 2015 - Jan 2017</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Washington</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../accessiblemaps/index.html">Accessibility-Infused Maps</a> | 
+                    
+                        <a href="../sidewalk/index.html">Project Sidewalk</a> | 
+                    
+                        <a href="index.html">Pervasive Thermography</a> | 
+                    
+                        <a href="../accessscore/index.html">AccessScore</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/juliazheng/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/image1.JPG.245x245_q85_box-0%2c290%2c596%2c885_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Gold_Leader_9495_HHfIBEv.png.245x245_q85_box-0%2c0%2c473%2c473_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/juliazheng/index.html">
+            <h5 class="easter-egg-name">Julia Zheng</h5>
+        </a>
+        <p class="no-margin">Sep 2016 - Jan 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Engineering
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/jamiegilkeson/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/me.jpg.245x245_q85_box-0%2c0%2c964%2c964_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/OBI-WAN_KENOBI_3.jpg.245x245_q85_box-0%2c0%2c600%2c600_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/jamiegilkeson/index.html">
+            <h5 class="easter-egg-name">Jamie H Gilkeson</h5>
+        </a>
+        <p class="no-margin">Jun 2016 - Aug 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">Drexel University</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/ericabrown/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/12227614_956654181068808_1603472147524549221_n_2_4MjknaG.jpg.245x245_q85_box-0%2c3%2c245%2c248_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/LukeEndor2013.jpg.245x245_q85_box-0%2c0%2c800%2c800_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/ericabrown/index.html">
+            <h5 class="easter-egg-name">Erica Brown</h5>
+        </a>
+        <p class="no-margin">May 2015 - Jan 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Bioengineering
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/matthewdahlhausen/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_2022.JPG.245x245_q85_box-784%2c0%2c4432%2c3648_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/9489_Rebel_1_cZHUzoi.png.245x245_q85_box-0%2c0%2c391%2c391_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/matthewdahlhausen/index.html">
+            <h5 class="easter-egg-name">Matthew Dahlhausen</h5>
+        </a>
+        <p class="no-margin">Aug 2015 - Jan 2016</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Building Sciences
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/leylanorooz/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_5007.JPG.245x245_q85_box-396%2c0%2c1761%2c1366_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Han2014New_YMLbn5W.jpg.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/leylanorooz/index.html">
+            <h5 class="easter-egg-name">Leyla Norooz</h5>
+        </a>
+        <p class="no-margin">Aug 2014 - Apr 2015</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                iSchool
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../BodyVis/index.html">BodyVis</a> | 
+                    
+                        <a href="index.html">Pervasive Thermography</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+                        
+                    </div>
+                </div>
+            
+        
+    </div>
+</div>
+
+
+    
+
+        <div class="makelab-footer">
+            <div class="row makelab-footer-row">
+               
+                <div class="col-xs-2 makelab-footer-col">
+                    <a href="../../index.html">
+                        <img src="../../static/website/img/logos/makelab_logo_white_with_text_400x342.png"
+                             class="img-responsive makelab-footer-logo"/>
+                    </a>
+                  </div>
+                    
+				<div class="col-xs-2 makelab-footer-col">
+                    <p style="margin-top:0px">
+                       We design, build, and evaluate interactive tools and techniques to address pressing societal
+                        challenges in accessibility, sustainability, education, and beyond.
+                    </p>
+                      
+					<div class="makelab-footer-connect-links">
+						<ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+						</ul>
+					</div>      
+				</div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-recent-news">
+                    <h1>Recent News</h1>
+                    
+                    
+
+                    
+                        <div class="row">
+                            <a href="../../news/86/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 30, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Project Sidewalk in the Local News!</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/85/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 18, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">UW News Covers Project Sidewalk</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/84/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 17, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Aileen Zeng Presents at Women&#39;s Research Day</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                </div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-links">
+                    <h1>Links</h1>
+                    <ul>
+                        
+
+                            <li style="white-space:nowrap;" class=""><a href="../../index.html"> &nbsp;> &nbsp; Home</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../people/index.html">&nbsp;> &nbsp; People</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../news/index.html">&nbsp;> &nbsp; News</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../publications/index.html">&nbsp;> &nbsp; Publications</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../talks/index.html">&nbsp;> &nbsp; Talks</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../videos/index.html">&nbsp;> &nbsp; Videos</a></li>
+                        
+                    </ul>
+                    <div class="makelab-footer-connect-links-mobile">
+
+                        <!-- TODO: Vertically center text with icon. Currently text does not appear perfectly vertically centered with icon -->
+                        <!--<h1>Connect</h1>-->
+
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Consider adding a sponsorship row? -->
+            <!-- TODO: The centering looks weird on this. Also responsive design wraps columns, which I don't like. Ideally, I think, on small devices, should just switch to single row;
+                 TODO: Fix UMD CS logo so that the text is bigger -->
+            <div class="makelab-footer-affiliations">
+                <div class="row makelab-footer-affiliations-row">
+                <div class="makelab-footer-affiliation-col">
+                    <a href="http://dub.uw.edu/">
+                        <img src="../../static/website/img/logos/uw_dub_bottom_white_185x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-cse-footer-icon">
+                    <a href="https://www.cs.washington.edu/">
+                        <img src="../../static/website/img/logos/uw_allen_school_logo_white_941x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" style="margin-top: 2px;">
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-footer-icon">
+                    <a href="https://www.washington.edu/">
+
+
+                        <img src="../../static/website/img/logos/uw_white_horizontal_1196x94.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-cse-footer-icon">
+                    <a href="https://www.cs.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_cs_logo_white_850x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" />
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-footer-icon">
+                    <a href="https://www.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_logo_white_586x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/thermography/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:04:19 GMT -->
+</html>

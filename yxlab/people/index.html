@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/people/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:51:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../static/website/css/autocomplete.css"/>
+
+
+
+    <link rel="stylesheet" href="../static/website/css/people.css">
+
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../static/website/js/jquery.easing.min.js"></script>
+	<script src="../static/website/js/grayscale.js"></script>
+	<script src="../static/website/js/backtop.js"></script>
+
+
+    <script src="../static/website/js/peopleHeightFix.js"></script>
+    <script src="../static/website/js/peopleMouseoverFix.js"></script>
+    <script src="../static/website/js/isotope/isotope-init7fb8.js?version=3"></script>
+    <script src="../static/website/js/isotope/isotope-filterBar67d9.js?version=2"></script>
+    <script src="../static/website/js/isotope/isotope-filtering.js"></script>
+    <script src="../static/website/js/isotope.pkgd.min.js"></script>
+
+
+    <title>
+        YX Lab - People
+    </title>
+
+    <script type="text/javascript">
+
+
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <div id="page-container">
+    <div id="content-wrap">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="../static/website/img/logos/yx_logo_white.png" height="60" />
+                                                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                                 <li class=""><a href="../index.html" style="font-size: 30px; 	padding-top:30px;">Home</a></li>
+                                 <li class=""><a href="../index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                 <li class="active"><a href="index.html" style="font-size: 30px; 	padding-top:30px;">People</a></li>
+                                 <li class="active"><a href="index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                 <li class=""><a href="../projects/index.html" style="font-size: 30px; 	padding-top:30px;">Projects</a></li>
+                                 <li class=""><a href="../projects/index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                 <li class=""><a href="../faq/index.html" style="font-size: 30px; 	padding-top:30px;">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="mainCarousel" class="carousel slide carousel-fade shortCarousel" data-ride="carousel" data-interval="10000"
+     data-pause="false">
+    <div class="page-title shadow-left">
+        <div class="container carousel-container">
+
+
+
+            <div class="overlay-title">
+
+                    People
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+
+                <div class="fill" style="background-image:url(../static/website/img/yx_people_banner_1.jpg)"
+                     aria-label="YX - People">
+                </div>
+
+            </div>
+<!--
+            <div class="item ">
+
+                <div class="fill" style="background-image:url(../media/banner/Photo_Aug_21_2_33_21_PMdae1fe5c950f427c8da4857c9ce36541.jpg.3264x2448_q85_box-0%2c0%2c3264%2c2448_crop_detail.jpg)"
+                     aria-label=""
+                     title="">
+                </div>
+
+            </div>
+
+            <div class="item ">
+
+                <div class="fill" style="background-image:url(../media/banner/IMG_09154f10b578366349689cb3b6c49c8628c6.JPG.3264x2448_q85_box-0%2c0%2c3264%2c2448_crop_detail.jpg)"
+                     aria-label=""
+                     title="">
+                </div>
+
+            </div>
+
+            <div class="item ">
+
+                <div class="fill" style="background-image:url(../media/banner/IMG_70352081eb7182e14b26827c4f8077bd082e.JPG.4032x3024_q85_box-0%2c0%2c4032%2c3024_crop_detail.jpg)"
+                     aria-label="Two Makeability Lab members kayaking at the 2018 retreat."
+                     title="Two Makeability Lab members kayaking at the 2018 retreat.">
+                </div>
+
+            </div>
+
+            <div class="item ">
+
+                <div class="fill" style="background-image:url(../media/banner/IMG_2429d2a207f201ab4909a941aabbee317164.JPG.3264x2448_q85_box-0%2c0%2c3264%2c2448_crop_detail.jpg)"
+                     aria-label=""
+                     title="">
+                </div>
+
+            </div>
+          -->
+
+    </div>
+    <!--
+    <ol class="carousel-indicators"  >
+
+            <li data-target="#mainCarousel" data-slide-to="0"
+                class="active"></li>
+
+            <li data-target="#mainCarousel" data-slide-to="1"
+                ></li>
+
+            <li data-target="#mainCarousel" data-slide-to="2"
+                ></li>
+
+            <li data-target="#mainCarousel" data-slide-to="3"
+                ></li>
+
+            <li data-target="#mainCarousel" data-slide-to="4"
+                ></li>
+
+    </ol>
+  -->
+</div>
+
+
+
+    <div class="isotope_data">
+        <div class= "isotope_data_container" id="isotope_data_container_current_members" style="display:none">
+            sortFilterContainer(.sortingAndFiltering,str)
+            gridName(.grid_current_members,str)
+            filteringKeywordContainer(#filterKeywords_Current_Members,str)
+            sideBarContainer(#filterBar_Current_Members,str)
+            scrollTop(.currentteam,str)
+        </div>
+        <div class= "isotope_data_container" id="isotope_data_container_collaborators" style="display:none">
+            sortFilterContainer(.sortingAndFiltering,str)
+            gridName(.grid_collaborators,str)
+            filteringKeywordContainer(#filterKeywords_Collaborators,str)
+            sideBarContainer(#filterBar_Collaborators,str)
+            scrollTop(.collaborators,str)
+        </div>
+        <div class= "isotope_data_container" id="isotope_data_container_alumni" style="display:none">
+            sortFilterContainer(.sortingAndFiltering,str)
+            gridName(.grid_alumni,str)
+            filteringKeywordContainer(#filterKeywords_Alumni,str)
+            sideBarContainer(#filterBar_Alumni,str)
+            scrollTop(.alumni,str)
+        </div>
+        <div class= "isotope_data_container" id="isotope_data_container_past_collaborators" style="display:none">
+            sortFilterContainer(.sortingAndFiltering,str)
+            gridName(.grid_past_collaborators,str)
+            filteringKeywordContainer(#filterKeywords_Past_Collaborators,str)
+            sideBarContainer(#filterBar_Past_Collaborators,str)
+            scrollTop(.pastcollaborators,str)
+        </div>
+    </div>
+
+
+    <div id="content" class="container" data-spy="scroll" data-target="#navbar-scroll" data-offset="50" style="width:100%; max-width: 1170px">
+      <!--
+        <div class="navbar navbar-filter" role="navigation">
+            <ol class="navbar-right breadcrumb">
+
+
+
+
+            </ol>
+        </div>
+      -->
+
+            <div class="content" style="width:100%">
+                <h1 class= "currentteam" name="currentteam" style="margin-top:50"></h1>
+                <div id="filterBar_Current_Members" style="margin-bottom: 7px">
+                    <div id="filterKeywords_Current_Members">
+
+
+
+
+
+
+
+<!--
+<a name="None" style="font-weight:bold;">All (19), </a>
+
+    <a name= "Professor">Professor (1)</a>,
+
+    <a name= "Research Scientist">Research Scientist (1)</a>,
+
+    <a name= "PhD Student">PhD Student (6)</a>,
+
+    <a name= "MS Student">MS Student (3)</a>,
+
+    <a name= "Undergrad">Undergrad (7)</a>,
+
+    <a name= "High School Student">High School Student (1)</a>
+-->
+
+                    </div>
+                </div>
+            </div>
+
+            <div class = "grid_current_members">
+
+  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+      <a href="../member/elizabethbonsignore/index.html">
+          <div class="easter-egg-col">
+              <img src="../media/person/bonsignore_elizabeth.jpg"
+                   class="img-responsive main-image"/>
+          </div>
+      </a>
+      <div class="item-info" style="background:white">
+          <a href="../member/elizabethbonsignore/index.html">
+              <h5 class="easter-egg-name">Elizabeth Bonsignore</h5>
+          </a>
+          <p class="no-margin">Jul 2016 - Present</p>
+
+          <p class="line-clamp-one-line no-margin">Research Scientist</p>
+
+          <p class="line-clamp-one-line no-margin">
+
+                  College of Information Studies
+
+          </p>
+          <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+
+
+              <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                          <a href="../project/BodyVis/index.html">BodyVis</a>
+              </p><br/>
+      </div>
+      <div class="sortingAndFiltering" style="display:none">
+          <!-- special case for professors since each type of prof does not get their own category -->
+              Research Scientist()
+      </div>
+  </div>
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../member/tamaraclegg/index.html">
+        <div class="easter-egg-col">
+            <img src="../media/person/clegg_tammy.jpg"
+                 class="img-responsive main-image"/>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../member/tamaraclegg/index.html">
+            <h5 class="easter-egg-name">Tamara L. Clegg</h5>
+        </a>
+        <p class="no-margin">Jan 2014 - Present</p>
+        <p class="line-clamp-one-line no-margin">Assistant Professor</p>
+        <p class="line-clamp-one-line no-margin">
+                iSchool and Education
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                        <a href="../project/BodyVis/index.html">BodyVis</a>
+            </p><br/>
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+            Professor()
+    </div>
+</div>
+
+
+
+
+            </div>
+
+
+    </div>
+
+</div>
+
+    <footer class="l-footer" role="contentinfo">
+  <div class="l-region l-region--footer">
+  <div id="block-block-5" class="block block--block block--block-5">
+    <div class="block__content">
+  <div id="footerWrap">
+  <div id="socialButtons"><a alt="iSchools Consortium Link" href="https://ischool.umd.edu/"><img alt="UMD iSchool" src="../static/website/img/logos/umd_logo_white_586x100.png"/></div>
+
+  <ul id="footerNav">
+  <li><a alt="Original YX Site" href="http://yx.umd.edu/">Original YX Site</a>
+  </li>
+
+  </ul>
+
+  <div id="footerAddress">© 2019 YX Lab, University of Maryland College Park
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </footer>
+
+
+
+</div>
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/people/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:52:19 GMT -->
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/BodyVis/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 05:39:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+
+
+    <link rel="stylesheet" href="../../static/website/css/project.css">
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/index.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+
+    <!-- <script src="/static/website/js/peopleHeightFix.js"></script> -->
+    <script src="../../static/website/js/utils.js"></script>
+    <script src="../../static/website/js/indproject.js"></script>
+
+
+    <title>
+        BodyVis
+    </title>
+
+    <script type="text/javascript">
+
+
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="../../static/website/img/logos/yx_logo_white.png" height="60" />
+
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                                    <li class=""><a href="../../index.html" style="font-size: 30px; 	padding-top:30px;">Home</a></li>
+                                    <li class=""><a href="../../index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../../people/index.html" style="font-size: 30px; 	padding-top:30px;">People</a></li>
+                                    <li class=""><a href="../../people/index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../../projects/index.html" style="font-size: 30px; 	padding-top:30px;">Projects</a></li>
+                                    <li class=""><a href="../../projects/index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../../faq/index.html" style="font-size: 30px; 	padding-top:30px;">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000"
+             data-pause="true">
+            <!-- <div class="overlay carousel-caption"></div> -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+                    <div class="item active">
+
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/IMG_84781d01441f373e45ed85defbeb6c1e86b3.jpg.2048x1366_q85_box-0%2c0%2c2048%2c1366_crop_detail.jpg)"
+                             aria-label="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+
+
+                                        <div class="carousel-caption-title">
+                                            BodyVis
+                                        </div>
+<!--
+                                        <div class="carousel-caption-text">
+                                            BodyVis e-textile anatomy is detachable. When reattached properly, the anatomy starts working automatically.
+                                        </div>
+-->
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+            </div>
+            <ol class="carousel-indicators" >
+
+
+            </ol>
+        </div>
+
+
+
+<div id="content" class="container content-container" data-spy="scroll">
+    <div class="row row-adjust-margins" id="sidebar-level">
+	<div class="col-md-2 col-md-push-10">
+
+
+	    <!-- Create a row for the well which will contain news from our feeds -->
+
+
+	</div>
+	<div class="col-md-10 col-md-pull-2 project-intro-content">
+        <div class="row about-row">
+            <h3 class="news-type-label">About</h3>
+            <p class="project-about">
+              <!--
+            <div style="float: right">
+                <div class="header-visual">
+                                <iframe class="video-about" src="https://youtube.com/embed/KwfPOgqiZLs" frameborder="0" allowfullscreen></iframe>
+                            <p style="font-weight: bold; margin:0px;">BodyVis Wearable Shirt</p>
+                               <p class="header-visual-caption"> This is Prototype 3 of the Body Vis Shirt</p>
+                </div>
+            </div>
+          -->
+BodyVis is a wearable computing and electronic textiles (e-textiles) technology for learning about anatomy and physiology, and for supporting children’s scientific inquiry skills. BodyVis combines embedded sensing and interactive visualization to reveal otherwise “invisible” parts and functions of the human body. As the wearer engages in an activity, physiological phenomena are manifested on the wearable visualization in real-time. In addition, we present a new mixed-reality tool called SharedPhys, which tightly integrates real-time physiological sensing, whole-body interaction, and scientific inquiry to support new forms of embodied interaction and collaborative learning.
+            </p>
+        </div>
+	    <div class="row">
+	    </div>
+	</div>
+    </div>
+    <div class="row no-margin" id="below-sidebar">
+        <div class="row row-adjust-margins">
+
+
+
+        </div>
+
+
+
+
+                <div class="row row-eq-height row-adjust-margins people-row">
+                        <h3 class="news-type-label">Project Members</h3>
+                    <div class="grid_current_members">
+
+
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+                          <a href="../../member/tamaraclegg/index.html">
+                              <div class="easter-egg-col">
+                                  <img src="../../media/person/clegg_tammy.jpg"
+                                       class="img-responsive main-image"/>
+                              </div>
+                          </a>
+                          <div class="item-info" style="background:white">
+                              <a href="../../member/tamaraclegg/index.html">
+                                  <h5 class="easter-egg-name">Tamara L. Clegg</h5>
+                              </a>
+                              <p class="no-margin">Jan 2014 - Present</p>
+                              <p class="line-clamp-one-line no-margin">Assistant Professor</p>
+                              <p class="line-clamp-one-line no-margin">
+                                      iSchool and Education
+                              </p>
+                              <p class="line-clamp-one-line no-margin">University of Maryland</p>
+                                  <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                                              <a href="../project/BodyVis/index.html">BodyVis</a>
+                                  </p><br/>
+                          </div>
+                          <div class="sortingAndFiltering" style="display:none">
+                              <!-- special case for professors since each type of prof does not get their own category -->
+                                  Professor()
+                          </div>
+                      </div>
+
+
+                    </div>
+                </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+        <footer class="l-footer" role="contentinfo">
+      <div class="l-region l-region--footer">
+      <div id="block-block-5" class="block block--block block--block-5">
+        <div class="block__content">
+      <div id="footerWrap">
+      <div id="socialButtons"><a alt="iSchools Consortium Link" href="https://ischool.umd.edu/"><img alt="UMD iSchool" src="../../static/website/img/logos/umd_logo_white_586x100.png"/></div>
+
+      <ul id="footerNav">
+      <li><a alt="Original YX Site" href="http://yx.umd.edu/">Original YX Site</a>
+      </li>
+
+      </ul>
+
+      <div id="footerAddress">© 2019 YX Lab, University of Maryland College Park
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </footer>
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/BodyVis/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 05:39:36 GMT -->
+</html>

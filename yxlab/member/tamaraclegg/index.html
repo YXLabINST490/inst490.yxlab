@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/member/tamaraclegg/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:04:46 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+
+
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/member.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+
+
+
+
+    <title>
+        Tamara L. Clegg
+    </title>
+
+    <script type="text/javascript">
+
+
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="../../static/website/img/logos/yx_logo_white.png" height="60" />
+
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                               <li class=""><a href="../../index.html"  style="font-size: 30px; 	padding-top:40px;">Home</a></li>
+                               <li class=""><a href="../../index.html"  style="font-size: 30px; 	padding-top:40px;"></a></li>
+                               <li class=""><a href="../../people/index.html" style="font-size: 30px; 	padding-top:40px;">People</a></li>
+                               <li class=""><a href="../../people/index.html" style="font-size: 30px; 	padding-top:40px;"></a></li>
+                               <li class=""><a href="../../projects/index.html" style="font-size: 30px; 	padding-top:40px;">Projects</a></li>
+                               <li class=""><a href="../../projects/index.html" style="font-size: 30px; 	padding-top:40px;"></a></li>
+                               <li class=""><a href="../../faq/index.html" style="font-size: 30px; 	padding-top:40px;">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+
+
+    <div style="min-height: 40px">&nbsp;
+
+
+    </div>
+
+
+
+    <div id="content" class="container content-container" data-spy="scroll"  style="margin-top:100px;">
+        <div id="header" class="container">
+            <div class="row" id="about-header">
+                <div class="col-sm-6 col-md-3 hidden-xs">
+                  <!--  <div class="easter-egg-col"> -->
+                        <img src="../../media/person/clegg_tammy.jpg"
+                             class="img-responsive"/>
+                    <!--</div> -->
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <h3 class="member-title">Tamara L. Clegg</h3>
+                            <p class="person-title-text">
+                                Assistant Professor, iSchool
+                                <br/>
+                                University of Maryland
+                            </p>
+
+                    <!-- <h3>Bio:</h3> -->
+                    <p class="person-bio-text" style="font-size:15px">
+                      Tamara Clegg is an associate professor in the College of Information Studies and the Department of Teaching and
+                      Learning, Policy and Leadership and at the University of Maryland. Her work focuses on developing technology
+                      (e.g., social media, mobile apps, e-textiles, community displays) to support life-relevant learning where learners,
+                      particularly those from underrepresented groups in science, engage in science in the context of achieving personally
+                      relevant goals. She seeks to understand ways such learning environments and technologies support scientific
+                      disposition development. Tamara’s work is funded by the National Science Foundation, the Institute of Museum and
+                      Library Studies, and Google.
+                    </p>
+                    <div class="icon-housing">
+                            <a href="http://www.tamaraclegg.com/" target="_blank">
+                                <img src="../../static/website/img/link.png" class="header-icon">
+                            </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="main-content" class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-2 col-md-push-10 newstwitter-bar">
+                </div>
+                <div class="col-xs-12 col-md-10 col-md-pull-2 landing-content">
+                    <div id="makelab-recent-projects" class="makelab-content-container">
+                            <div class="row">
+                                <h3 class="news-type-label"><b>Projects</b></h3>
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../../project/BodyVis/index.html">
+      <!--
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../../media/projects/images/BodyVisProjectThumbnail.png.300x180_q85_crop-center.jpg">
+        </div>
+      -->
+        <p class="artifact-title">BodyVis</p>
+    </a>
+</div>
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+<a href="https://hcil.umd.edu/science-everywhere">
+    <p class="artifact-title">Science Everywhere</p>
+</a>
+</div>
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+<a href="http://research.nature-net.org">
+    <p class="artifact-title">NatureNet</p>
+</a>
+</div>
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+<a href="https://pearl.umd.edu/projects/kids-safety">
+    <p class="artifact-title">Kid Safety</p>
+</a>
+</div>
+                            </div>
+
+                    </div>
+
+                    <div id="makelab-recent-publications" class="makelab-content-container">
+
+                            <div class="row">
+                                <h3 class="news-type-label"><b>Publications</b></h3>
+                                <div class="col-xs-12 col-md-10">
+
+
+
+<div class="row publication-template">
+  <h3>NatureNet</h3>
+  <div class="publication-info">
+    <h5><a href="https://www.pnas.org/content/116/6/1886" class="publication-title">Interaction design of community-driven environmental projects (CDEPs): A case study from the Anacostia Watershed</a></h5>
+    <p>Preece, J., Pauw, D., and Clegg, T.</p>
+  </div>
+</div>
+
+<div class="row publication-template">
+  <div class="publication-info">
+    <h5><a href="https://dl.acm.org/citation.cfm?id=3026346" class="publication-title">Supporting Environmental Stewards’ Needs with Technology</a></h5>
+    <p>Boston, C., Clegg, T., Pauw, D., Preece, J., Warrick, E., Abdellahi, S., Christian, T., Grace, K., Maher, M. L., Cameron, J., and Yeh, T.</p>
+  </div>
+</div>
+
+<!--
+<div class="row publication-template">
+
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/Kang_PrototyparPrototypingAndSimulatingComplexSystemsWithPaperCraftAndAugmentedReality_2019.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/Kang_PrototyparPrototypingAndSimulatingComplexSystemsWithPaperCraftAndAugmentedReality_2019.jpg.300x0_q85_detail.jpg"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">PrototypAR: Prototyping and Simulating Complex Systems with Paper Craft and Augmented Reality</p>
+        <p class="publication-authors">
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="../elizabethbonsignore/index.html">Elizabeth Bonsignore</a>,
+
+                <a href="../virginiabyrne/index.html">Virginia Byrne</a>,
+
+                <a href="index.html">Tamara L. Clegg</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Proceedings of IDC 2019
+
+
+                    <span class="publication-to-appear-text">To Appear</span>
+
+            </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    stem,
+
+
+
+                    construction kits,
+
+
+
+                    augmented reality,
+
+
+
+                    prototyping tool
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/Kang_PrototyparPrototypingAndSimulatingComplexSystemsWithPaperCraftAndAugmentedReality_2019.pdf">PDF</a>
+
+
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/prototypar/index.html">PrototypAR</a>
+
+            </p>
+
+    </div>
+</div>
+
+<div class="row publication-template">
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/Clegg_PhysiologicalInvestigationsWithLivePhysiologicalSensingAndVisualizationTools_2018.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/Clegg_PhysiologicalInvestigationsWithLivePhysiologicalSensingAndVisualizationTools_2018.jpg.300x0_q85_detail.jpg"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">Physiological Investigations with Live Physiological Sensing and Visualization Tools</p>
+        <p class="publication-authors">
+
+                <a href="index.html">Tamara L. Clegg</a>,
+
+                <a href="../virginiabyrne/index.html">Virginia Byrne</a>,
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Extended Abstract Symposium Proceedings of ICLS2018
+
+
+            </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    sharedphys,
+
+
+
+                    bodyvis,
+
+
+
+                    physiological sensing,
+
+
+
+                    large-screen displays,
+
+
+
+                    mixed-reality,
+
+
+
+                    scientific inquiry,
+
+
+
+                    collaborative learning,
+
+
+
+                    stem,
+
+
+
+                    wearables
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/Clegg_PhysiologicalInvestigationsWithLivePhysiologicalSensingAndVisualizationTools_2018.pdf">PDF</a>
+                <a href="https://icls2018.com/">| doi</a>
+
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+
+                    | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+
+            </p>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row publication-template">
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.jpg.300x0_q85_detail.jpg"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">Scaffolding Authentic Wearable-­Based Scientific Inquiry for Early Elementary Learners</p>
+        <p class="publication-authors">
+
+                <a href="../virginiabyrne/index.html">Virginia Byrne</a>,
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="../rafaelvelez/index.html">Rafael Antonio Velez</a>,
+
+                <a href="../monicakatzen/index.html">Monica Katzen</a>,
+
+                <a href="../afeaddeh/index.html">Afe Addeh</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>,
+
+                <a href="index.html">Tamara L. Clegg</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Proceedings of ICLS2018
+
+
+            </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    sharedphys,
+
+
+
+                    bodyvis,
+
+
+
+                    physiological sensing,
+
+
+
+                    large-screen displays,
+
+
+
+                    mixed-reality,
+
+
+
+                    scientific inquiry,
+
+
+
+                    collaborative learning,
+
+
+
+                    stem,
+
+
+
+                    wearables
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/Byrne_ScaffoldingAuthenticWearableBasedScientificInquiryForEarlyElementaryLearners_2018.pdf">PDF</a>
+
+                <a href="../../media/talks/ICLS_2018_June2018_ARIAL.pdf">| Talk</a>
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+
+                    | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+
+            </p>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row publication-template">
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/Kang_PrototypingAndSimulatingComplexSystemsWithPaperCraftAndAugmentedRealityAnInitialInvestigation_2018.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/Kang_PrototypingAndSimulatingComplexSystemsWithPaperCraftAndAugmentedRealityAnInitialInvestigation_2018.jpg.300x0_q85_detail.jpg"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">Prototyping and Simulating Complex Systems with Paper Craft and Augmented Reality: An Initial Investigation</p>
+        <p class="publication-authors">
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="../virginiabyrne/index.html">Virginia Byrne</a>,
+
+                <a href="index.html">Tamara L. Clegg</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Extended Abstract Proceedings of TEI2018
+
+
+            </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    children,
+
+
+
+                    augmented reality,
+
+
+
+                    prototyping,
+
+
+
+                    prototyping tool,
+
+
+
+                    design process
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/Kang_PrototypingAndSimulatingComplexSystemsWithPaperCraftAndAugmentedRealityAnInitialInvestigation_2018.pdf">PDF</a>
+                <a href="http://doi.acm.org/10.1145/3173225.3173264">| doi</a>
+
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/prototypar/index.html">PrototypAR</a>
+
+            </p>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row publication-template">
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/p2029-clegg.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/p2029-clegg.jpg.300x0_q85_detail.jpg"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">Live Physiological Sensing and Visualization Ecosystems: An Activity Theory Analysis</p>
+        <p class="publication-authors">
+
+                <a href="index.html">Tamara L. Clegg</a>,
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../virginiabyrne/index.html">Virginia Byrne</a>,
+
+                <a href="../monicakatzen/index.html">Monica Katzen</a>,
+
+                <a href="../angelisaplane/index.html">Angelisa Plane</a>,
+
+                <a href="../vanessaoguamanam/index.html">Vanessa Oguamanam</a>,
+
+                <a href="../thomasouting/index.html">Thomas Outing</a>,
+
+                <a href="../elizabethbonsignore/index.html">Elizabeth Bonsignore</a>,
+
+                <a href="../jasonyip/index.html">Jason Yip</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Proceedings of CHI2017
+
+
+            </span>
+
+                <span class="publication-acceptance-rate">|
+                    <span class="publication-acceptance-rate-text">
+
+
+                        Acceptance Rate: 25.0%
+                        (606 / 2424)
+                    </span>
+                </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    scientific inquiry,
+
+
+
+                    sensor-based learning,
+
+
+
+                    wearables
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/p2029-clegg.pdf">PDF</a>
+                <a href="http://doi.acm.org/10.1145/3025453.3025987">| doi</a>
+
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+
+            </p>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row publication-template">
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/Norooz_ThatSYourHeartLivePhysiologicalSensingVisualizationToolsForLifeRelevantCollaborativeStemLearning_2016.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/Norooz_ThatSYourHeartLivePhysiologicalSensingVisualizationToolsForLifeRelevantCollaborativeStemLearning_2016.jpg.300x0_q85_detail.jpg"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">“That&#39;s Your Heart!”: Live Physiological Sensing &amp; Visualization Tools for Life-Relevant &amp; Collaborative STEM Learning</p>
+        <p class="publication-authors">
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="index.html">Tamara L. Clegg</a>,
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../angelisaplane/index.html">Angelisa Plane</a>,
+
+                <a href="../vanessaoguamanam/index.html">Vanessa Oguamanam</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Proceedings of ICLS 2016
+
+
+            </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    sharedphys,
+
+
+
+                    bodyvis,
+
+
+
+                    physiological sensing,
+
+
+
+                    large-screen displays,
+
+
+
+                    mixed-reality,
+
+
+
+                    scientific inquiry,
+
+
+
+                    collaborative learning,
+
+
+
+                    stem,
+
+
+
+                    wearables
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/Norooz_ThatSYourHeartLivePhysiologicalSensingVisualizationToolsForLifeRelevantCollaborativeStemLearning_2016.pdf">PDF</a>
+                <a href="https://www.isls.org/icls/2016/docs/ICLS2016_Volume_2.pdf">| doi</a>
+
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+
+                    | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+
+            </p>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row publication-template">
+    <div class="publication-thumbnail">
+        <a href="../../media/publications/Kang_SharedphysLivePhysiologicalSensingWholeBodyInteractionAndLargeScreenVisualizationsToSupportSharedInquiryExperiences_2016.pdf" class="publication-thumbnail-link">
+            <img src="../../media/publications/images/Kang_SharedphysLivePhysiologicalSensingWholeBodyInteractionAndLargeScreenVisualizationsToSupportSharedInquiryExperiences_2016.jpg.300x0_q85_detail.327.delay"
+                 class="publication-thumbnail-image img-responsive">
+        </a>
+    </div>
+    <div class="publication-info">
+        <p class="publication-title">SharedPhys: Live Physiological Sensing, Whole-Body Interaction, and Large-Screen Visualizations to Support Shared Inquiry Experiences</p>
+        <p class="publication-authors">
+
+                <a href="../seokbinkang/index.html">Seokbin Kang</a>,
+
+                <a href="../leylanorooz/index.html">Leyla Norooz</a>,
+
+                <a href="../vanessaoguamanam/index.html">Vanessa Oguamanam</a>,
+
+                <a href="../angelisaplane/index.html">Angelisa Plane</a>,
+
+                <a href="index.html">Tamara L. Clegg</a>,
+
+                <a href="../jonfroehlich/index.html">Jon E. Froehlich</a>
+
+        </p>
+        <p class="publication-stats">
+            <span class="publication-venue">
+
+                    Proceedings of IDC 2016
+
+
+            </span>
+
+        </p>
+        <p class="publication-keywords hidden-xs">
+            keywords:
+            <span class="publication-keyword"><span class="publication-keyword-text">
+
+
+                    sharedphys,
+
+
+
+                    bodyvis,
+
+
+
+                    physiological sensing,
+
+
+
+                    large-screen displays,
+
+
+
+                    mixed-reality,
+
+
+
+                    scientific inquiry,
+
+
+
+                    collaborative learning,
+
+
+
+                    stem,
+
+
+
+                    wearables
+
+
+      </span></span>
+        </p>
+
+
+            <p class="pub-download-links">
+                <a href="../../media/publications/Kang_SharedphysLivePhysiologicalSensingWholeBodyInteractionAndLargeScreenVisualizationsToSupportSharedInquiryExperiences_2016.pdf">PDF</a>
+
+
+                <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                 tabindex="0"
+                                                 title="Citation" data-content="Empty Citation"
+                                                 class="publication-citation-link">Citation</a></span>
+
+                    | <a href="../../project/BodyVis/index.html">BodyVis</a>
+
+                    | <a href="../../project/sharedphys/index.html">SharedPhys</a>
+
+            </p>
+
+    </div>
+</div>
+-->
+
+
+                                </div>
+                            </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <footer class="l-footer" role="contentinfo">
+      <div class="l-region l-region--footer">
+      <div id="block-block-5" class="block block--block block--block-5">
+        <div class="block__content">
+      <div id="footerWrap">
+      <div id="socialButtons"><a alt="iSchools Consortium Link" href="https://ischool.umd.edu/"><img alt="UMD iSchool" src="../../static/website/img/logos/umd_logo_white_586x100.png"/></div>
+
+      <ul id="footerNav">
+      <li><a alt="Original YX Site" href="http://yx.umd.edu/">Original YX Site</a>
+      </li>
+
+      </ul>
+
+      <div id="footerAddress">© 2019 YX Lab, University of Maryland College Park
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </footer>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/member/tamaraclegg/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:04:46 GMT -->
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/projects/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:52:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../static/website/css/autocomplete.css"/>
+
+
+    <link rel="stylesheet" href="../static/website/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../static/website/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../static/website/js/jquery.easing.min.js"></script>
+	<script src="../static/website/js/grayscale.js"></script>
+	<script src="../static/website/js/backtop.js"></script>
+
+
+    <script src="../static/website/js/jquery-ui.min.js"></script>
+
+
+    <title>
+        YX Lab - Projects
+    </title>
+
+    <script type="text/javascript">
+
+
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="../static/website/img/logos/yx_logo_white.png" height="60" />
+
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                                    <li class=""><a href="../index.html" style="font-size: 30px; 	padding-top:30px;">Home</a></li>
+                                    <li class=""><a href="../index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../people/index.html" style="font-size: 30px; 	padding-top:30px;">People</a></li>
+                                    <li class=""><a href="../people/index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class="active"><a href="index.html" style="font-size: 30px; 	padding-top:30px;">Projects</a></li>
+                                    <li class="active"><a href="index.html" style="font-size: 30px; 	padding-top:30px;"></a></li>
+                                    <li class=""><a href="../faq/index.html" style="font-size: 30px; 	padding-top:30px;">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="mainCarousel" class="carousel slide carousel-fade shortCarousel" data-ride="carousel" data-interval="10000"
+     data-pause="false">
+    <div class="page-title shadow-left">
+        <div class="container carousel-container">
+
+
+
+            <div class="overlay-title">
+
+                    Projects
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+
+                    <a href="../project/BodyVis/index.html">
+
+                <div class="fill" style="background-image:url(../static/website/img/yx_projects_banner.jpg)"
+                     aria-label="YX - Projects">
+                </div>
+                </a>
+            </div>
+
+    </div>
+
+</div>
+
+    <div id="makelab-projects" class="container-fluid makelab-content-container">
+        <div class="section" style="margin-top: 50px;">
+
+          <!--<h1 class= "currentteam" name="currentteam" style="margin-top:0">Current Projects</h1>-->
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="../project/BodyVis/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="../static/website/img/bodyvis_icon.png">
+        </div>
+    </a>
+    <a href="../project/BodyVis/index.html">
+        <p class="artifact-title">BodyVis</p>
+    </a>
+</div>
+        </div>
+
+        <div class="section" style="margin-top: 50px;">
+        <!--  <h1 class= "currentteam" name="currentteam" style="margin-top:0">Completed Projects</h1> -->
+        </div>
+    </div>
+</div>
+
+
+<footer class="l-footer" role="contentinfo">
+<div class="l-region l-region--footer">
+<div id="block-block-5" class="block block--block block--block-5">
+<div class="block__content">
+<div id="footerWrap">
+<div id="socialButtons"><a alt="iSchools Consortium Link" href="https://ischool.umd.edu/"><img alt="UMD iSchool" src="../static/website/img/logos/umd_logo_white_586x100.png"/></div>
+
+<ul id="footerNav">
+<li><a alt="Original YX Site" href="http://yx.umd.edu/">Original YX Site</a>
+</li>
+
+</ul>
+
+<div id="footerAddress">© 2019 YX Lab, University of Maryland College Park
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+</div>
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/projects/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:52:35 GMT -->
+</html>

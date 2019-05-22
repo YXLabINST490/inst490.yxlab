@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 18:44:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+
+    <link rel="shortcut icon" href="static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="static/website/css/base.css"/>
+    <link rel="stylesheet" href="static/website/css/autocomplete.css"/>
+
+
+    <link rel="stylesheet" href="static/website/css/indexe42d.css?version=1">
+    <link rel="stylesheet" href="static/website/css/publications.css">
+    <link rel="stylesheet" href="static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="static/website/js/jquery.easing.min.js"></script>
+	<script src="static/website/js/grayscale.js"></script>
+	<script src="static/website/js/backtop.js"></script>
+
+
+
+<script src="static/website/js/jquery-ui.min.js"></script>
+<script src="static/website/js/citationPopover.js"></script>
+
+
+
+    <title>
+        YX Lab
+    </title>
+
+    <script type="text/javascript">
+
+
+
+    // TODO: move these scripts into a separate file
+    $(document).ready(function() {
+
+        // find the citation links and set up the popover content and behavior for each
+        var citationLinks = $(".publication-citation-link");
+        for(var i = 0; i < citationLinks.length; i++) {
+            $(citationLinks[i]).citationPopover(publications[i]);
+        }
+
+        // update the publication awards
+        var publicationItems = $(".pub-column");
+        for(var i = 0; i < publicationItems.length; i++) {
+            var pub = publications[i];
+            var publicationData = publicationItems[i];
+            if (pub.award) {
+                var award_icon;
+                if (pub.award == "Best Paper Award") {
+                    award_icon = pub.best_paper;
+                } else {
+                    award_icon = pub.honorable_mention;
+                }
+
+                $(publicationData).find(".publication-award-icon").append("<img src=\"" + award_icon + "\" align=\"center\" class=\"award-icon\"/>");
+                $(publicationData).find(".pub-thumbnail-link").append("<img src=\"" + pub.award_banner + "\" class=\"publication-award-banner\"/>");
+                $(publicationData).find(".publication-award-text").html(pub.award);
+            } else {
+                $(publicationData).find(".publication-award").css("display", "none");
+            }
+        }
+    });
+
+
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+
+                                <img src="static/website/img/logos/yx_logo_white.png" height="80" />
+
+                                <!-- <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">YX</span></span> Lab</div> -->
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+
+                                 <li class="active"><a href="index.html" style="font-size: 30px; 	padding-top:40px;">Home</a></li>
+                                 <li class="active"><a href="index.html" style="font-size: 30px; padding-top:40px;"></a></li>
+                                 <li class=""><a href="people/index.html" style="font-size: 30px; padding-top:40px;">People</a></li>
+                                 <li class=""><a href="people/index.html" style="font-size: 30px; padding-top:40px;"></a></li>
+                                 <li class=""><a href="projects/index.html" style="font-size: 30px; padding-top:40px;">Projects</a></li>
+                                 <li class=""><a href="projects/index.html" style="font-size: 30px; padding-top:40px;"></a></li>
+                                 <li class=""><a href="faq/index.html" style="font-size: 30px; padding-top:40px;">FAQ</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+
+
+
+
+
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000"
+             data-pause="true">
+            <!-- <div class="overlay carousel-caption"></div> -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+                    <div class="item active">
+
+                        <div class="fill"
+                             style="background-image:url(static/website/img/yx_home_banner_1.jpg)"
+                             aria-label="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+
+
+                                        <div class="carousel-caption-title">
+
+                                        </div>
+                                        <div class="carousel-caption-text">
+
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="item">
+
+                        <div class="fill"
+                             style="background-image:url(static/website/img/yx_home_banner_2.jpg)"
+                             aria-label="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+
+
+                                        <div class="carousel-caption-title">
+
+                                        </div>
+                                        <div class="carousel-caption-text">
+
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="fill"
+                             style="background-image:url(static/website/img/yx_home_banner_3.jpg)"
+                             aria-label="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+
+
+                                        <div class="carousel-caption-title">
+
+                                        </div>
+                                        <div class="carousel-caption-text">
+
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="fill"
+                             style="background-image:url(static/website/img/yx_home_banner_4.jpg)"
+                             aria-label="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+
+
+                                        <div class="carousel-caption-title">
+
+                                        </div>
+                                        <div class="carousel-caption-text">
+
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="fill"
+                             style="background-image:url(static/website/img/yx_home_banner_4.jpg)"
+                             aria-label="">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+
+
+                                        <div class="carousel-caption-title">
+
+                                        </div>
+                                        <div class="carousel-caption-text">
+
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+            </div>
+            <ol class="carousel-indicators" >
+
+                    <li data-target="#mainCarousel" data-slide-to="0"
+                        class="active"></li>
+
+                    <li data-target="#mainCarousel" data-slide-to="1"
+                        ></li>
+
+                    <li data-target="#mainCarousel" data-slide-to="2"
+                        ></li>
+
+                    <li data-target="#mainCarousel" data-slide-to="3"
+                        ></li>
+
+            </ol>
+        </div>
+
+
+    <!-- TODO: make it so that first banner is the Intro to Makeability Lab banner, which provides a nice introduction to who we are -->
+    <!-- TODO: add in mouseover effect to projects, talks, other things?
+         See:
+              https://designshack.net/articles/css/joshuajohnson-2/
+              https://www.awwwards.com/websites/portfolio/ & vanschneider.com for demos
+              https://codepen.io/Remedy/pen/ZYJrpp
+              https://stackoverflow.com/questions/15757036/creating-a-zoom-effect-on-an-image-on-hover-using-css
+    -->
+
+    <div id="makelab-recent-projects" class="container-fluid makelab-content-container">
+        <h1 class="section-header" style="margin-top:25px">What is YX?</h1>
+        <h4 class="" style="margin-top:30px; margin-bottom:30px; text-align:center">
+            The Youth eXperience (YX) Lab was founded in 201x at the University of Maryland’s iSchool.
+            Our mission is to create novel, playful learning experiences that connect varying disciplines and learning contexts for underrepresented, underserved,
+            or marginalized youth to empower them to participate and contribute more actively in their communities and promote their interest in STEM-related fields.
+
+        </h2>
+
+
+        <!--<h1 class="section-header" style="margin-top:25px">Current Projects</h1> --><!-- Should show current on Home, and completed as well on projects -->
+        <!--   
+        <div class="section">
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/prototypar/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/RainbowThumbnail.png.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="project/prototypar/index.html">
+        <p class="artifact-title">PrototypAR</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/arcaptions/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/ARCaptions.png.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="project/arcaptions/index.html">
+        <p class="artifact-title">AR Captioning</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/glassear/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/GlassEar.png.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="project/glassear/index.html">
+        <p class="artifact-title">GlassEar</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/sidewalk/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/obstacle_b_streetid_857.png.300x180_q85_crop-center.png">
+        </div>
+    </a>
+    <a href="project/sidewalk/index.html">
+        <p class="artifact-title">Project Sidewalk</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/thermography/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/IMG_2715_H2tvfvw.JPG.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="project/thermography/index.html">
+        <p class="artifact-title">Pervasive Thermography</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/smarthomedhh/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/SmarthomeDHH.png.300x180_q85_crop-center.png">
+        </div>
+    </a>
+    <a href="project/smarthomedhh/index.html">
+        <p class="artifact-title">Smarthome Sound Awareness</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/accessiblemaps/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/AssistiveLocationBasedTechnologies.png.300x180_q85_crop-center.png">
+        </div>
+    </a>
+    <a href="project/accessiblemaps/index.html">
+        <p class="artifact-title">Accessibility-Infused Maps</p>
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 individual-project-listing">
+    <a href="project/handsight/index.html">
+        <div style="background: white; width:100%; contain: content;">
+            <img style="width:100%; height: auto; position: relative;object-fit: cover"
+                 src="media/projects/images/IMG_3022.JPG.300x180_q85_crop-center.jpg">
+        </div>
+    </a>
+    <a href="project/handsight/index.html">
+        <p class="artifact-title">HandSight</p>
+    </a>
+</div>
+
+            <div class="row justify-content-end">
+                <div class="col-xs-12 see-all-artifacts">
+                    <div class="col-xs-12" style="display:none"></div>
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 see-all-artifacts pull-right">
+                        <a href="projects/index.html">See All Projects ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer class="l-footer" role="contentinfo">
+<div class="l-region l-region--footer">
+<div id="block-block-5" class="block block--block block--block-5">
+<div class="block__content">
+<div id="footerWrap">
+<div id="socialButtons"><a alt="iSchools Consortium Link" href="https://ischool.umd.edu/"><img alt="UMD iSchool" src="static/website/img/logos/umd_logo_white_586x100.png"/></div>
+
+<ul id="footerNav">
+<li><a alt="Original YX Site" href="http://yx.umd.edu/">Original YX Site</a>
+</li>
+
+</ul>
+
+<div id="footerAddress">© 2019 YX Lab, University of Maryland College Park
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Apr 2019 19:50:44 GMT -->
+</html>

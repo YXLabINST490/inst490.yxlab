@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/glassear/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:03:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+    
+    
+    <link rel="stylesheet" href="../../static/website/css/project.css">
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/index.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+  
+    <!-- <script src="/static/website/js/peopleHeightFix.js"></script> -->
+    <script src="../../static/website/js/utils.js"></script>
+    <script src="../../static/website/js/indproject.js"></script>
+
+
+    <title>
+        GlassEar
+    </title>
+
+    <script type="text/javascript">
+
+    
+
+    
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+    
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+                                
+                                <img src="../../static/website/img/logos/makelab_logo_white_no_text_100x67.png" height="20" />
+
+                                <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">Make</span>ability</span> Lab</div>
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+                                
+                                    <li class=""><a href="../../index.html">Home</a></li>
+                                    <li class=""><a href="../../people/index.html">People</a></li>
+                                    <li class=""><a href="../../projects/index.html">Projects</a></li>
+                                    <li class=""><a href="../../news/index.html">News</a></li>
+                                    <li class=""><a href="../../publications/index.html">Publications</a></li>
+                                    <li class=""><a href="../../talks/index.html">Talks</a></li>
+                                    <li class=""><a href="../../videos/index.html">Videos</a></li>
+                                    <li class=""><a href="../../faq/index.html">FAQ</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+    
+
+    
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000"
+             data-pause="true">
+            <!-- <div class="overlay carousel-caption"></div> -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                
+                    <div class="item active">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/vlcsnap-2015-04-10-09h54m01s5516358d61a5a24a5c916e229d7300ca4c.png.1280x396_q85_box-0%2c0%2c1280%2c396_crop_detail.jpg)"
+                             aria-label="A user looking through the google glass, which shows an arrow pointed towards the current speaker"
+                             title="A user looking through the google glass, which shows an arrow pointed towards the current speaker">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    <div class="carousel-caption-title">
+                                        GlassEar
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="item ">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/vlcsnap-2015-04-10-09h53m54s212b130a89566674a4894fc8c4002eab2cf.png.1280x490_q85_box-0%2c51%2c1280%2c541_crop_detail.jpg)"
+                             aria-label="A user looking through the Google glass, which shows an arrow pointed towards the current speaker."
+                             title="A user looking through the Google glass, which shows an arrow pointed towards the current speaker.">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    <div class="carousel-caption-title">
+                                        GlassEar
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+            </div>
+            <ol class="carousel-indicators" >
+                
+                    <li data-target="#mainCarousel" data-slide-to="0"
+                        class="active"></li>
+                
+                    <li data-target="#mainCarousel" data-slide-to="1"
+                        ></li>
+                
+            </ol>
+        </div>
+    
+
+    
+<div id="content" class="container content-container" data-spy="scroll">
+    <div class="row row-adjust-margins" id="sidebar-level">
+	<div class="col-md-2 col-md-push-10">
+        <div class="row quick-info">
+            <h3 class="news-type-label">Quick Info</h3>
+            <p class="quick-info">
+                
+                    <b>Project Date</b>
+                    May 1, 2014 - Oct. 1, 2014
+                    <br>
+                
+                
+                    
+                
+                
+                
+                
+                    <b>Keywords: </b>
+                    
+                        
+                            accessibility,
+                        
+                    
+                        
+                            sound awareness,
+                        
+                    
+                        
+                            augmented reality,
+                        
+                    
+                        
+                            head-mounted display,
+                        
+                    
+                        
+                            sound visualization
+                        
+                    
+                
+            </p>
+	    </div>
+	    
+	    <!-- Create a row for the well which will contain news from our feeds -->
+	    <div class="row recent-news">
+		<h3 class="news-type-label">Recent News</h3>
+		<div class="well news-well">
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/assets18_logo0c04e573ed8144f1bf0bc221b6073928.png.250x250_q85_box-0%2c0%2c400%2c400_crop_detail.png" class="news_image" height="50" width="50" alt="ASSETS 2017 Logo">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/62/index.html">
+				    <p>Two Papers and Three Posters at ASSETS’18!</p>
+				</a>
+			    </div>
+			    <p class="news_date">Jul 13, 2018 | <a href="../../member/482/index.html">Dhruv</a></p><!--</p><p class="news_date">Dhruv Jain</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p><p>We’re going to Galway, Ireland! The Makeability Lab has two full papers and three posters at ASSETS’18. </p>
+
+<p>UMD PhD student Lee Stearns led a project entitled <a href="../../media/publications/Stearns_DesignOfAnAugmentedRealityMagnificationAidForLowVisionUsers_2018.pdf">Design of an Augmented Reality Magnification Aid for Low Vision Users</a> and explores augmented reality solutions for magnifying text for low-vision users. Lee also had a poster paper accepted entitled <a href="../../media/publications/Stearns_DesignOfAnAugmentedRealityMagnificationAidForLowVisionUsers_2018.pdf">Applying Transfer Learning to Recognize Clothing Patterns Using a Finger-Mounted Camera</a>. Both projects are in collaboration with UW HCDE professor Leah Findlater. </p>
+
+<p>UW CSE PhD student Dhruv Jain led a project entitled Towards Accessible Conversations in a Mobile Context for People Who Are Deaf and Hard of Hearing and examines real-time captioning solutions for people who are DHH and on-the-move. This work is a collaboration among UW CSE (Dhruv Jain, Jon Froehlich), UW HCDE (Rachel Franz, Leah Findlater) and Gallaudet University in DC (Raja Kushalnagar). </p>
+
+<p>The Project Sidewalk team also got two posters in: <a href="../../media/publications/SidewalkTemporalTracking_ASSETS2018Poster_CR_v1.html">A Feasibility Study of Using Google Street View and Computer Vision to Track the Evolution of Urban Accessibility </a>, which was based on Ladan Najafizdeh's MS thesis work and <a href="../../media/publications/Li_InteractivelyModelingAndVisualizingNeighborhoodAccessibilityAtScaleAnInitialStudyOfWashingtonDc_2018.pdf"> Interactively Modeling and Visualizing Neighborhood Accessibility at Scale: An Initial Study of Washington DC </a>, which was led by undergrad extraordinaire Anthony Li along with Manaswi Saha).</p></p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/Capture40b7edb1f4e94cb4923cd06c511f44e3.PNG.250x250_q85_box-210%2c0%2c525%2c316_crop_detail.png" class="news_image" height="50" width="50" alt="DIS 2018 logo">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/64/index.html">
+				    <p>Poster at ACM DIS 2018!</p>
+				</a>
+			    </div>
+			    <p class="news_date">Jun 09, 2018 | <a href="../../member/482/index.html">Dhruv</a></p><!--</p><p class="news_date">Dhruv Jain</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p><p>Our CSE PhD Student Dhruv Jain presented a poster at ACM DIS 2018 in Hong Kong!</p>
+
+<p>The poster is  entitled <a href="../../media/publications/Jain_ExploringAugmentedRealityApproachesToRealTimeCaptioningAPreliminaryAutoethnographicStudy_2018.pdf">Exploring Augmented Reality Approaches to Real-Time Captioning: A Preliminary Autoethnographic Study</a> and examines Dhruv’s experiences with using real-time captioning on HoloLens in lectures and group meetings. This work is a collaboration among UW CSE (Dhruv Jain, Jon Froehlich),  UW HCDE (Bonnie Chinh, Leah Findlater) and Gallaudet University (Raja Kushalnagar).</p></p>
+			    
+			</div>
+		    </div>
+		    
+		</div>
+	    </div>
+	    
+	</div>
+	<div class="col-md-10 col-md-pull-2 project-intro-content">
+        <div class="row about-row">
+            <h3 class="news-type-label">About</h3>
+            <p class="project-about">
+            <div style="float: right">
+                <div class="header-visual">
+                    
+                        
+                            
+                                <img class="video-about" src="../../media/projects/images/GlassEarFigure.png">
+                            
+
+                            <p style="font-weight: bold; margin:0px;">The GlassEar sound awareness feedback prototype</p>
+                            
+                               <p class="header-visual-caption"> GlassEar is a real-time sound awareness display using an HMD and a non-wearable microphone array. In the above image sequence, a DHH user is engaged in conversation with three oral conversation partners. Arrows direct attention towards active speakers.</p>
+                            
+                        
+                    
+
+                </div>
+            </div>
+            
+                Persons with hearing loss use visual signals such as gestures and lip movement to interpret speech. While hearing aids and cochlear implants can improve sound recognition, they generally do not help the wearer localize sound necessary to leverage these visual cues. In this paper, we design and evaluate visualizations for spatially locating sound on a head-mounted display (HMD). To investigate this design space, we developed eight high-level visual sound feedback dimensions. For each dimension, we created 3-12 example visualizations and evaluated these as a design probe with 24 deaf and hard of hearing participants (Study 1). We then implemented a real-time proof-of-concept HMD prototype and solicited feedback from 4 new participants (Study 2). Study 1 findings reaffirm past work on challenges faced by persons with hearing loss in group conversations, provide support for the general idea of sound awareness visualizations on HMDs, and reveal preferences for specific design options. Although preliminary, Study 2 further contextualizes the design probe and uncovers directions for future work. 
+<p></p>
+This project is part of a larger research agenda exploring <a href="../soundawareness/index.html">sound awareness support</a> for people who are deaf or hard of hearing.
+            
+            </p>
+        </div>
+	    <div class="row">
+		
+		<h3 class="news-type-label">Publications</h3>
+		
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Goodman_SocialTensionsWithHeadMountedDisplaysForAccessibility_2019.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Goodman_SocialTensionsWithHeadMountedDisplaysForAccessibility_2019.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Social Tensions with Head-Mounted Displays for Accessibility</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/stevengoodman/index.html">Steven Goodman</a>,
+                
+                    <a href="../../member/dhruvjain/index.html">Dhruv Jain</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>,
+                
+                    <a href="../../member/brockcraft/index.html">Brock Craft</a>,
+                
+                    <a href="../../member/leahfindlater/index.html">Leah Findlater</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Extended Abstract CHI&#39;19 Workshop Proceedings of SHMD &#39;19
+                    
+                    
+                        <span class="publication-to-appear-text">To Appear</span>
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        accessibility,
+                    
+                
+                    
+                        head-mounted display,
+                    
+                
+                    
+                        social perception
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Goodman_SocialTensionsWithHeadMountedDisplaysForAccessibility_2019.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="../arcaptions/index.html">AR Captioning</a>
+                    
+                        | <a href="index.html">GlassEar</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Jain_HeadMountedDisplayVisualizationsToSupportSoundAwarenessForTheDeafAndHardOfHearing_2015.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Jain_HeadMountedDisplayVisualizationsToSupportSoundAwarenessForTheDeafAndHardOfHearing_2015.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">Head-Mounted Display Visualizations to Support Sound Awareness for the Deaf and Hard of Hearing</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/dhruvjain/index.html">Dhruv Jain</a>,
+                
+                    <a href="../../member/leahfindlater/index.html">Leah Findlater</a>,
+                
+                    <a href="../../member/jamiegilkeson/index.html">Jamie H Gilkeson</a>,
+                
+                    <a href="../../member/benjaminholland/index.html">Benjamin Holland</a>,
+                
+                    <a href="../../member/ramaniduraiswami/index.html">Ramani Duraiswami</a>,
+                
+                    <a href="../../member/dmitryzotkin/index.html">Dmitry Zotkin</a>,
+                
+                    <a href="../../member/christianvolger/index.html">Christian Volger</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2015
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        wearables,
+                    
+                
+                    
+                        accessibility,
+                    
+                
+                    
+                        deaf,
+                    
+                
+                    
+                        hard of hearing,
+                    
+                
+                    
+                        head-mounted display,
+                    
+                
+                    
+                        wearable,
+                    
+                
+                    
+                        sound visualization,
+                    
+                
+                    
+                        conversation support
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Jain_HeadMountedDisplayVisualizationsToSupportSoundAwarenessForTheDeafAndHardOfHearing_2015.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">GlassEar</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+	    </div>
+	</div>
+    </div>
+    <div class="row no-margin" id="below-sidebar">
+        <div class="row row-adjust-margins">
+            
+            
+        </div>
+        <div class="row row-adjust-margins">
+            
+
+            
+
+            </div>
+        </div>
+        <div class="row row-adjust-margins">
+            
+            
+        </div>
+
+        
+        
+        
+            
+
+            
+        
+    </div>
+</div>
+
+
+    
+
+        <div class="makelab-footer">
+            <div class="row makelab-footer-row">
+               
+                <div class="col-xs-2 makelab-footer-col">
+                    <a href="../../index.html">
+                        <img src="../../static/website/img/logos/makelab_logo_white_with_text_400x342.png"
+                             class="img-responsive makelab-footer-logo"/>
+                    </a>
+                  </div>
+                    
+				<div class="col-xs-2 makelab-footer-col">
+                    <p style="margin-top:0px">
+                       We design, build, and evaluate interactive tools and techniques to address pressing societal
+                        challenges in accessibility, sustainability, education, and beyond.
+                    </p>
+                      
+					<div class="makelab-footer-connect-links">
+						<ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+						</ul>
+					</div>      
+				</div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-recent-news">
+                    <h1>Recent News</h1>
+                    
+                    
+
+                    
+                        <div class="row">
+                            <a href="../../news/86/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 30, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Project Sidewalk in the Local News!</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/85/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 18, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">UW News Covers Project Sidewalk</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/84/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 17, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Aileen Zeng Presents at Women&#39;s Research Day</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                </div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-links">
+                    <h1>Links</h1>
+                    <ul>
+                        
+
+                            <li style="white-space:nowrap;" class=""><a href="../../index.html"> &nbsp;> &nbsp; Home</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../people/index.html">&nbsp;> &nbsp; People</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../news/index.html">&nbsp;> &nbsp; News</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../publications/index.html">&nbsp;> &nbsp; Publications</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../talks/index.html">&nbsp;> &nbsp; Talks</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../videos/index.html">&nbsp;> &nbsp; Videos</a></li>
+                        
+                    </ul>
+                    <div class="makelab-footer-connect-links-mobile">
+
+                        <!-- TODO: Vertically center text with icon. Currently text does not appear perfectly vertically centered with icon -->
+                        <!--<h1>Connect</h1>-->
+
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Consider adding a sponsorship row? -->
+            <!-- TODO: The centering looks weird on this. Also responsive design wraps columns, which I don't like. Ideally, I think, on small devices, should just switch to single row;
+                 TODO: Fix UMD CS logo so that the text is bigger -->
+            <div class="makelab-footer-affiliations">
+                <div class="row makelab-footer-affiliations-row">
+                <div class="makelab-footer-affiliation-col">
+                    <a href="http://dub.uw.edu/">
+                        <img src="../../static/website/img/logos/uw_dub_bottom_white_185x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-cse-footer-icon">
+                    <a href="https://www.cs.washington.edu/">
+                        <img src="../../static/website/img/logos/uw_allen_school_logo_white_941x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" style="margin-top: 2px;">
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-footer-icon">
+                    <a href="https://www.washington.edu/">
+
+
+                        <img src="../../static/website/img/logos/uw_white_horizontal_1196x94.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-cse-footer-icon">
+                    <a href="https://www.cs.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_cs_logo_white_850x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" />
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-footer-icon">
+                    <a href="https://www.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_logo_white_586x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/glassear/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:03:28 GMT -->
+</html>

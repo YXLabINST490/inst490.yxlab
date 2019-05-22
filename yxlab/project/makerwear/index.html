@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/makerwear/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:01:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    
+
+    <link rel="shortcut icon" href="../../static/website/img/ml-favicon.png" />
+
+    <!-- Load some fonts -->
+    <!-- Raleway: https://fonts.google.com/specimen/Raleway -->
+
+
+
+
+    <!-- Raleway 300 is light, 400 is regular, 500 is medium, 600 is semi-bold, 700 is bold -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/bootstrap.min.css"/>
+
+    <!-- A modified version of the grayscale css -->
+    <link rel="stylesheet" type="text/css" href="../../static/website/css/grayscale.css"/>
+
+    <!-- Our custom style sheets -->
+    <link rel="stylesheet" href="../../static/website/css/carousel_fade.css"/>
+    <link rel="stylesheet" href="../../static/website/css/base.css"/>
+    <link rel="stylesheet" href="../../static/website/css/autocomplete.css"/>
+    
+    
+    <link rel="stylesheet" href="../../static/website/css/project.css">
+    <link rel="stylesheet" href="../../static/website/css/talks.css">
+    <link rel="stylesheet" href="../../static/website/css/publications.css">
+    <link rel="stylesheet" href="../../static/website/css/index.css">
+    <link rel="stylesheet" href="../../static/website/css/news.css">
+    <link rel="stylesheet" href="../../static/website/css/bootstrap-modifications.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+    <!-- Back Top -->
+    <link rel="stylesheet" href="../../static/website/css/backtop.css"/>
+
+	<!-- jQuery: v1.9.1 necessary for Bootstrap's JavaScript plugins -->
+	<script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Bootstrap: Latest compiled and minified JavaScript -->
+	<script src="../../../maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Grayscale template -->
+	<script src="../../static/website/js/jquery.easing.min.js"></script>
+	<script src="../../static/website/js/grayscale.js"></script>
+	<script src="../../static/website/js/backtop.js"></script>
+
+  
+    <!-- <script src="/static/website/js/peopleHeightFix.js"></script> -->
+    <script src="../../static/website/js/utils.js"></script>
+    <script src="../../static/website/js/indproject.js"></script>
+
+
+    <title>
+        MakerWear
+    </title>
+
+    <script type="text/javascript">
+
+    
+
+    
+
+    $(document).ready(function () {
+        console.log("False");
+        $('.carousel').carousel();
+        // $("#back-top").hide();
+    });
+
+    function parseHashtoAnchor(string){
+        if(!isNaN(parseInt(string))){
+            return string.trim();
+        }
+        string = string.replace(/-/g, " ");
+        string = string.trim();
+        var stringArray = string.split(" ");
+        var returnVal = '';
+        stringArray.forEach(function(element){
+           element = element.charAt(0).toUpperCase() + element.substring(1, element.length);
+           returnVal = returnVal + element + " ";
+        });
+        return returnVal.trim()
+
+    }
+
+    // allow for smooth scrolling to anchor links
+    $(document).click(function (event) {
+	var target = event.originalEvent.target;
+        if (target.className === "scroll" || target.parentElement.className === "scroll") {
+            //prevent the default action for the click event
+            event.preventDefault();
+
+            var element = target.className === "scroll" ? target : target.parentElement;
+
+            //get the top offset of the target anchor
+            var hashName = element.hash.substring(1);
+            hashName = parseHashtoAnchor(hashName);
+            console.log(hashName)
+            var target_offset = $('[name=' + hashName + ']').offset();
+            console.log(target_offset)
+            var target_top = target_offset.top - 60;
+
+            //goto that anchor by setting the body scroll top to anchor top
+            //http://api.jquery.com/animate/
+            $('html, body').animate({ scrollTop: target_top }, 500);
+        }
+    });
+
+    </script>
+
+    
+    <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+     
+     ga('create', 'UA-79723676-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+    
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom  navbar-fixed-top"
+             role="navigation" >
+            <div class="container-fluid" style="width:100%; max-width:1170px; margin:auto">
+                <div class = "row">
+                    <div class="col-xs-12" style="padding:0px">
+
+                        <div class="navbar-header">
+
+                            <button style="" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <a class="navbar-brand page-scroll" href="../../index.html">
+                                <!-- <i class="fa fa-gears"></i>  <span style="font-family: roboto-bold">make</span>ability</span> lab-->
+                                <!-- <img src="/static/website/img/logos/makelab_logo_bolder_white_no_text_100x68.png" height="20" /> -->
+                                
+                                <img src="../../static/website/img/logos/makelab_logo_white_no_text_100x67.png" height="20" />
+
+                                <div class="lab-text"><span style="font-family: roboto-bold; margin-left: 2px;">Make</span>ability</span> Lab</div>
+                            </a>
+
+                        </div>
+
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <!-- To automatically highlight active links, I followed this code:
+                                 http://stackoverflow.com/a/29495310 -->
+                                
+                                    <li class=""><a href="../../index.html">Home</a></li>
+                                    <li class=""><a href="../../people/index.html">People</a></li>
+                                    <li class=""><a href="../../projects/index.html">Projects</a></li>
+                                    <li class=""><a href="../../news/index.html">News</a></li>
+                                    <li class=""><a href="../../publications/index.html">Publications</a></li>
+                                    <li class=""><a href="../../talks/index.html">Talks</a></li>
+                                    <li class=""><a href="../../videos/index.html">Videos</a></li>
+                                    <li class=""><a href="../../faq/index.html">FAQ</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!-- /.navbar-collapse -->
+                </div>
+            </div>
+
+            <!-- /.container -->
+        </nav>
+    
+
+    
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000"
+             data-pause="true">
+            <!-- <div class="overlay carousel-caption"></div> -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                
+                    <div class="item active">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/IMG_93463c4b8ed5a7bc4973b2680ee257ae76d7.JPG.5184x1967_q85_box-0%2c0%2c5184%2c1967_crop_detail.jpg)"
+                             aria-label="Version 1.2 Modules: with 34 different modules. Sensors that sense body movement, heart-rate, and environmental properties. Action modules that move, make lights and sounds. Modifiers that transform signals into different types of signals."
+                             title="Version 1.2 Modules: with 34 different modules. Sensors that sense body movement, heart-rate, and environmental properties. Action modules that move, make lights and sounds. Modifiers that transform signals into different types of signals.">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    
+                                        <div class="carousel-caption-title">
+                                            MakerWear Modules
+                                        </div>
+                                        <div class="carousel-caption-text">
+                                            Version 1.2 Modules: with 34 modules. Sensors that sense body movement, heart-rate, and environmental properties. Action modules that move, make lights and sounds. Modifiers that transform signals into different types of signals.
+                                        </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="item ">
+                        
+                        <div class="fill"
+                             style="background-image:url(../../media/banner/IMG_42130648b365a2744ba28239ec42af5b40b9.JPG.5184x3456_q85_box-0%2c0%2c5184%2c3456_crop_detail.jpg)"
+                             aria-label="A photo of MakerWear modules"
+                             title="A photo of MakerWear modules">
+                        </div>
+                        <div class="overlay shadow-left" style="pointer-events: none;">
+                            <div class="container carousel-container">
+                                <div class="carousel-caption carousel-caption-left" style="pointer-events: auto;">
+                                    
+                                    
+                                        <div class="carousel-caption-title">
+                                            MakerWear
+                                        </div>
+                                        <div class="carousel-caption-text">
+                                            MakerWear is a large research agenda focused on enabling young children (ages 4-12) to creatively design, build, and play and experiment with interactive wearable e-textiles.
+                                        </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+            </div>
+            <ol class="carousel-indicators" >
+                
+                    <li data-target="#mainCarousel" data-slide-to="0"
+                        class="active"></li>
+                
+                    <li data-target="#mainCarousel" data-slide-to="1"
+                        ></li>
+                
+            </ol>
+        </div>
+    
+
+    
+<div id="content" class="container content-container" data-spy="scroll">
+    <div class="row row-adjust-margins" id="sidebar-level">
+	<div class="col-md-2 col-md-push-10">
+        <div class="row quick-info">
+            <h3 class="news-type-label">Quick Info</h3>
+            <p class="quick-info">
+                
+                    <b>Project Date</b>
+                    June 12, 2012 - Present
+                    <br>
+                
+                
+                    
+                        <b>PIs: </b>
+                        <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a> (PI)<br/>
+                    
+                
+                
+                
+                
+                    <b>Keywords: </b>
+                    
+                        
+                            stem,
+                        
+                    
+                        
+                            wearables,
+                        
+                    
+                        
+                            e-textiles
+                        
+                    
+                
+            </p>
+	    </div>
+	    
+	    <!-- Create a row for the well which will contain news from our feeds -->
+	    <div class="row recent-news">
+		<h3 class="news-type-label">Recent News</h3>
+		<div class="well news-well">
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/IMG_1753074888db9e564ae7bc82ecc96bfabce4.JPG.250x250_q85_box-403%2c261%2c2426%2c2285_crop_detail.jpg" class="news_image" height="50" width="50" alt="Majeed&#39;s MS committee">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/49/index.html">
+				    <p>Congratulations to Majeed K., MS!</p>
+				</a>
+			    </div>
+			    <p class="news_date">Aug 10, 2017 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Congratulations to Majeed Kazemitabaar who successfully defended his MS thesis entitled "MakerWear: A Tangible Construction Kit for Young Children to Create Interactive Wearables" on Aug 4, 2017 and just submitted the final thesis today. Woohoo! Majeed now plans to return to Iran and work at a startup. We wish him all the best!</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/IMG_82474ed57d0d24544fd4a92713739c512f5c.JPG.250x250_q85_box-1192%2c0%2c4648%2c3456_crop_detail.jpg" class="news_image" height="50" width="50" alt="A child building an interactive wearable vest">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/37/index.html">
+				    <p>MakerWear Honored with Best Paper at CHI2017</p>
+				</a>
+			    </div>
+			    <p class="news_date">Feb 17, 2017 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>We were just notified that MakerWear received the Best Paper award at CHI2017 (top 1% of all submissions at CHI). The conference received over 2400 submissions and 24 were chosen for Best paper (97 were chosen for Honorable Mention). Congrats to lead student Majeed Kazemitibaar and the whole MakerWear team!
+
+<p>
+This is the first full research publication from <a href="https://makeabilitylab.umiacs.umd.edu/news/36/">Froehlich's NSF CAREER award</a>.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/IMG_7924_square701a2d91b77c44cfa4dbcb1c6fe5d2ad.jpg.250x250_q85_box-0%2c0%2c3456%2c3456_crop_detail.jpg" class="news_image" height="50" width="50" alt="Working on a MakerWear wearable sleeve">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/36/index.html">
+				    <p>NSF CAREER Award!</p>
+				</a>
+			    </div>
+			    <p class="news_date">Feb 14, 2017 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>I'm excited to announce that our group just received <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1652339&amp;HistoricalAwards=false">an NSF CAREER Award</a> to develop and study new interfaces, techniques, and tools to enable young children (ages 5-10) to program, build, and use their own interactive wearables. I've been working on this project since about the time I arrived at UMD, and I'm so happy that it is now funded. Lab member (and MS student) Majeed Kazemitabaar has been absolutely critical in the past few years to making this project what it is today. Our first paper on this work will be published at CHI2017. Hope to see you there!
+<p>
+See also this <a href="http://www.umiacs.umd.edu/about-us/news/froehlich-receives-nsf-career-award-develop-wearable-technology-kids">UMIACS news release</a>.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/BiD-Logo-Titlec56ba94f2b68478a9892e26006c24385.gif.250x250_q85_box-0%2c0%2c300%2c300_crop_detail.jpg" class="news_image" height="50" width="50" alt="Berkeley&#39;s Institute of Design&#39;s BiD Logo">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/35/index.html">
+				    <p>Majeed Kazemitabaar visiting UC Berkeley</p>
+				</a>
+			    </div>
+			    <p class="news_date">Feb 03, 2017 | <a href="../../member/376/index.html">Majeed</a></p><!--</p><p class="news_date">Majeed Kazemitabaar</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p><a href="http://majeed.cc/">Majeed Kazemitabaar</a> will be a visiting student researcher this semester at UC Berkeley's Institute of Design (<a href="http://bid.berkeley.edu/">BiD Lab</a>) to work with <a href="https://people.eecs.berkeley.edu/~bjoern/">Prof. Bjoern Hartmann</a>.
+
+He will be researching on tangible machine learning for children as part of his ongoing work with MakerWear.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/Screen_Shot_2016-11-05_at_7a0b9d69433504f09ac901459ae0f462a.png.250x250_q85_box-233%2c11%2c1542%2c1320_crop_detail.png" class="news_image" height="50" width="50" alt="">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/18/index.html">
+				    <p>Technica: Tech+Design talk</p>
+				</a>
+			    </div>
+			    <p class="news_date">Nov 03, 2016 | <a href="../../member/376/index.html">Majeed</a></p><!--</p><p class="news_date">Majeed Kazemitabaar</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>We were happy to be invited to speak at the Tech+Design workshop at <a href="http://gotechnica.org/">Technica</a>, the <a href="http://www.eng.umd.edu/html/news/news_story.php?id=10068">largest all-women hackathon in the US</a>. Four Makeability Lab members spoke (Soheil, Manaswi, Liang, and Majeed) who talked about their research, their design process, and designing for social impact.</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/majeed-1f23c3236f905401080ce8e2919694d8a.jpg.250x250_q85_box-104%2c0%2c516%2c413_crop_detail.jpg" class="news_image" height="50" width="50" alt="Majeed in the HCIL Hackerspace">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/13/index.html">
+				    <p>Majeed Featured in Maker Spotlight</p>
+				</a>
+			    </div>
+			    <p class="news_date">Oct 12, 2016 | <a href="../../member/284/index.html">Jon</a></p><!--</p><p class="news_date">Jon E. Froehlich</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>Majeed Kazemitabaar was featured in <a href="http://makezine.com/2016/10/12/maker-spotlight-majeed-kazemitabaar/">Make's Maker Spotlight</a> today for his work on maker tools for children. The article covers Majeed's background, his work on MakerWear, and some shout outs to the HCIL Hackerspace, the Makeability Lab, BodyVis, and alumni member Leyla Norooz! 
+
+Congrats Majeed!</p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/presentationec8bfee2a3b04e88b22640ceaf1fd97f.JPG.250x250_q85_box-1607%2c0%2c5063%2c3456_crop_detail.jpg" class="news_image" height="50" width="50" alt="">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/12/index.html">
+				    <p>Join us at the Silver Spring Maker Faire</p>
+				</a>
+			    </div>
+			    <p class="news_date">Sep 25, 2016 | <a href="../../member/285/index.html">Matthew</a></p><!--</p><p class="news_date">Matthew L Mauriello</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>The Makeability Lab and the HCIL are participating in the Silver Spring Maker Faire which is going on today from 12pm - 5pm. Our own <a href="https://makeabilitylab.umiacs.umd.edu/member/376/">Majeed Kazemitabaar</a> will also be giving a special presentation on MakerWear as the "Maker in our Midst" at 2:15pm on the Main Stage. Full details are available here:
+<br/><br/>
+<a href="http://www.makerfairesilverspring.com/">http://www.makerfairesilverspring.com/</a></p>
+			    
+			</div>
+		    </div>
+		    
+		    <!-- Create a row for each news item which has been passed in -->
+		    <div class="row news_header">
+			<!-- TODO link to the full news item -->
+			<a href="#">
+			    <!-- Use the items image if it exists, otherwise use the default icon -->
+			    
+			    <img src="../../media/news/Screen_Shot_2016-08-24_at_114f317278891e45e58f4e658d2ba85570.png.250x250_q85_box-76%2c12%2c1064%2c1002_crop_detail.png" class="news_image" height="50" width="50" alt="">
+			    
+			</a>
+			<div class="news_info">
+			    <!-- https://css-tricks.com/line-clampin/ This seems to be a good way to do multi line wrapping, also referenced in relevant news.css file -->
+			    <div class="news_title line-clamp">
+				<!-- TODO link to the full news item -->
+				<a href="../../news/6/index.html">
+				    <p>Best Late Breaking Work for ReWear</p>
+				</a>
+			    </div>
+			    <p class="news_date">Apr 07, 2016 | <a href="../../member/376/index.html">Majeed</a></p><!--</p><p class="news_date">Majeed Kazemitabaar</p>-->
+			</div>
+		    </div>
+		    <div class="row news_body">
+			<!-- Truncation now uses a set number of lines which can be modified in news.css content-clamp class by changing -webkit-line-clamp -->
+			<div class="news_content content-clamp">
+			    
+			    <p>I’m happy to announce that our CHI’16 <a href="https://chi2016.acm.org/wp/late-breaking-work/">Late Breaking Work</a> entitled <a href="https://makeabilitylab.umiacs.umd.edu/media/publications/ReWear_Early_Explorations_of_a_Modular_Wearable_Construction_Kit_for_Young_Children_hlq3H4u.pdf">ReWear: Early Explorations of a Modular Wearable Construction Kit for Young Children</a> was just honored with a Best Paper Award given to only four of the 647 submissions (0.6%). This was a terrific team effort involving contributions from five students, including two undergraduates and one high school student and led by <a href="https://makeabilitylab.umiacs.umd.edu/member/376/">Majeed Kazimitabaar</a>.</p>
+			    
+			</div>
+		    </div>
+		    
+		</div>
+	    </div>
+	    
+	</div>
+	<div class="col-md-10 col-md-pull-2 project-intro-content">
+        <div class="row about-row">
+            <h3 class="news-type-label">About</h3>
+            <p class="project-about">
+            <div style="float: right">
+                <div class="header-visual">
+                    
+                        
+                            
+                                <img class="video-about" src="../../media/projects/images/AveryMakingPokemin.jpg">
+                            
+
+                            <p style="font-weight: bold; margin:0px;">Making with MakerWear</p>
+                            
+                               <p class="header-visual-caption"> Young kid attaching modules to his Pokemon stuffed animal</p>
+                            
+                        
+                    
+
+                </div>
+            </div>
+            
+                MakerWear is a new wearable construction kit for children that uses a tangible, modular approach to wearable creation. 
+<p></p>
+MakerWear is comprised of two parts: (i) single-function electronic modules that, when combined, create complex interactive behaviors, and (ii) a flexible, magnetic socket mesh that is either pre-integrated into clothing or attached <i>post-hoc</i> like a fabric patch.
+<p></p>
+By manipulating these tangible modules, children can create a wide range of designs: a 'sound-reactive shirt' that changes color with music, a 'fitness tracker' that automatically counts and display steps, or a new game of 'laser tag' where children interact together through their designs.
+<br/>
+MakerWear's module library is currently consisted of 32 single-function, 'plug-and-play' magnetic modules: (i) Sensor modules that sense body movement, physiological information, and environmental properties, (ii) Modules that allow social communication, (iii) Action modules that move, make lights and sounds, (iv) Modifiers that transform signals into another type of signal, and (v) Miscellaneous modules such as wires that allow extending across meshes and to spread out designs.
+
+<p></p>
+<a href="https://github.com/myjeeed/MakerWear">MakerWear's GitHub Repository</a>
+            
+            </p>
+        </div>
+	    <div class="row">
+		
+		<h3 class="news-type-label">Publications</h3>
+		
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Kazemitabaar_MakerwearATangibleConstructionKitForYoungChildrenToCreateInteractiveWearables_2017.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Kazemitabaar_MakerwearATangibleConstructionKitForYoungChildrenToCreateInteractiveWearables_2017.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">MakerWear: A Tangible Construction Kit for Young Children to Create Interactive Wearables</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html">Majeed Kazemitabaar</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        UMD CS MS Thesis
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        stem,
+                    
+                
+                    
+                        educational technology,
+                    
+                
+                    
+                        educating makers,
+                    
+                
+                    
+                        maker movement
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Kazemitabaar_MakerwearATangibleConstructionKitForYoungChildrenToCreateInteractiveWearables_2017.pdf">PDF</a>
+                    <a href="https://drum.lib.umd.edu/handle/1903/20034">| doi</a>
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">MakerWear</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/CHI2017_MakerWear_CR_v4.0-SaveAsPDFBestForPrintingJonsMacBookPro-Submitted_MPnoy2e.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/CHI2017_MakerWear_CR_v4.0-SaveAsPDFBestForPrintingJonsMacBookPro-Submitted_MPnoy2e.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">MakerWear: A Tangible Approach to Interactive Wearable Creation for Children</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html">Majeed Kazemitabaar</a>,
+                
+                    <a href="../../member/jasonmcpeak/index.html">Jason McPeak</a>,
+                
+                    <a href="../../member/alexjiao/index.html">Alex Jiao</a>,
+                
+                    <a href="../../member/lianghe/index.html">Liang He</a>,
+                
+                    <a href="../../member/thomasouting/index.html">Thomas Outing</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        Proceedings of CHI 2017
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        wearables,
+                    
+                
+                    
+                        children,
+                    
+                
+                    
+                        making,
+                    
+                
+                    
+                        tangible interaction
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/CHI2017_MakerWear_CR_v4.0-SaveAsPDFBestForPrintingJonsMacBookPro-Submitted_MPnoy2e.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">MakerWear</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/Kazemitabaar_RewearEarlyExplorationsOfAModularWearableConstructionKitForYoungChildren_2016.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/Kazemitabaar_RewearEarlyExplorationsOfAModularWearableConstructionKitForYoungChildren_2016.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">ReWear: Early Explorations of a Modular Wearable Construction Kit for Young Children</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html">Majeed Kazemitabaar</a>,
+                
+                    <a href="../../member/lianghe/index.html">Liang He</a>,
+                
+                    <a href="../../member/katiewang/index.html">Katie Wang</a>,
+                
+                    <a href="../../member/chloealoimonos/index.html">Chloe Aloimonos</a>,
+                
+                    <a href="../../member/tonycheng/index.html">Tony Cheng</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        CHI &#39;16 Extended Abstracts
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        wearables,
+                    
+                
+                    
+                        e-textiles,
+                    
+                
+                    
+                        construction kits,
+                    
+                
+                    
+                        electronic textiles,
+                    
+                
+                    
+                        children,
+                    
+                
+                    
+                        making
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/Kazemitabaar_RewearEarlyExplorationsOfAModularWearableConstructionKitForYoungChildren_2016.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">MakerWear</a>
+                    
+                        | <a href="../rewear/index.html">ReWear</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+            
+
+
+
+
+
+    <div class="row publication-template">
+        <div class="publication-thumbnail">
+            <a href="../../media/publications/MakerShoe_Towards_an_E-Textile_Construction_Kit_to_Support_Creativity_Playful_Making_and_Self-Expression_ez5la9u.pdf" class="publication-thumbnail-link">
+                <img src="../../media/publications/images/MakerShoe_Towards_an_E-Textile_Construction_Kit_to_Support_Creativity_Playful_Making_and_Self-Expression_ez5la9u.jpg.300x0_q85_detail.jpg"
+                     class="publication-thumbnail-image img-responsive">
+            </a>
+        </div>
+        <div class="publication-info">
+            <p class="publication-title">MakerShoe: Towards an E-Textile Construction Kit to Support Creativity, Playful Making, and Self-Expression</p>
+            <p class="publication-authors">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html">Majeed Kazemitabaar</a>,
+                
+                    <a href="../../member/leylanorooz/index.html">Leyla Norooz</a>,
+                
+                    <a href="../../member/monaguha/index.html">Mona Leigh Guha</a>,
+                
+                    <a href="../../member/jonfroehlich/index.html">Jon E. Froehlich</a>
+                
+            </p>
+            <p class="publication-stats">
+                <span class="publication-venue">
+                    
+                        IDC &#39;15 Extended Abstracts
+                    
+                    
+                </span>
+                
+            </p>
+            <p class="publication-keywords hidden-xs">
+                keywords:
+                <span class="publication-keyword"><span class="publication-keyword-text">
+				
+                    
+                        construction kits,
+                    
+                
+                    
+                        electronic textiles,
+                    
+                
+                    
+                        e-textiles,
+                    
+                
+                    
+                        wearables,
+                    
+                
+                    
+                        children,
+                    
+                
+                    
+                        making
+                    
+                
+			    </span></span>
+            </p>
+
+            
+                <p class="pub-download-links">
+                    <a href="../../media/publications/MakerShoe_Towards_an_E-Textile_Construction_Kit_to_Support_Creativity_Playful_Making_and_Self-Expression_ez5la9u.pdf">PDF</a>
+                    
+                    
+                    <span class="citation-link">| <a data-toggle="popover" data-html="true" data-trigger="manual"
+                                                     tabindex="0"
+                                                     title="Citation" data-content="Empty Citation"
+                                                     class="publication-citation-link">Citation</a></span>
+                    
+                        | <a href="index.html">MakerWear</a>
+                    
+                </p>
+            
+        </div>
+    </div>
+
+		
+	    </div>
+	</div>
+    </div>
+    <div class="row no-margin" id="below-sidebar">
+        <div class="row row-adjust-margins">
+            
+            <h3 class="news-type-lable">Recent Videos</h3>
+            
+            
+                
+
+
+
+
+
+
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 video-column">
+    
+    
+    <div class="video" style="height: 300px; margin-bottom: 20px;">
+        
+        <iframe class="youtube-player" src="https://youtube.com/embed/14Fa_VOJHIA?showinfo=0&amp;iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+
+        <p class="artifact-title line-clamp" style="margin-top: 0px;">MakerWear: A Tangible Approach to Interactive Wearable Creation for Children</p>
+        
+        <p class="artifact-links">
+            <a href="https://youtu.be/14Fa_VOJHIA">YouTube</a>
+            
+            
+                | <a href="../../media/publications/CHI2017_MakerWear_CR_v4.0-SaveAsPDFBestForPrintingJonsMacBookPro-Submitted_MPnoy2e.pdf">Paper</a>
+            
+            
+                | <a href="index.html">MakerWear</a>
+            
+        </p>
+    </div>
+</div>
+            
+        </div>
+        <div class="row row-adjust-margins">
+            
+                <h3 class="news-type-label">Talks</h3>
+            
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.pdf" target="_blank"><span class="artifact-title line-clamp">A Rapid Tour of My Explorations in E-Textiles</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 9, 2018 | HCDE539: Physical Computing and Prototyping Guest Lecture
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2018.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_HCDEPhysCompGuestLecture_v2.2_OptimizedMedia.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../socialfabricfitness/index.html">Social Fabric Fitness</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+                    | <a href="../ilikethisshirt/index.html">I Like This Shirt</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.pdf" target="_blank"><span class="artifact-title line-clamp">A Rapid Tour of My Explorations in E-Textiles</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Nov. 7, 2017 | HCDE539: Physical Computing and Prototyping Guest Lecture
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_ARapidTourOfMyExplorationsInETextiles_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_HCDEPhysCompGuestLecture_v2.1_OptimizedMedia.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../socialfabricfitness/index.html">Social Fabric Fitness</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Oct. 13, 2017 | DUB Retreat
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_DubRetreatTalk_v1.3-Compressed.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+                    | <a href="../ondule/index.html">Ondulé</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                June 7, 2017 | UMD CS Staff Talk
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_OverviewTalk_v1-20Mins.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../handsight/index.html">HandSight</a>
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2017.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 13, 2017 | HCDE Invited Talk
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2017.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_OverviewTalk_v3.5-PostTalkEdits_e0ck5Zc.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../handsight/index.html">HandSight</a>
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2016.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingWithASocialPurpose_2016.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2016.pdf" target="_blank"><span class="artifact-title line-clamp">Making With a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 11, 2017 | UW CSE Colloquium
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Washington, Seattle</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingWithASocialPurpose_2016.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_OverviewTalk_v3.5-PostTalkEdits.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../handsight/index.html">HandSight</a>
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_OverviewTalk_v2.5_PostLTSEdits.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf" target="_blank"><span class="artifact-title line-clamp">Making with a Social Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 6, 2017 | Lecture Series at the Laboratory for Telecommunication Sciences
+            </p>
+            <p class="artifact-venue line-clamp-one-line">LTS Auditorium, College Park, MD</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_OverviewTalk_v2.5_PostLTSEdits.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="../handsight/index.html">HandSight</a>
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="../thermography/index.html">Pervasive Thermography</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Froehlich_MakingSTEM_v2.9_PostTalkEdits.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pdf" target="_blank"><span class="artifact-title line-clamp">Transforming STEM Learning Through Wearables</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                April 4, 2017 | STEAM Salon Lecture Series
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/jonfroehlich/index.html" style="color:#464D59">Jon E. Froehlich</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pdf">PDF</a>
+                | <a href="../../media/talks/Froehlich_MakingSTEM_v2.9_PostTalkEdits.pptx">PPTX</a>
+                
+                
+                
+                    | <a href="../BodyVis/index.html">BodyVis</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/MakerWear_DesignFieldNotes_reducedSize2.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/MakerWear_DesignFieldNotes_reducedSize2.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/MakerWear_DesignFieldNotes_reducedSize2.pdf" target="_blank"><span class="artifact-title line-clamp">MakerWear: A Tangible Approach to Interactive Wearable Creation for Children</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                March 7, 2017 | Design Field Notes
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of California, Berkeley</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html" style="color:#464D59">Majeed Kazemitabaar</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/MakerWear_DesignFieldNotes_reducedSize2.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/Technica2016_fixed_reducedsize.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/Technica2016_fixed_reducedsize.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/Technica2016_fixed_reducedsize.pdf" target="_blank"><span class="artifact-title line-clamp">Tech+Design: Interaction Design for a Purpose</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Nov. 3, 2016 | Technica: Tech+X Talk Series
+            </p>
+            <p class="artifact-venue line-clamp-one-line">University of Maryland, College Park</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/soheilbehnezhad/index.html" style="color:#464D59">Soheil Behnezhad</a>, 
+                
+                    <a href="../../member/lianghe/index.html" style="color:#464D59">Liang He</a>, 
+                
+                    <a href="../../member/majeedkazemitabaar/index.html" style="color:#464D59">Majeed Kazemitabaar</a>, 
+                
+                    <a href="../../member/manaswisaha/index.html" style="color:#464D59">Manaswi Saha</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/Technica2016_fixed_reducedsize.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="../sidewalk/index.html">Project Sidewalk</a>
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/MakerFaireSS2016_MakerWear_v1_exporting_reducedSize.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/MakerFaireSS2016_MakerWear_v1_exporting_reducedSize.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/MakerFaireSS2016_MakerWear_v1_exporting_reducedSize.pdf" target="_blank"><span class="artifact-title line-clamp">MakerWear: Early Explorations of Wearable Construction Kits for Children</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                Sept. 25, 2016 | Maker Faire Silver Spring 2016
+            </p>
+            <p class="artifact-venue line-clamp-one-line">Silver Spring, Maryland</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html" style="color:#464D59">Majeed Kazemitabaar</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/MakerFaireSS2016_MakerWear_v1_exporting_reducedSize.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+                
+
+
+
+
+
+<div class="col-ts-12 col-xs-6 col-sm-4 col-lg-3 talk-column" style="margin-bottom:20px">
+    <div style="width: 100%; height: 300px; contain: content;">
+        <div class="talk2-thumbnail"> 
+            
+            <a href="../../media/talks/06_MajeedKazemitabaar_MakerShoe_reducedSize.pdf" target="_blank">
+                <div style="background: white; width:100%; height: 180px; contain: content;">
+                    <img style="width:100%; height: auto; position: relative;top: 50%; left: 50%;transform: translate(-50%,-50%);object-fit: cover" src="../../media/talks/images/06_MajeedKazemitabaar_MakerShoe_reducedSize.jpg.420x0_q85_detail.jpg" class="talk2-thumbnail-image img-responsive">
+                </div>
+            </a>
+        </div>
+        <div class="talk-text">
+            
+            <a href="../../media/talks/06_MajeedKazemitabaar_MakerShoe_reducedSize.pdf" target="_blank"><span class="artifact-title line-clamp">MakerShoe: Towards an E-Textile Construction Kit to Support Creativity, Playful Making, and Self-Expression</span></a>
+            <p class="artifact-venue line-clamp-one-line" style="margin-bottom: 0px;">
+                May 28, 2015 | HCIL Symposium 2015
+            </p>
+            <p class="artifact-venue line-clamp-one-line">College Park, Maryland</p>
+
+            <p class="artifact-authors line-clamp-one-line">
+                
+                    <a href="../../member/majeedkazemitabaar/index.html" style="color:#464D59">Majeed Kazemitabaar</a>
+                
+            </p>
+
+            <p class="pub-download-links line-clamp-one-line" style="margin: 0px; margin-top: 2px; bottom:auto">
+                <a href="../../media/talks/06_MajeedKazemitabaar_MakerShoe_reducedSize.pdf">PDF</a>
+                
+                
+                
+                
+                    | <a href="index.html">MakerWear</a>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+            
+
+            </div>
+        </div>
+        <div class="row row-adjust-margins">
+            
+            
+        </div>
+
+        
+        
+        
+            
+                <div class="row row-eq-height row-adjust-margins people-row">
+                    
+                    
+                        <h3 class="news-type-label">Current Project Members</h3>
+                    
+                    <div class="grid_current_members">
+                        
+
+
+
+
+
+
+
+
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/jonfroehlich/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_9700_cropped2.jpg.245x245_q85_box-0%2c307%2c2439%2c2758_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Han2014New.jpg.245x245_q85_box-0%2c0%2c400%2c400_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/jonfroehlich/index.html">
+            <h5 class="easter-egg-name">Jon E. Froehlich</h5>
+        </a>
+        <p class="no-margin">Jun 2012 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">Associate Professor</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Washington</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    <a href="../../projects/index.html">All Projects</a>
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Professor()
+        
+    </div>
+</div>
+        
+    
+
+    
+
+    
+
+    
+
+    
+        
+           
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/lianghe/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/WeChat_Image_20190326111109.jpg.245x245_q85_box-0%2c0%2c927%2c927_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/WeChat_Image_20190326111154.jpg.245x245_q85_box-0%2c48%2c1080%2c1128_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/lianghe/index.html">
+            <h5 class="easter-egg-name">Liang He</h5>
+        </a>
+        <p class="no-margin">Sep 2015 - Present</p>
+
+        <p class="line-clamp-one-line no-margin">PhD Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Washington</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="../squeezapulse/index.html">SqueezaPulse</a> | 
+                    
+                        <a href="index.html">MakerWear</a> | 
+                    
+                        <a href="../handsight/index.html">HandSight</a> | 
+                    
+                        <a href="../ondule/index.html">Ondulé</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            PhD Student()
+        
+    </div>
+</div>
+        
+    
+
+    
+
+    
+
+    
+
+                    </div>
+                </div>
+            
+
+            
+                <div class="row row-eq-height row-adjust-margins people-row">
+                    <h3 class="news-type-label">Past Project Members</h3>
+                    <div class="grid_past_members">
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/majeedkazemitabaar/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_9797.JPG.245x245_q85_box-278%2c126%2c2631%2c2478_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Chewbacca_2014_ysRtKzL.png.245x245_q85_box-0%2c0%2c434%2c434_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/majeedkazemitabaar/index.html">
+            <h5 class="easter-egg-name">Majeed Kazemitabaar</h5>
+        </a>
+        <p class="no-margin">Sep 2014 - Aug 2017</p>
+
+        <p class="line-clamp-one-line no-margin">MS Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">MakerWear</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            MS Student()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/jasonmcpeak/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/JasonMcPeak.png.245x245_q85_box-38%2c26%2c479%2c466_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Captain_Jag_SedmRsi_cDUrczz.png.245x245_q85_box-0%2c0%2c245%2c245_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/jasonmcpeak/index.html">
+            <h5 class="easter-egg-name">Jason McPeak</h5>
+        </a>
+        <p class="no-margin">Jun 2016 - May 2017</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Engineering
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">MakerWear</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/alexjiao/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_7188_Large.JPG.245x245_q85_box-599%2c157%2c1523%2c1080_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/LEGO_R2-D2_Second_Variation_gunv8Fa.png.245x245_q85_box-0%2c0%2c1275%2c1275_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/alexjiao/index.html">
+            <h5 class="easter-egg-name">Alex Jiao</h5>
+        </a>
+        <p class="no-margin">Jun 2016 - Aug 2016</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Electrical Engineering
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">MakerWear</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/tonycheng/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/09p0311.jpg.245x245_q85_box-0%2c300%2c2848%2c3145_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Luke_Skywalker_Hoth_O5MmIZV.png.245x245_q85_box-0%2c0%2c219%2c219_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/tonycheng/index.html">
+            <h5 class="easter-egg-name">Tony Cheng</h5>
+        </a>
+        <p class="no-margin">Jun 2015 - Aug 2015</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">MakerWear</a> | 
+                    
+                        <a href="../handsight/index.html">HandSight</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/katiewang/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/IMG_9528.JPG.245x245_q85_box-250%2c0%2c2698%2c2448_crop_detail_upscale.jpg"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/Yoda_3aKC4rR.jpg.245x245_q85_box-0%2c0%2c282%2c282_crop_detail_upscale.jpg"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/katiewang/index.html">
+            <h5 class="easter-egg-name">Katie Wang</h5>
+        </a>
+        <p class="no-margin">Jun 2015 - Aug 2015</p>
+
+        <p class="line-clamp-one-line no-margin">Undergrad</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+                Computer Science
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">University of Maryland</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">MakerWear</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            Undergrad()
+        
+    </div>
+</div>
+                        
+                            
+
+
+
+
+
+
+
+
+
+
+<div class="col-xs-6 col-sm-4 col-md-3 col-lg-5ths people-col" name="member">
+    <a href="../../member/chloealoimonos/index.html">
+        <div class="easter-egg-col">
+            <img src="../../media/person/Screen_Shot_2016-05-07_at_2.53.25_PM.png.245x245_q85_box-211%2c60%2c508%2c357_crop_detail_upscale.png"
+                 class="img-responsive main-image"/>
+            <div class="overlay-easter-egg">
+                <img src="../../media/person/LEGO_R2-D2_Second_Variation_b6gXFQs.png.245x245_q85_box-0%2c0%2c1275%2c1275_crop_detail_upscale.png"
+                     class="img-responsive">
+            </div>
+        </div>
+    </a>
+    <div class="item-info" style="background:white">
+        <a href="../../member/chloealoimonos/index.html">
+            <h5 class="easter-egg-name">Chloe Aloimonos</h5>
+        </a>
+        <p class="no-margin">Jun 2015 - Aug 2015</p>
+
+        <p class="line-clamp-one-line no-margin">High School Student</p>
+
+        <p class="line-clamp-one-line no-margin">
+            
+        </p>
+        <p class="line-clamp-one-line no-margin">Eleanor Roosevelt High School</p>
+
+        
+        
+            <p class="pub-download-links line-clamp-one-line no-margin" style="position: static; margin:3px 0px 0px 0px;">
+                
+                    
+                        <a href="index.html">MakerWear</a>
+                    
+                
+
+            </p><br/>
+        
+    </div>
+    <div class="sortingAndFiltering" style="display:none">
+        <!-- special case for professors since each type of prof does not get their own category -->
+        
+            High School Student()
+        
+    </div>
+</div>
+                        
+                    </div>
+                </div>
+            
+        
+    </div>
+</div>
+
+
+    
+
+        <div class="makelab-footer">
+            <div class="row makelab-footer-row">
+               
+                <div class="col-xs-2 makelab-footer-col">
+                    <a href="../../index.html">
+                        <img src="../../static/website/img/logos/makelab_logo_white_with_text_400x342.png"
+                             class="img-responsive makelab-footer-logo"/>
+                    </a>
+                  </div>
+                    
+				<div class="col-xs-2 makelab-footer-col">
+                    <p style="margin-top:0px">
+                       We design, build, and evaluate interactive tools and techniques to address pressing societal
+                        challenges in accessibility, sustainability, education, and beyond.
+                    </p>
+                      
+					<div class="makelab-footer-connect-links">
+						<ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+						</ul>
+					</div>      
+				</div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-recent-news">
+                    <h1>Recent News</h1>
+                    
+                    
+
+                    
+                        <div class="row">
+                            <a href="../../news/86/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 30, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Project Sidewalk in the Local News!</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/85/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 18, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">UW News Covers Project Sidewalk</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        <div class="row">
+                            <a href="../../news/84/index.html">
+                                <div class="col-xs-3" style="white-space:nowrap;min-width:115px">
+				    
+                                    <p>April 17, 2019</p>
+                                </div>
+                                <div style="max-width: 300px; width:100%;">
+                                   <p class= "line-clamp">Aileen Zeng Presents at Women&#39;s Research Day</p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                </div>
+
+                <div class="col-xs-2 makelab-footer-col makelab-footer-links">
+                    <h1>Links</h1>
+                    <ul>
+                        
+
+                            <li style="white-space:nowrap;" class=""><a href="../../index.html"> &nbsp;> &nbsp; Home</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../people/index.html">&nbsp;> &nbsp; People</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../news/index.html">&nbsp;> &nbsp; News</a></li>
+    
+                            <li style="white-space:nowrap;" class=""><a href="../../publications/index.html">&nbsp;> &nbsp; Publications</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../talks/index.html">&nbsp;> &nbsp; Talks</a></li>
+                            <li style="white-space:nowrap;" class=""><a href="../../videos/index.html">&nbsp;> &nbsp; Videos</a></li>
+                        
+                    </ul>
+                    <div class="makelab-footer-connect-links-mobile">
+
+                        <!-- TODO: Vertically center text with icon. Currently text does not appear perfectly vertically centered with icon -->
+                        <!--<h1>Connect</h1>-->
+
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/makeabilitylab">
+                                        <!--<img src="/static/website/img/logos/twitter_logo_white.png" class="makelab-footer-connect-logo"/>-->
+                                        <i class="fa fa-2x fa-twitter w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailto:jonf@cs.uw.edu">
+                                        <!--<img src="/static/website/img/logos/email_logo_white.png" class="makelab-footer-connect-logo"/> Email-->
+                                        <i class="fa fa-2x fa-envelope w3-hover-opacity"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/jonfroehlich/makeabilitylabwebsite">
+                                        <!--<img src="/static/website/img/logos/github_logo_white.png" class="makelab-footer-connect-logo"/> Github -->
+
+                                        <i class="fa fa-2x fa-github-square w3-hover-black"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Consider adding a sponsorship row? -->
+            <!-- TODO: The centering looks weird on this. Also responsive design wraps columns, which I don't like. Ideally, I think, on small devices, should just switch to single row;
+                 TODO: Fix UMD CS logo so that the text is bigger -->
+            <div class="makelab-footer-affiliations">
+                <div class="row makelab-footer-affiliations-row">
+                <div class="makelab-footer-affiliation-col">
+                    <a href="http://dub.uw.edu/">
+                        <img src="../../static/website/img/logos/uw_dub_bottom_white_185x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-cse-footer-icon">
+                    <a href="https://www.cs.washington.edu/">
+                        <img src="../../static/website/img/logos/uw_allen_school_logo_white_941x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" style="margin-top: 2px;">
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="uw-footer-icon">
+                    <a href="https://www.washington.edu/">
+
+
+                        <img src="../../static/website/img/logos/uw_white_horizontal_1196x94.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-cse-footer-icon">
+                    <a href="https://www.cs.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_cs_logo_white_850x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo" />
+                    </a>
+                </div>
+                <div class="makelab-footer-affiliation-col" id="umd-footer-icon">
+                    <a href="https://www.umd.edu/">
+                        <img src="../../static/website/img/logos/umd_logo_white_586x100.png"
+                             class="img-responsive makelab-footer-affiliation-logo"/>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+
+</body>
+
+<!-- Mirrored from makeabilitylab.cs.washington.edu/project/makerwear/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 May 2019 04:02:59 GMT -->
+</html>
